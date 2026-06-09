@@ -259,6 +259,170 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
       Dati di esempio aggiornati a giugno 2026. La sala segnali live è disponibile su Telegram <a href="https://t.me/GIO33BOT">@GIO33BOT</a> in tempo reale.
     </p>
 
+    <!-- ORARI DEI SEGNALI -->
+    <h2 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:6px;">Orari dei segnali e sessioni di mercato</h2>
+    <p style="font-size:14px;color:#64748b;margin-bottom:16px;">Il crypto trading è 24/7, ma la volatilità e la qualità dei segnali varia per sessione. Orari in CET (ora italiana).</p>
+
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap;">
+      <div style="background:#111827;border:1px solid #1e293b;border-radius:10px;padding:12px 20px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:22px;">🕐</span>
+        <div>
+          <div id="live-clock" style="font-size:20px;font-weight:800;color:#fff;letter-spacing:1px;">--:--:--</div>
+          <div style="font-size:11px;color:#64748b;">Ora corrente CET</div>
+        </div>
+      </div>
+      <div id="session-badge" style="background:#111827;border:1px solid #1e293b;border-radius:10px;padding:12px 20px;">
+        <div id="session-name" style="font-size:14px;font-weight:700;color:#f59e0b;">Calcolo...</div>
+        <div style="font-size:11px;color:#64748b;">Sessione attiva</div>
+      </div>
+    </div>
+
+    <div style="overflow-x:auto;border:1px solid #1e293b;border-radius:12px;margin-bottom:32px;">
+      <table style="width:100%;border-collapse:collapse;min-width:560px;">
+        <thead>
+          <tr style="background:#0d1526;">
+            <th style="padding:10px 14px;text-align:left;font-size:11px;color:#64748b;font-weight:700;border-bottom:2px solid #1e293b;">Sessione</th>
+            <th style="padding:10px 8px;text-align:center;font-size:11px;color:#64748b;font-weight:700;border-bottom:2px solid #1e293b;">Orario CET</th>
+            <th style="padding:10px 8px;text-align:center;font-size:11px;color:#64748b;font-weight:700;border-bottom:2px solid #1e293b;">Volatilità</th>
+            <th style="padding:10px 8px;text-align:left;font-size:11px;color:#64748b;font-weight:700;border-bottom:2px solid #1e293b;">Asset più attivi</th>
+            <th style="padding:10px 8px;text-align:left;font-size:11px;color:#64748b;font-weight:700;border-bottom:2px solid #1e293b;">TF consigliato</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="row-tokyo" style="border-bottom:1px solid #111827;">
+            <td style="padding:10px 14px;font-weight:600;color:#e2e8f0;">🌏 Tokyo</td>
+            <td style="padding:10px 8px;text-align:center;color:#94a3b8;">01:00 – 09:00</td>
+            <td style="padding:10px 8px;text-align:center;"><span style="color:#f59e0b;font-weight:700;">Media</span></td>
+            <td style="padding:10px 8px;color:#94a3b8;font-size:13px;">XRP, BTC, ETH</td>
+            <td style="padding:10px 8px;color:#94a3b8;font-size:13px;">1h, 4h</td>
+          </tr>
+          <tr id="row-london" style="border-bottom:1px solid #111827;">
+            <td style="padding:10px 14px;font-weight:600;color:#e2e8f0;">🇬🇧 Londra</td>
+            <td style="padding:10px 8px;text-align:center;color:#94a3b8;">08:00 – 17:00</td>
+            <td style="padding:10px 8px;text-align:center;"><span style="color:#22c55e;font-weight:700;">Alta</span></td>
+            <td style="padding:10px 8px;color:#94a3b8;font-size:13px;">BTC, ETH, SOL</td>
+            <td style="padding:10px 8px;color:#94a3b8;font-size:13px;">15m, 1h</td>
+          </tr>
+          <tr id="row-overlap" style="border-bottom:1px solid #111827;background:rgba(59,130,246,.05);">
+            <td style="padding:10px 14px;font-weight:700;color:#60a5fa;">⚡ Overlap</td>
+            <td style="padding:10px 8px;text-align:center;color:#60a5fa;font-weight:700;">14:00 – 17:00</td>
+            <td style="padding:10px 8px;text-align:center;"><span style="color:#22c55e;font-weight:800;">Massima</span></td>
+            <td style="padding:10px 8px;color:#94a3b8;font-size:13px;">Tutti</td>
+            <td style="padding:10px 8px;color:#94a3b8;font-size:13px;">5m, 15m, 1h</td>
+          </tr>
+          <tr id="row-newyork" style="border-bottom:1px solid #111827;">
+            <td style="padding:10px 14px;font-weight:600;color:#e2e8f0;">🗽 New York</td>
+            <td style="padding:10px 8px;text-align:center;color:#94a3b8;">14:30 – 23:00</td>
+            <td style="padding:10px 8px;text-align:center;"><span style="color:#22c55e;font-weight:700;">Alta</span></td>
+            <td style="padding:10px 8px;color:#94a3b8;font-size:13px;">BTC, ZEC, XMR</td>
+            <td style="padding:10px 8px;color:#94a3b8;font-size:13px;">15m, 1h, 4h</td>
+          </tr>
+          <tr id="row-night" style="border-bottom:1px solid #111827;">
+            <td style="padding:10px 14px;font-weight:600;color:#475569;">🌙 Notturna</td>
+            <td style="padding:10px 8px;text-align:center;color:#475569;">23:00 – 01:00</td>
+            <td style="padding:10px 8px;text-align:center;"><span style="color:#475569;font-weight:700;">Bassa</span></td>
+            <td style="padding:10px 8px;color:#475569;font-size:13px;">Evitare scalp</td>
+            <td style="padding:10px 8px;color:#475569;font-size:13px;">4h, 1d</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CALENDARIO ECONOMICO -->
+    <h2 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:6px;">Calendario economico — Giugno 2026</h2>
+    <p style="font-size:14px;color:#64748b;margin-bottom:4px;">Eventi macro che impattano il mercato crypto. Il bot Consensus Rider applica veto automatico durante gli eventi ad alto impatto.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;font-size:12px;">
+      <span style="background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.35);color:#f87171;border-radius:6px;padding:3px 10px;font-weight:700;">● Alto impatto</span>
+      <span style="background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.35);color:#fbbf24;border-radius:6px;padding:3px 10px;font-weight:700;">● Medio impatto</span>
+      <span style="background:rgba(71,85,105,.12);border:1px solid rgba(71,85,105,.3);color:#64748b;border-radius:6px;padding:3px 10px;font-weight:700;">● Basso impatto</span>
+      <span style="background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);color:#60a5fa;border-radius:6px;padding:3px 10px;font-weight:700;">⚡ Veto automatico attivo</span>
+    </div>
+
+    <div style="overflow-x:auto;border:1px solid #1e293b;border-radius:12px;margin-bottom:12px;">
+      <table style="width:100%;border-collapse:collapse;min-width:580px;">
+        <thead>
+          <tr style="background:#0d1526;">
+            <th style="padding:10px 12px;text-align:left;font-size:11px;color:#64748b;font-weight:700;border-bottom:2px solid #1e293b;">Data</th>
+            <th style="padding:10px 8px;text-align:center;font-size:11px;color:#64748b;font-weight:700;border-bottom:2px solid #1e293b;">Ora CET</th>
+            <th style="padding:10px 8px;text-align:left;font-size:11px;color:#64748b;font-weight:700;border-bottom:2px solid #1e293b;">Evento</th>
+            <th style="padding:10px 8px;text-align:center;font-size:11px;color:#64748b;font-weight:700;border-bottom:2px solid #1e293b;">Paese</th>
+            <th style="padding:10px 8px;text-align:center;font-size:11px;color:#64748b;font-weight:700;border-bottom:2px solid #1e293b;">Impatto</th>
+            <th style="padding:10px 8px;text-align:left;font-size:11px;color:#64748b;font-weight:700;border-bottom:2px solid #1e293b;">Effetto crypto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #111827;">
+            <td style="padding:9px 12px;color:#e2e8f0;font-weight:600;font-size:13px;">Lun 09 giu</td>
+            <td style="padding:9px 8px;text-align:center;color:#94a3b8;font-size:12px;">14:30</td>
+            <td style="padding:9px 8px;color:#e2e8f0;font-size:13px;">CPI USA (inflazione)</td>
+            <td style="padding:9px 8px;text-align:center;font-size:13px;">🇺🇸</td>
+            <td style="padding:9px 8px;text-align:center;"><span style="background:rgba(239,68,68,.15);color:#f87171;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">ALTO ⚡</span></td>
+            <td style="padding:9px 8px;color:#64748b;font-size:12px;">Spike volatilità BTC ±3–5%</td>
+          </tr>
+          <tr style="border-bottom:1px solid #111827;">
+            <td style="padding:9px 12px;color:#e2e8f0;font-weight:600;font-size:13px;">Mer 11 giu</td>
+            <td style="padding:9px 8px;text-align:center;color:#94a3b8;font-size:12px;">20:00</td>
+            <td style="padding:9px 8px;color:#e2e8f0;font-size:13px;">FOMC — Decisione tassi Fed</td>
+            <td style="padding:9px 8px;text-align:center;font-size:13px;">🇺🇸</td>
+            <td style="padding:9px 8px;text-align:center;"><span style="background:rgba(239,68,68,.15);color:#f87171;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">ALTO ⚡</span></td>
+            <td style="padding:9px 8px;color:#64748b;font-size:12px;">Impatto massimo su crypto — evitare scalp</td>
+          </tr>
+          <tr style="border-bottom:1px solid #111827;">
+            <td style="padding:9px 12px;color:#e2e8f0;font-weight:600;font-size:13px;">Gio 12 giu</td>
+            <td style="padding:9px 8px;text-align:center;color:#94a3b8;font-size:12px;">14:30</td>
+            <td style="padding:9px 8px;color:#e2e8f0;font-size:13px;">PPI USA (prezzi produzione)</td>
+            <td style="padding:9px 8px;text-align:center;font-size:13px;">🇺🇸</td>
+            <td style="padding:9px 8px;text-align:center;"><span style="background:rgba(251,191,36,.12);color:#fbbf24;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">MEDIO</span></td>
+            <td style="padding:9px 8px;color:#64748b;font-size:12px;">Volatilità moderata 30–60 min</td>
+          </tr>
+          <tr style="border-bottom:1px solid #111827;">
+            <td style="padding:9px 12px;color:#e2e8f0;font-weight:600;font-size:13px;">Ven 13 giu</td>
+            <td style="padding:9px 8px;text-align:center;color:#94a3b8;font-size:12px;">16:00</td>
+            <td style="padding:9px 8px;color:#e2e8f0;font-size:13px;">Sentiment consumatori Univ. Michigan</td>
+            <td style="padding:9px 8px;text-align:center;font-size:13px;">🇺🇸</td>
+            <td style="padding:9px 8px;text-align:center;"><span style="background:rgba(71,85,105,.12);color:#64748b;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">BASSO</span></td>
+            <td style="padding:9px 8px;color:#64748b;font-size:12px;">Impatto limitato su crypto</td>
+          </tr>
+          <tr style="border-bottom:1px solid #111827;">
+            <td style="padding:9px 12px;color:#e2e8f0;font-weight:600;font-size:13px;">Mer 18 giu</td>
+            <td style="padding:9px 8px;text-align:center;color:#94a3b8;font-size:12px;">14:30</td>
+            <td style="padding:9px 8px;color:#e2e8f0;font-size:13px;">Retail Sales USA</td>
+            <td style="padding:9px 8px;text-align:center;font-size:13px;">🇺🇸</td>
+            <td style="padding:9px 8px;text-align:center;"><span style="background:rgba(251,191,36,.12);color:#fbbf24;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">MEDIO</span></td>
+            <td style="padding:9px 8px;color:#64748b;font-size:12px;">Spill-over su BTC se dato sorprende</td>
+          </tr>
+          <tr style="border-bottom:1px solid #111827;">
+            <td style="padding:9px 12px;color:#e2e8f0;font-weight:600;font-size:13px;">Ven 20 giu</td>
+            <td style="padding:9px 8px;text-align:center;color:#94a3b8;font-size:12px;">—</td>
+            <td style="padding:9px 8px;color:#e2e8f0;font-size:13px;">Quadrupla strega (futures/opzioni USA)</td>
+            <td style="padding:9px 8px;text-align:center;font-size:13px;">🌍</td>
+            <td style="padding:9px 8px;text-align:center;"><span style="background:rgba(239,68,68,.15);color:#f87171;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">ALTO ⚡</span></td>
+            <td style="padding:9px 8px;color:#64748b;font-size:12px;">Alta volatilità intraday tutto il giorno</td>
+          </tr>
+          <tr style="border-bottom:1px solid #111827;">
+            <td style="padding:9px 12px;color:#e2e8f0;font-weight:600;font-size:13px;">Mar 24 giu</td>
+            <td style="padding:9px 8px;text-align:center;color:#94a3b8;font-size:12px;">16:00</td>
+            <td style="padding:9px 8px;color:#e2e8f0;font-size:13px;">Fiducia consumatori CB</td>
+            <td style="padding:9px 8px;text-align:center;font-size:13px;">🇺🇸</td>
+            <td style="padding:9px 8px;text-align:center;"><span style="background:rgba(71,85,105,.12);color:#64748b;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">BASSO</span></td>
+            <td style="padding:9px 8px;color:#64748b;font-size:12px;">Impatto limitato</td>
+          </tr>
+          <tr>
+            <td style="padding:9px 12px;color:#e2e8f0;font-weight:600;font-size:13px;">Ven 27 giu</td>
+            <td style="padding:9px 8px;text-align:center;color:#94a3b8;font-size:12px;">14:30</td>
+            <td style="padding:9px 8px;color:#e2e8f0;font-size:13px;">PCE Core USA (inflazione Fed)</td>
+            <td style="padding:9px 8px;text-align:center;font-size:13px;">🇺🇸</td>
+            <td style="padding:9px 8px;text-align:center;"><span style="background:rgba(239,68,68,.15);color:#f87171;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">ALTO ⚡</span></td>
+            <td style="padding:9px 8px;color:#64748b;font-size:12px;">Mossa BTC possibile ±2–4%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px;color:#475569;margin-bottom:32px;">
+      ⚡ = veto automatico attivo sui bot Nextrade durante l'evento · Calendario aggiornato a giugno 2026 ·
+      <a href="https://it.investing.com/economic-calendar/" target="_blank" rel="noopener" style="color:#60a5fa;">Calendario completo su Investing.com →</a>
+    </p>
+
     <!-- COME LEGGERE -->
     <h2 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:6px;">Come leggere la matrice segnali</h2>
     <p style="font-size:14px;color:#64748b;margin-bottom:4px;">Guida rapida all'interpretazione dei segnali Nextrade</p>
@@ -342,5 +506,49 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
   </div>
 </footer>
 
+<script>
+function updateClock() {
+  const now = new Date();
+  const cet = new Date(now.toLocaleString("en-US", {timeZone: "Europe/Rome"}));
+  const h = String(cet.getHours()).padStart(2,"0");
+  const m = String(cet.getMinutes()).padStart(2,"0");
+  const s = String(cet.getSeconds()).padStart(2,"0");
+  const el = document.getElementById("live-clock");
+  if (el) el.textContent = `${h}:${m}:${s}`;
+
+  const hour = cet.getHours() + cet.getMinutes()/60;
+  let session = "", color = "#64748b";
+  if      (hour >= 14 && hour < 17)  { session = "⚡ Overlap Londra/NY — Massima volatilità"; color = "#60a5fa"; }
+  else if (hour >= 14.5 && hour < 23){ session = "🗽 Sessione New York — Alta volatilità";    color = "#22c55e"; }
+  else if (hour >= 8  && hour < 17)  { session = "🇬🇧 Sessione Londra — Alta volatilità";     color = "#22c55e"; }
+  else if (hour >= 1  && hour < 9)   { session = "🌏 Sessione Tokyo — Volatilità media";      color = "#f59e0b"; }
+  else                               { session = "🌙 Sessione notturna — Bassa volatilità";   color = "#475569"; }
+
+  const sn = document.getElementById("session-name");
+  if (sn) { sn.textContent = session; sn.style.color = color; }
+
+  const rowMap = {
+    "overlap": "row-overlap",
+    "ny":      "row-newyork",
+    "london":  "row-london",
+    "tokyo":   "row-tokyo",
+    "night":   "row-night"
+  };
+  let activeKey = "night";
+  if      (hour >= 14 && hour < 17)   activeKey = "overlap";
+  else if (hour >= 14.5 && hour < 23) activeKey = "ny";
+  else if (hour >= 8  && hour < 17)   activeKey = "london";
+  else if (hour >= 1  && hour < 9)    activeKey = "tokyo";
+
+  Object.values(rowMap).forEach(id => {
+    const r = document.getElementById(id);
+    if (r) r.style.background = "";
+  });
+  const activeRow = document.getElementById(rowMap[activeKey]);
+  if (activeRow) activeRow.style.background = "rgba(59,130,246,.1)";
+}
+setInterval(updateClock, 1000);
+updateClock();
+</script>
 </body>
 </html>
