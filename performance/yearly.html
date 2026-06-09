@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report Annuale — Nextrade</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0f1e;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+a{color:#60a5fa;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1100px;margin:0 auto;flex-wrap:wrap;gap:10px}
+.nav-logo{font-weight:800;font-size:20px;color:#fff}.nav-logo span{color:#3b82f6}
+.nav-links{display:flex;gap:20px;font-size:14px;flex-wrap:wrap}
+.nav-links a{color:#94a3b8}.nav-links a:hover,.nav-links a.cur{color:#fff}
+.hero{padding:40px 20px 24px;background:radial-gradient(ellipse at 50% 0%,#1a3a6033 0%,transparent 70%)}
+.hero h1{font-size:clamp(20px,4vw,30px);font-weight:900;color:#fff;margin-bottom:6px}
+.hero p{font-size:13px;color:#64748b}
+.section{margin:24px 0}
+.sec-title{font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #1e293b}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.kpi{background:#111827;border:1px solid #1e293b;border-radius:10px;padding:16px}
+.kpi-lbl{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.3px;margin-bottom:5px}
+.kpi-val{font-size:24px;font-weight:800}
+.kpi-sub{font-size:11px;color:#475569;margin-top:2px}
+.g{color:#4ade80}.b{color:#60a5fa}.y{color:#fbbf24}
+.yr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.yr-card{background:#111827;border:1px solid #1e293b;border-radius:12px;padding:20px}
+.yr-title{font-size:18px;font-weight:800;color:#fff;margin-bottom:4px}
+.yr-sub{font-size:12px;color:#64748b;margin-bottom:14px}
+.yr-stat{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #1e293b}
+.yr-stat:last-child{border:none}
+.yr-stat-lbl{font-size:12px;color:#64748b}
+.yr-stat-val{font-size:13px;font-weight:700}
+.badge{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+.bg{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.sub-links{display:flex;flex-wrap:wrap;gap:8px}
+.sl{background:#111827;border:1px solid #1e293b;border-radius:8px;padding:9px 16px;font-size:13px;color:#94a3b8;transition:all .15s}
+.sl:hover{border-color:#3b82f6;color:#60a5fa}.sl.cur{border-color:#1d4ed8;background:#1e3a5f;color:#93c5fd}
+footer{padding:24px 20px;text-align:center;font-size:11px;color:#334155;border-top:1px solid #1e293b;margin-top:40px}
+</style>
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a href="../index.html" class="nav-logo">Next<span>trade</span></a>
+  <div class="nav-links">
+    <a href="../segnali.html">Segnali</a>
+    <a href="../chiamate.html">Chiamate</a>
+    <a href="index.html">Performance</a>
+  </div>
+</div></nav>
+
+<div class="container">
+<div class="hero">
+  <h1>Report Annuale</h1>
+  <p>Confronto anno 2024 (H2) vs anno 2025 vs 2026 (H1) — Backtest fee 0%</p>
+</div>
+
+<div class="section">
+  <div class="sec-title">Riepilogo 2 Anni</div>
+  <div class="kpis">
+    <div class="kpi"><div class="kpi-lbl">PnL 2024 (H2)</div><div class="kpi-val g">+2.581€</div><div class="kpi-sub">Giu–Dic 2024</div></div>
+    <div class="kpi"><div class="kpi-lbl">PnL 2025</div><div class="kpi-val g">+4.558€</div><div class="kpi-sub">Gen–Dic 2025</div></div>
+    <div class="kpi"><div class="kpi-lbl">PnL 2026 (H1)</div><div class="kpi-val g">+1.818€</div><div class="kpi-sub">Gen–Mag 2026</div></div>
+    <div class="kpi"><div class="kpi-lbl">CAGR (ann.)</div><div class="kpi-val b">+76%</div><div class="kpi-sub">rendimento annualizzato</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">Dettaglio per Anno</div>
+  <div class="yr-grid">
+    <div class="yr-card">
+      <div class="yr-title">2024 — H2</div>
+      <div class="yr-sub">Giu–Dic (7 mesi) · Bull market BTC</div>
+      <div class="yr-stat"><span class="yr-stat-lbl">PnL totale</span><span class="yr-stat-val g">+2.581€</span></div>
+      <div class="yr-stat"><span class="yr-stat-lbl">Trade totali</span><span class="yr-stat-val">~2.975</span></div>
+      <div class="yr-stat"><span class="yr-stat-lbl">WR medio</span><span class="yr-stat-val g">63.1%</span></div>
+      <div class="yr-stat"><span class="yr-stat-lbl">Mese migliore</span><span class="yr-stat-val g">Dic24 +496€</span></div>
+      <div class="yr-stat"><span class="yr-stat-lbl">Rendimento</span><span class="yr-stat-val"><span class="badge bg">+43%</span></span></div>
+    </div>
+    <div class="yr-card">
+      <div class="yr-title">2025</div>
+      <div class="yr-sub">Gen–Dic (12 mesi) · Trend laterale/bull</div>
+      <div class="yr-stat"><span class="yr-stat-lbl">PnL totale</span><span class="yr-stat-val g">+4.558€</span></div>
+      <div class="yr-stat"><span class="yr-stat-lbl">Trade totali</span><span class="yr-stat-val">~5.156</span></div>
+      <div class="yr-stat"><span class="yr-stat-lbl">WR medio</span><span class="yr-stat-val g">62.5%</span></div>
+      <div class="yr-stat"><span class="yr-stat-lbl">Mese migliore</span><span class="yr-stat-val g">Nov25 +453€</span></div>
+      <div class="yr-stat"><span class="yr-stat-lbl">Rendimento</span><span class="yr-stat-val"><span class="badge bg">+76%</span></span></div>
+    </div>
+    <div class="yr-card">
+      <div class="yr-title">2026 — H1</div>
+      <div class="yr-sub">Gen–Mag (5 mesi) · Bear market, EMA200 attivo</div>
+      <div class="yr-stat"><span class="yr-stat-lbl">PnL totale</span><span class="yr-stat-val g">+1.818€</span></div>
+      <div class="yr-stat"><span class="yr-stat-lbl">Trade totali</span><span class="yr-stat-val">~2.021</span></div>
+      <div class="yr-stat"><span class="yr-stat-lbl">WR medio</span><span class="yr-stat-val y">60.8%</span></div>
+      <div class="yr-stat"><span class="yr-stat-lbl">Mese migliore</span><span class="yr-stat-val g">Gen26 +308€</span></div>
+      <div class="yr-stat"><span class="yr-stat-lbl">Rendimento</span><span class="yr-stat-val"><span class="badge bg">+30%</span></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sub-links">
+    <a href="index.html" class="sl">▦ Overview</a>
+    <a href="daily.html" class="sl">◻ Report Oggi</a>
+    <a href="weekly.html" class="sl">◼ Settimanale</a>
+    <a href="monthly.html" class="sl">▣ Mensile</a>
+    <a href="yearly.html" class="sl cur">◈ Annuale</a>
+    <a href="strategies.html" class="sl">▲ Strategie</a>
+    <a href="assets.html" class="sl">◆ Asset</a>
+  </div>
+</div>
+</div>
+<footer>Nextrade · Backtest fee 0%, slippage 0.02%, leva 10x</footer>
+</body>
+</html>

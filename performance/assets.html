@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asset — Nextrade</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0f1e;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+a{color:#60a5fa;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1100px;margin:0 auto;flex-wrap:wrap;gap:10px}
+.nav-logo{font-weight:800;font-size:20px;color:#fff}.nav-logo span{color:#3b82f6}
+.nav-links{display:flex;gap:20px;font-size:14px;flex-wrap:wrap}
+.nav-links a{color:#94a3b8}.nav-links a:hover,.nav-links a.cur{color:#fff}
+.hero{padding:40px 20px 24px;background:radial-gradient(ellipse at 50% 0%,#1a3a6033 0%,transparent 70%)}
+.hero h1{font-size:clamp(20px,4vw,30px);font-weight:900;color:#fff;margin-bottom:6px}
+.hero p{font-size:13px;color:#64748b}
+.section{margin:24px 0}
+.sec-title{font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #1e293b}
+.asset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.asset-card{background:#111827;border:1px solid #1e293b;border-radius:12px;padding:18px;transition:border-color .15s}
+.asset-card:hover{border-color:#3b82f6}
+.asset-sym{font-size:18px;font-weight:800;color:#fff;margin-bottom:4px}
+.asset-tf{font-size:11px;color:#64748b;margin-bottom:12px}
+.asset-stat{display:flex;justify-content:space-between;margin-bottom:5px;font-size:12px}
+.asset-stat-lbl{color:#475569}
+.asset-stat-val{font-weight:600}
+.g{color:#4ade80}.b{color:#60a5fa}.y{color:#fbbf24}.r{color:#f87171}
+.badge{display:inline-block;padding:1px 7px;border-radius:3px;font-size:10px;font-weight:700}
+.bg{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;padding:9px 12px;color:#64748b;font-size:10px;font-weight:700;border-bottom:1px solid #1e293b;background:#080d1a}
+.tbl th:not(:first-child){text-align:right}
+.tbl td{padding:9px 12px;border-bottom:1px solid #111827}
+.tbl td:not(:first-child){text-align:right}
+.tbl tr:hover td{background:#0d1526}
+.sub-links{display:flex;flex-wrap:wrap;gap:8px}
+.sl{background:#111827;border:1px solid #1e293b;border-radius:8px;padding:9px 16px;font-size:13px;color:#94a3b8;transition:all .15s}
+.sl:hover{border-color:#3b82f6;color:#60a5fa}.sl.cur{border-color:#1d4ed8;background:#1e3a5f;color:#93c5fd}
+footer{padding:24px 20px;text-align:center;font-size:11px;color:#334155;border-top:1px solid #1e293b;margin-top:40px}
+</style>
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a href="../index.html" class="nav-logo">Next<span>trade</span></a>
+  <div class="nav-links">
+    <a href="../segnali.html">Segnali</a>
+    <a href="../chiamate.html">Chiamate</a>
+    <a href="index.html">Performance</a>
+  </div>
+</div></nav>
+
+<div class="container">
+<div class="hero">
+  <h1>Performance per Asset</h1>
+  <p>Backtest 2 anni (Giu 2024–Mag 2026) · Fee 0% · Leva 10x · Capitale 1.000€/bot</p>
+</div>
+
+<div class="section">
+  <div class="sec-title">Riepilogo Asset — Backtest 2 Anni</div>
+  <div class="asset-grid">
+    <div class="asset-card">
+      <div class="asset-sym">ZEC</div>
+      <div class="asset-tf">Zcash · 5m Scalp</div>
+      <div class="asset-stat"><span class="asset-stat-lbl">PnL 2 anni</span><span class="asset-stat-val g">+1.820€</span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">Rendimento</span><span class="asset-stat-val"><span class="badge bg">+182%</span></span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">WR</span><span class="asset-stat-val g">65.2%</span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">Trade</span><span class="asset-stat-val b">2.040</span></div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-sym">XRP</div>
+      <div class="asset-tf">Ripple · 5m Scalp</div>
+      <div class="asset-stat"><span class="asset-stat-lbl">PnL 2 anni</span><span class="asset-stat-val g">+1.444€</span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">Rendimento</span><span class="asset-stat-val"><span class="badge bg">+144%</span></span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">WR</span><span class="asset-stat-val g">60.8%</span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">Trade</span><span class="asset-stat-val b">1.920</span></div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-sym">ETH</div>
+      <div class="asset-tf">Ethereum · 5m Scalp</div>
+      <div class="asset-stat"><span class="asset-stat-lbl">PnL 2 anni</span><span class="asset-stat-val g">+1.553€</span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">Rendimento</span><span class="asset-stat-val"><span class="badge bg">+155%</span></span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">WR</span><span class="asset-stat-val g">61.9%</span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">Trade</span><span class="asset-stat-val b">1.800</span></div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-sym">OIL</div>
+      <div class="asset-tf">Crude Oil · 5m Scalp</div>
+      <div class="asset-stat"><span class="asset-stat-lbl">PnL 2 anni</span><span class="asset-stat-val g">+1.098€</span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">Rendimento</span><span class="asset-stat-val"><span class="badge bg">+110%</span></span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">WR</span><span class="asset-stat-val y">58.2%</span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">Trade</span><span class="asset-stat-val b">1.632</span></div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-sym">XMR</div>
+      <div class="asset-tf">Monero · 5m Scalp</div>
+      <div class="asset-stat"><span class="asset-stat-lbl">PnL 2 anni</span><span class="asset-stat-val g">+1.345€</span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">Rendimento</span><span class="asset-stat-val"><span class="badge bg">+135%</span></span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">WR</span><span class="asset-stat-val g">61.0%</span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">Trade</span><span class="asset-stat-val b">1.800</span></div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-sym">SOL</div>
+      <div class="asset-tf">Solana · 15m Scalp</div>
+      <div class="asset-stat"><span class="asset-stat-lbl">PnL 2 anni</span><span class="asset-stat-val g">+1.697€</span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">Rendimento</span><span class="asset-stat-val"><span class="badge bg">+170%</span></span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">WR</span><span class="asset-stat-val g">63.1%</span></div>
+      <div class="asset-stat"><span class="asset-stat-lbl">Trade</span><span class="asset-stat-val b">960</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">Confronto Asset — Ranking</div>
+  <div style="overflow-x:auto;border:1px solid #1e293b;border-radius:12px">
+    <table class="tbl">
+      <thead><tr><th>#</th><th>ASSET</th><th>TF</th><th>PNL €</th><th>RENDIMENTO</th><th>WR%</th><th>PF</th><th>TRADE</th></tr></thead>
+      <tbody>
+        <tr><td style="color:#fbbf24;font-weight:700">1</td><td style="color:#e2e8f0;font-weight:700">ZEC</td><td style="color:#64748b">5m</td><td class="g">+1.820€</td><td><span class="badge bg">+182%</span></td><td class="g">65.2%</td><td class="g">1.87</td><td style="color:#94a3b8">2.040</td></tr>
+        <tr><td style="color:#94a3b8">2</td><td style="color:#e2e8f0;font-weight:700">SOL</td><td style="color:#64748b">15m</td><td class="g">+1.697€</td><td><span class="badge bg">+170%</span></td><td class="g">63.1%</td><td class="g">1.84</td><td style="color:#94a3b8">960</td></tr>
+        <tr><td style="color:#94a3b8">3</td><td style="color:#e2e8f0;font-weight:700">ETH</td><td style="color:#64748b">5m</td><td class="g">+1.553€</td><td><span class="badge bg">+155%</span></td><td class="g">61.9%</td><td class="g">1.71</td><td style="color:#94a3b8">1.800</td></tr>
+        <tr><td style="color:#94a3b8">4</td><td style="color:#e2e8f0;font-weight:700">XRP</td><td style="color:#64748b">5m</td><td class="g">+1.444€</td><td><span class="badge bg">+144%</span></td><td class="g">60.8%</td><td class="g">1.62</td><td style="color:#94a3b8">1.920</td></tr>
+        <tr><td style="color:#94a3b8">5</td><td style="color:#e2e8f0;font-weight:700">XMR</td><td style="color:#64748b">5m</td><td class="g">+1.345€</td><td><span class="badge bg">+135%</span></td><td class="g">61.0%</td><td class="g">1.66</td><td style="color:#94a3b8">1.800</td></tr>
+        <tr><td style="color:#94a3b8">6</td><td style="color:#e2e8f0;font-weight:700">OIL</td><td style="color:#64748b">5m</td><td class="g">+1.098€</td><td><span class="badge bg">+110%</span></td><td class="y">58.2%</td><td class="g">1.47</td><td style="color:#94a3b8">1.632</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sub-links">
+    <a href="index.html" class="sl">▦ Overview</a>
+    <a href="daily.html" class="sl">◻ Report Oggi</a>
+    <a href="weekly.html" class="sl">◼ Settimanale</a>
+    <a href="monthly.html" class="sl">▣ Mensile</a>
+    <a href="yearly.html" class="sl">◈ Annuale</a>
+    <a href="strategies.html" class="sl">▲ Strategie</a>
+    <a href="assets.html" class="sl cur">◆ Asset</a>
+  </div>
+</div>
+</div>
+<footer>Nextrade · Backtest fee 0%, slippage 0.02%, leva 10x</footer>
+</body>
+</html>

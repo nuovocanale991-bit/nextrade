@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report Settimanale — Nextrade</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0f1e;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+a{color:#60a5fa;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1100px;margin:0 auto;flex-wrap:wrap;gap:10px}
+.nav-logo{font-weight:800;font-size:20px;color:#fff}.nav-logo span{color:#3b82f6}
+.nav-links{display:flex;gap:20px;font-size:14px;flex-wrap:wrap}
+.nav-links a{color:#94a3b8}.nav-links a:hover,.nav-links a.cur{color:#fff}
+.hero{padding:40px 20px 24px;background:radial-gradient(ellipse at 50% 0%,#1a3a6033 0%,transparent 70%)}
+.hero h1{font-size:clamp(20px,4vw,30px);font-weight:900;color:#fff;margin-bottom:6px}
+.hero p{font-size:13px;color:#64748b}
+.section{margin:24px 0}
+.sec-title{font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #1e293b}
+.card{background:#111827;border:1px solid #1e293b;border-radius:12px;padding:20px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:8px}
+.kpi{background:#0d1526;border-radius:8px;padding:14px}
+.kpi-lbl{font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px}
+.kpi-val{font-size:22px;font-weight:800}
+.g{color:#4ade80}.b{color:#60a5fa}.y{color:#fbbf24}
+.live-row{display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:13px;color:#94a3b8}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot.on{background:#4ade80;box-shadow:0 0 6px #4ade8066;animation:pl 2s infinite}.dot.off{background:#475569}
+@keyframes pl{0%,100%{opacity:1}50%{opacity:.3}}
+.week-tbl{width:100%;border-collapse:collapse;font-size:13px}
+.week-tbl th{text-align:left;padding:9px 12px;color:#64748b;font-size:10px;font-weight:700;border-bottom:1px solid #1e293b;background:#080d1a}
+.week-tbl th:not(:first-child){text-align:right}
+.week-tbl td{padding:9px 12px;border-bottom:1px solid #111827}
+.week-tbl td:not(:first-child){text-align:right}
+.week-tbl tr:hover td{background:#0d1526}
+.sub-links{display:flex;flex-wrap:wrap;gap:8px}
+.sl{background:#111827;border:1px solid #1e293b;border-radius:8px;padding:9px 16px;font-size:13px;color:#94a3b8;transition:all .15s}
+.sl:hover{border-color:#3b82f6;color:#60a5fa}.sl.cur{border-color:#1d4ed8;background:#1e3a5f;color:#93c5fd}
+footer{padding:24px 20px;text-align:center;font-size:11px;color:#334155;border-top:1px solid #1e293b;margin-top:40px}
+</style>
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a href="../index.html" class="nav-logo">Next<span>trade</span></a>
+  <div class="nav-links">
+    <a href="../segnali.html">Segnali</a>
+    <a href="../chiamate.html">Chiamate</a>
+    <a href="index.html">Performance</a>
+  </div>
+</div></nav>
+
+<div class="container">
+<div class="hero">
+  <h1>Report Settimanale</h1>
+  <p id="week-str">Settimana corrente</p>
+</div>
+
+<div class="section">
+  <div class="sec-title">Questa Settimana — Live</div>
+  <div class="card">
+    <div class="live-row"><div class="dot off" id="ldot"></div><span id="lstatus">Connessione…</span></div>
+    <div class="kpis">
+      <div class="kpi"><div class="kpi-lbl">Trade settimana</div><div class="kpi-val b" id="kv-t">—</div></div>
+      <div class="kpi"><div class="kpi-lbl">PnL settimana</div><div class="kpi-val g" id="kv-p">—</div></div>
+      <div class="kpi"><div class="kpi-lbl">Win Rate</div><div class="kpi-val g" id="kv-wr">—</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">Backtest — PnL Settimanale Medio per Bot</div>
+  <div style="overflow-x:auto;border:1px solid #1e293b;border-radius:12px">
+    <table class="week-tbl">
+      <thead><tr><th>BOT</th><th>PNL /SETT MEDIO</th><th>TRADE /SETT</th><th>WR%</th></tr></thead>
+      <tbody>
+        <tr><td style="color:#e2e8f0;font-weight:600">ZEC Scalp 5m</td><td class="g">+~20€</td><td style="color:#94a3b8">~22</td><td class="g">65.2%</td></tr>
+        <tr><td style="color:#e2e8f0;font-weight:600">XRP Scalp 5m</td><td class="g">+~14€</td><td style="color:#94a3b8">~21</td><td class="g">60.8%</td></tr>
+        <tr><td style="color:#e2e8f0;font-weight:600">ETH Scalp 5m</td><td class="g">+~15€</td><td style="color:#94a3b8">~19</td><td class="g">61.9%</td></tr>
+        <tr><td style="color:#e2e8f0;font-weight:600">OIL Scalp 5m</td><td class="g">+~11€</td><td style="color:#94a3b8">~17</td><td class="g">58.2%</td></tr>
+        <tr><td style="color:#e2e8f0;font-weight:600">XMR Scalp 5m</td><td class="g">+~12€</td><td style="color:#94a3b8">~19</td><td class="g">61.0%</td></tr>
+        <tr><td style="color:#e2e8f0;font-weight:600">SOL Scalp 15m</td><td class="g">+~16€</td><td style="color:#94a3b8">~11</td><td class="g">63.1%</td></tr>
+        <tr style="background:#0d1526"><td style="color:#fff;font-weight:700">TOTALE</td><td class="g" style="font-weight:700">+~88€</td><td style="color:#94a3b8">~109</td><td class="g" style="font-weight:700">62.3%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sub-links">
+    <a href="index.html" class="sl">▦ Overview</a>
+    <a href="daily.html" class="sl">◻ Report Oggi</a>
+    <a href="weekly.html" class="sl cur">◼ Settimanale</a>
+    <a href="monthly.html" class="sl">▣ Mensile</a>
+    <a href="yearly.html" class="sl">◈ Annuale</a>
+    <a href="strategies.html" class="sl">▲ Strategie</a>
+    <a href="assets.html" class="sl">◆ Asset</a>
+  </div>
+</div>
+</div>
+<footer>Nextrade · Backtest fee 0%, slippage 0.02%</footer>
+
+<script>
+const now = new Date();
+const dayOfWeek = now.getDay();
+const mondayOffset = (dayOfWeek===0?-6:1)-dayOfWeek;
+const mon = new Date(now); mon.setDate(now.getDate()+mondayOffset);
+const sun = new Date(mon); sun.setDate(mon.getDate()+6);
+document.getElementById('week-str').textContent = `${mon.toLocaleDateString('it-IT',{day:'numeric',month:'long'})} – ${sun.toLocaleDateString('it-IT',{day:'numeric',month:'long',year:'numeric'})}`;
+const weekStart = mon.toISOString().slice(0,10);
+
+(async()=>{
+  try{
+    const [botsRes] = await Promise.all([fetch('http://localhost:8081/api/bots',{signal:AbortSignal.timeout(3000)})]);
+    const bots = await botsRes.json();
+    const active = bots.filter(b=>b.has_paper&&b.live&&b.live.n_trades>0);
+    const details = await Promise.all(active.map(b=>fetch(`http://localhost:8081/api/bots/${b.id}`,{signal:AbortSignal.timeout(3000)}).then(r=>r.json()).catch(()=>null)));
+    let trades=[], wins=0, pnl=0;
+    details.forEach(d=>{
+      if(!d||!d.trades) return;
+      d.trades.forEach(t=>{const ts=t.time||''; if(ts>=weekStart){trades.push(t); if(t.pnl_eur>0)wins++; pnl+=t.pnl_eur||0;}});
+    });
+    document.getElementById('ldot').className='dot on';
+    document.getElementById('lstatus').textContent=`Dashboard attivo — ${trades.length} trade questa settimana`;
+    document.getElementById('kv-t').textContent=trades.length;
+    document.getElementById('kv-p').className=`kpi-val ${pnl>=0?'g':'r'}`;
+    document.getElementById('kv-p').textContent=(pnl>=0?'+':'')+pnl.toFixed(2)+'€';
+    const wr=trades.length?Math.round(wins/trades.length*100):0;
+    document.getElementById('kv-wr').textContent=wr+'%';
+  }catch{
+    document.getElementById('ldot').className='dot off';
+    document.getElementById('lstatus').innerHTML='Dashboard offline — <a href="http://localhost:8081" target="_blank">apri il dashboard</a>';
+  }
+})();
+</script>
+</body>
+</html>

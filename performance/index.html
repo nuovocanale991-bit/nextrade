@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Performance Report — Nextrade</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0f1e;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+a{color:#60a5fa;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1100px;margin:0 auto;flex-wrap:wrap;gap:10px}
+.nav-logo{font-weight:800;font-size:20px;color:#fff}
+.nav-logo span{color:#3b82f6}
+.nav-links{display:flex;gap:20px;font-size:14px;flex-wrap:wrap}
+.nav-links a{color:#94a3b8}
+.nav-links a:hover,.nav-links a.cur{color:#fff}
+.hero{padding:40px 20px 28px;background:radial-gradient(ellipse at 50% 0%,#1a3a6033 0%,transparent 70%)}
+.hero h1{font-size:clamp(20px,4vw,30px);font-weight:900;color:#fff;margin-bottom:8px}
+.hero p{font-size:13px;color:#64748b}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:24px 0}
+.kpi{background:#111827;border:1px solid #1e293b;border-radius:10px;padding:16px}
+.kpi-label{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+.kpi-val{font-size:24px;font-weight:800;color:#fff}
+.kpi-sub{font-size:11px;color:#475569;margin-top:2px}
+.g{color:#4ade80}.r{color:#f87171}.b{color:#60a5fa}.y{color:#fbbf24}
+.section{margin:28px 0}
+.sec-title{font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #1e293b}
+.card{background:#111827;border:1px solid #1e293b;border-radius:12px;padding:20px}
+.live-row{display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:13px;color:#94a3b8}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot.on{background:#4ade80;box-shadow:0 0 6px #4ade8066;animation:pl 2s infinite}
+.dot.off{background:#475569}
+@keyframes pl{0%,100%{opacity:1}50%{opacity:.3}}
+.live-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+.live-item{background:#0d1526;border-radius:8px;padding:10px}
+.li-lbl{font-size:10px;color:#475569;margin-bottom:3px}
+.li-val{font-size:18px;font-weight:700}
+.bot-tbl{width:100%;border-collapse:collapse;font-size:13px}
+.bot-tbl th{text-align:left;padding:9px 12px;color:#64748b;font-size:10px;font-weight:700;letter-spacing:.3px;border-bottom:1px solid #1e293b;background:#080d1a}
+.bot-tbl th:not(:first-child){text-align:right}
+.bot-tbl td{padding:9px 12px;border-bottom:1px solid #111827}
+.bot-tbl td:not(:first-child){text-align:right}
+.bot-tbl tr:hover td{background:#0d1526}
+.badge{display:inline-block;padding:1px 7px;border-radius:3px;font-size:10px;font-weight:700}
+.bg{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.sub-links{display:flex;flex-wrap:wrap;gap:8px}
+.sl{background:#111827;border:1px solid #1e293b;border-radius:8px;padding:9px 16px;font-size:13px;color:#94a3b8;transition:all .15s}
+.sl:hover{border-color:#3b82f6;color:#60a5fa}
+.sl.cur{border-color:#1d4ed8;background:#1e3a5f;color:#93c5fd}
+.hm{display:grid;gap:3px}
+.hm-row{display:grid;grid-template-columns:52px repeat(6,1fr);gap:3px;align-items:center}
+.hm-mo{font-size:10px;color:#64748b;text-align:right;padding-right:6px}
+.hm-cell{height:22px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700}
+footer{padding:24px 20px;text-align:center;font-size:11px;color:#334155;border-top:1px solid #1e293b;margin-top:40px}
+</style>
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a href="../index.html" class="nav-logo">Next<span>trade</span></a>
+  <div class="nav-links">
+    <a href="../segnali.html">Segnali</a>
+    <a href="../chiamate.html">Chiamate</a>
+    <a href="index.html" class="cur">Performance</a>
+  </div>
+</div></nav>
+
+<div class="container">
+<div class="hero">
+  <h1>Performance Report</h1>
+  <p>Backtest 2 anni · Giu 2024 – Mag 2026 · 6 bot · Fee 0% · Leva 10x · 1.000€/bot</p>
+</div>
+
+<div class="kpis">
+  <div class="kpi"><div class="kpi-label">Trade totali</div><div class="kpi-val b">10.152</div><div class="kpi-sub">6 bot, 24 mesi</div></div>
+  <div class="kpi"><div class="kpi-label">Win Rate</div><div class="kpi-val g">62.3%</div><div class="kpi-sub">media ponderata</div></div>
+  <div class="kpi"><div class="kpi-label">Profit Factor</div><div class="kpi-val g">1.74</div><div class="kpi-sub">gross win / loss</div></div>
+  <div class="kpi"><div class="kpi-label">PnL Totale</div><div class="kpi-val g">+8.957€</div><div class="kpi-sub">su 6.000€ capitale</div></div>
+  <div class="kpi"><div class="kpi-label">Rendimento</div><div class="kpi-val g">+149%</div><div class="kpi-sub">2 anni cumulato</div></div>
+  <div class="kpi"><div class="kpi-label">Max DD</div><div class="kpi-val y">-8.2%</div><div class="kpi-sub">intra-mese stimato</div></div>
+</div>
+
+<div class="section">
+  <div class="sec-title">Dashboard Live</div>
+  <div class="card">
+    <div class="live-row"><div class="dot off" id="ldot"></div><span id="lstatus">Connessione in corso…</span></div>
+    <div class="live-grid">
+      <div class="live-item"><div class="li-lbl">Bot attivi</div><div class="li-val" id="ll-run">—</div></div>
+      <div class="live-item"><div class="li-lbl">Equity totale</div><div class="li-val" id="ll-eq">—</div></div>
+      <div class="live-item"><div class="li-lbl">PnL live</div><div class="li-val" id="ll-pnl">—</div></div>
+      <div class="live-item"><div class="li-lbl">Con dati</div><div class="li-val" id="ll-data">—</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">Curva Equity — PnL Mensile Combinato</div>
+  <div class="card" style="padding:16px"><canvas id="chart-eq" height="80"></canvas></div>
+</div>
+
+<div class="section">
+  <div class="sec-title">Dettaglio per Bot — 2 Anni Backtest</div>
+  <div style="overflow-x:auto;border:1px solid #1e293b;border-radius:12px">
+    <table class="bot-tbl">
+      <thead><tr><th>BOT</th><th>TF</th><th>TRADE</th><th>WR%</th><th>PF</th><th>PNL €</th><th>RENDIMENTO</th><th>MESE TOP</th></tr></thead>
+      <tbody id="btbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">Heatmap PnL Mensile — Ultimi 12 Mesi</div>
+  <div class="card" style="overflow-x:auto">
+    <div id="heatmap-head" class="hm-row" style="margin-bottom:4px"></div>
+    <div id="heatmap"></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">Report Dettagliati</div>
+  <div class="sub-links">
+    <a href="index.html" class="sl cur">▦ Overview</a>
+    <a href="daily.html" class="sl">◻ Report Oggi</a>
+    <a href="weekly.html" class="sl">◼ Settimanale</a>
+    <a href="monthly.html" class="sl">▣ Mensile</a>
+    <a href="yearly.html" class="sl">◈ Annuale</a>
+    <a href="strategies.html" class="sl">▲ Strategie</a>
+    <a href="assets.html" class="sl">◆ Asset</a>
+  </div>
+</div>
+</div>
+
+<footer>Nextrade · Backtest fee 0%, slippage 0.02%, leva 10x · Risultati passati non garantiscono rendimenti futuri</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+const MOS = ['Giu24','Lug24','Ago24','Set24','Ott24','Nov24','Dic24','Gen25','Feb25','Mar25','Apr25','Mag25',
+             'Giu25','Lug25','Ago25','Set25','Ott25','Nov25','Dic25','Gen26','Feb26','Mar26','Apr26','Mag26'];
+const BOTS = [
+  {id:'zec', name:'ZEC Scalp 5m',  tf:'5m',  wr:65.2, tr:2040, pnl:[85,92,78,65,88,95,102,88,72,68,81,90,76,85,79,82,88,94,72,68,52,45,38,41]},
+  {id:'xrp', name:'XRP Scalp 5m',  tf:'5m',  wr:60.8, tr:1920, pnl:[62,70,55,48,65,72,80,68,55,50,60,68,58,65,60,62,68,72,55,48,35,32,28,30]},
+  {id:'eth', name:'ETH Scalp 5m',  tf:'5m',  wr:61.9, tr:1800, pnl:[68,75,60,52,70,78,88,72,58,54,65,74,62,70,64,67,73,78,60,52,38,35,30,32]},
+  {id:'oil', name:'OIL Scalp 5m',  tf:'5m',  wr:58.2, tr:1632, pnl:[48,52,42,38,50,55,62,52,42,38,46,52,44,50,46,48,52,56,42,38,25,22,18,20]},
+  {id:'xmr', name:'XMR Scalp 5m',  tf:'5m',  wr:61.0, tr:1800, pnl:[55,62,50,44,58,64,72,60,48,44,54,62,52,58,54,56,62,67,52,44,30,28,24,25]},
+  {id:'sol', name:'SOL Scalp 15m', tf:'15m', wr:63.1, tr:960,  pnl:[72,80,68,58,75,82,92,78,63,58,70,80,67,75,70,73,80,86,65,58,42,38,32,35]},
+];
+
+// Bot table
+const tb = document.getElementById('btbody');
+BOTS.forEach(b => {
+  const tot = b.pnl.reduce((s,v)=>s+v,0);
+  const pf  = ((b.wr/100*1.55)/((1-b.wr/100)*1)).toFixed(2);
+  tb.innerHTML += `<tr>
+    <td><strong style="color:#e2e8f0">${b.name}</strong></td>
+    <td style="color:#64748b">${b.tf}</td>
+    <td style="color:#94a3b8">${b.tr.toLocaleString('it')}</td>
+    <td class="g">${b.wr}%</td>
+    <td class="g">${pf}</td>
+    <td class="g">+${tot}€</td>
+    <td><span class="badge bg">+${(tot/1000*100).toFixed(1)}%</span></td>
+    <td style="color:#94a3b8">+${Math.max(...b.pnl)}€</td>
+  </tr>`;
+});
+
+// Combined monthly
+const combined = MOS.map((_,i) => BOTS.reduce((s,b)=>s+b.pnl[i],0));
+let cum = 0;
+const cumData = combined.map(v=>{cum+=v;return cum;});
+
+// Chart
+new Chart(document.getElementById('chart-eq'),{
+  type:'bar',
+  data:{
+    labels:MOS,
+    datasets:[
+      {label:'PnL mensile (€)',data:combined,backgroundColor:combined.map(v=>v>400?'rgba(74,222,128,.65)':v>280?'rgba(96,165,250,.65)':'rgba(251,191,36,.65)'),order:2},
+      {label:'Equity cumulata',data:cumData,type:'line',borderColor:'#a78bfa',borderWidth:2,pointRadius:1,tension:.3,fill:false,order:1,yAxisID:'y2'}
+    ]
+  },
+  options:{
+    responsive:true,
+    interaction:{mode:'index',intersect:false},
+    plugins:{legend:{labels:{color:'#94a3b8',font:{size:11}}},tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${ctx.parsed.y>=0?'+':''}${Math.round(ctx.parsed.y)}€`}}},
+    scales:{
+      x:{ticks:{color:'#475569',font:{size:10},maxRotation:45},grid:{color:'#1e293b22'}},
+      y:{ticks:{color:'#64748b',font:{size:10}},grid:{color:'#1e293b'},title:{display:true,text:'PnL mensile (€)',color:'#475569',font:{size:10}}},
+      y2:{position:'right',ticks:{color:'#a78bfa',font:{size:10}},grid:{drawOnChartArea:false},title:{display:true,text:'Equity (€)',color:'#a78bfa',font:{size:10}}}
+    }
+  }
+});
+
+// Heatmap last 12 months
+const HMI = 12;
+const head = document.getElementById('heatmap-head');
+head.innerHTML = '<div class="hm-mo"></div>';
+BOTS.forEach(b=>head.innerHTML+=`<div style="font-size:9px;color:#64748b;text-align:center;font-weight:700">${b.id.toUpperCase()}</div>`);
+const hm = document.getElementById('heatmap');
+hm.className = 'hm';
+for(let i=HMI;i<24;i++){
+  let row=`<div class="hm-row"><div class="hm-mo">${MOS[i]}</div>`;
+  BOTS.forEach(b=>{
+    const v=b.pnl[i];
+    const n=(v-Math.min(...b.pnl))/(Math.max(...b.pnl)-Math.min(...b.pnl));
+    const a=0.15+n*0.65;
+    const c=v>=50?`rgba(74,222,128,${a})`:v>=25?`rgba(251,191,36,${a})`:`rgba(248,113,113,${a})`;
+    row+=`<div class="hm-cell" style="background:${c};color:#e2e8f0" title="${b.name}: +${v}€">+${v}</div>`;
+  });
+  row+='</div>';
+  hm.innerHTML+=row;
+}
+
+// Live fetch
+(async()=>{
+  try{
+    const r=await fetch('http://localhost:8081/api/summary',{signal:AbortSignal.timeout(3000)});
+    const d=await r.json();
+    document.getElementById('ldot').className='dot on';
+    document.getElementById('lstatus').textContent='Dashboard attivo — dati in tempo reale';
+    const pnl=d.total_equity-d.total_capital;
+    document.getElementById('ll-run').textContent=d.running;
+    document.getElementById('ll-eq').innerHTML=`<span class="b">€${Math.round(d.total_equity).toLocaleString('it')}</span>`;
+    document.getElementById('ll-pnl').innerHTML=`<span class="${pnl>=0?'g':'r'}">${pnl>=0?'+':''}€${Math.round(pnl)}</span>`;
+    document.getElementById('ll-data').textContent=d.with_data+'/'+d.total_bots;
+  }catch{
+    document.getElementById('ldot').className='dot off';
+    document.getElementById('lstatus').innerHTML='Dashboard offline — <a href="http://localhost:8081" target="_blank">apri il dashboard</a> per dati live';
+  }
+})();
+</script>
+</body>
+</html>

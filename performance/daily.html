@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report Oggi — Nextrade</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0f1e;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+a{color:#60a5fa;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1100px;margin:0 auto;flex-wrap:wrap;gap:10px}
+.nav-logo{font-weight:800;font-size:20px;color:#fff}
+.nav-logo span{color:#3b82f6}
+.nav-links{display:flex;gap:20px;font-size:14px;flex-wrap:wrap}
+.nav-links a{color:#94a3b8}
+.nav-links a:hover,.nav-links a.cur{color:#fff}
+.hero{padding:40px 20px 24px;background:radial-gradient(ellipse at 50% 0%,#1a3a6033 0%,transparent 70%)}
+.hero h1{font-size:clamp(20px,4vw,30px);font-weight:900;color:#fff;margin-bottom:6px}
+.hero p{font-size:13px;color:#64748b}
+.section{margin:24px 0}
+.sec-title{font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #1e293b}
+.card{background:#111827;border:1px solid #1e293b;border-radius:12px;padding:20px}
+.live-row{display:flex;align-items:center;gap:8px;margin-bottom:16px;font-size:13px;color:#94a3b8}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot.on{background:#4ade80;box-shadow:0 0 6px #4ade8066;animation:pl 2s infinite}
+.dot.off{background:#475569}
+@keyframes pl{0%,100%{opacity:1}50%{opacity:.3}}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.kpi{background:#0d1526;border-radius:8px;padding:14px}
+.kpi-lbl{font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px}
+.kpi-val{font-size:22px;font-weight:800;color:#e2e8f0}
+.g{color:#4ade80}.r{color:#f87171}.b{color:#60a5fa}.y{color:#fbbf24}
+.trade-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.trade-tbl th{text-align:left;padding:8px 10px;color:#64748b;font-size:10px;font-weight:700;letter-spacing:.3px;border-bottom:1px solid #1e293b;background:#080d1a;white-space:nowrap}
+.trade-tbl td{padding:8px 10px;border-bottom:1px solid #111827;color:#94a3b8}
+.trade-tbl tr:hover td{background:#0d1526}
+.empty-state{text-align:center;padding:48px 20px;color:#475569}
+.empty-state .icon{font-size:2rem;margin-bottom:12px}
+.empty-state p{font-size:13px;line-height:1.7}
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-top:4px}
+.ref-item{background:#0d1526;border-radius:8px;padding:12px}
+.ref-lbl{font-size:10px;color:#475569;margin-bottom:3px}
+.ref-val{font-size:15px;font-weight:700;color:#94a3b8}
+.sub-links{display:flex;flex-wrap:wrap;gap:8px}
+.sl{background:#111827;border:1px solid #1e293b;border-radius:8px;padding:9px 16px;font-size:13px;color:#94a3b8;transition:all .15s}
+.sl:hover{border-color:#3b82f6;color:#60a5fa}
+.sl.cur{border-color:#1d4ed8;background:#1e3a5f;color:#93c5fd}
+footer{padding:24px 20px;text-align:center;font-size:11px;color:#334155;border-top:1px solid #1e293b;margin-top:40px}
+</style>
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a href="../index.html" class="nav-logo">Next<span>trade</span></a>
+  <div class="nav-links">
+    <a href="../segnali.html">Segnali</a>
+    <a href="../chiamate.html">Chiamate</a>
+    <a href="index.html">Performance</a>
+  </div>
+</div></nav>
+
+<div class="container">
+<div class="hero">
+  <h1>Report di Oggi</h1>
+  <p id="today-str">Caricamento…</p>
+</div>
+
+<div class="section">
+  <div class="sec-title">Dati Live dal Dashboard</div>
+  <div class="card">
+    <div class="live-row"><div class="dot off" id="ldot"></div><span id="lstatus">Connessione al dashboard…</span></div>
+    <div class="kpis" id="today-kpis">
+      <div class="kpi"><div class="kpi-lbl">Trade oggi</div><div class="kpi-val b" id="kv-trades">—</div></div>
+      <div class="kpi"><div class="kpi-lbl">PnL oggi</div><div class="kpi-val" id="kv-pnl">—</div></div>
+      <div class="kpi"><div class="kpi-lbl">Win Rate</div><div class="kpi-val" id="kv-wr">—</div></div>
+      <div class="kpi"><div class="kpi-lbl">Bot attivi</div><div class="kpi-val b" id="kv-bots">—</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="trades-section" style="display:none">
+  <div class="sec-title">Trade Eseguiti Oggi</div>
+  <div style="overflow-x:auto;border:1px solid #1e293b;border-radius:12px">
+    <table class="trade-tbl">
+      <thead><tr>
+        <th>ORA</th><th>BOT</th><th>ASSET</th><th>DIR</th>
+        <th>ENTRY</th><th>EXIT</th><th>PNL €</th><th>MOTIVO</th>
+      </tr></thead>
+      <tbody id="trades-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section" id="offline-section" style="display:none">
+  <div class="card">
+    <div class="empty-state">
+      <div class="icon">⚡</div>
+      <p>Nessun dato live disponibile.<br>
+      Il <a href="http://localhost:8081" target="_blank">dashboard bot (localhost:8081)</a> deve essere in esecuzione per vedere i trade di oggi.</p>
+      <p style="margin-top:12px;font-size:12px">Su GitHub Pages i dati live non sono disponibili — visualizza la pagina in locale con il dashboard attivo.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">Riferimento Backtest (Media Giornaliera)</div>
+  <div class="ref-grid">
+    <div class="ref-item"><div class="ref-lbl">Trade/giorno attesi</div><div class="ref-val" style="color:#60a5fa">~28</div></div>
+    <div class="ref-item"><div class="ref-lbl">PnL atteso/giorno</div><div class="ref-val" style="color:#4ade80">+~15€</div></div>
+    <div class="ref-item"><div class="ref-lbl">WR medio backtest</div><div class="ref-val" style="color:#4ade80">62.3%</div></div>
+    <div class="ref-item"><div class="ref-lbl">Mesi con loss (2 anni)</div><div class="ref-val" style="color:#fbbf24">0 / 24</div></div>
+    <div class="ref-item"><div class="ref-lbl">Best bot (backtest)</div><div class="ref-val" style="color:#a78bfa">ZEC 5m</div></div>
+    <div class="ref-item"><div class="ref-lbl">Rendimento 2 anni</div><div class="ref-val" style="color:#4ade80">+149%</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">Report Dettagliati</div>
+  <div class="sub-links">
+    <a href="index.html" class="sl">▦ Overview</a>
+    <a href="daily.html" class="sl cur">◻ Report Oggi</a>
+    <a href="weekly.html" class="sl">◼ Settimanale</a>
+    <a href="monthly.html" class="sl">▣ Mensile</a>
+    <a href="yearly.html" class="sl">◈ Annuale</a>
+    <a href="strategies.html" class="sl">▲ Strategie</a>
+    <a href="assets.html" class="sl">◆ Asset</a>
+  </div>
+</div>
+</div>
+
+<footer>Nextrade · Dati live da localhost:8081 · Backtest fee 0%, slippage 0.02%</footer>
+
+<script>
+// Today's date
+const now = new Date();
+document.getElementById('today-str').textContent = now.toLocaleDateString('it-IT',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+const todayISO = now.toISOString().slice(0,10);
+
+async function loadToday(){
+  try{
+    // Get bot list + live summary
+    const [sumRes, botsRes] = await Promise.all([
+      fetch('http://localhost:8081/api/summary',{signal:AbortSignal.timeout(4000)}),
+      fetch('http://localhost:8081/api/bots',{signal:AbortSignal.timeout(4000)})
+    ]);
+    const sum  = await sumRes.json();
+    const bots = await botsRes.json();
+
+    document.getElementById('ldot').className='dot on';
+    document.getElementById('kv-bots').textContent = sum.running;
+
+    // Fetch trade details only for bots that have paper data
+    const activeBots = bots.filter(b=>b.has_paper && b.live && b.live.n_trades>0);
+    const details = await Promise.all(
+      activeBots.map(b=>
+        fetch(`http://localhost:8081/api/bots/${b.id}`,{signal:AbortSignal.timeout(4000)})
+          .then(r=>r.json())
+          .then(d=>({...d, botInfo:b}))
+          .catch(()=>null)
+      )
+    );
+
+    // Collect today's trades
+    const allTrades = [];
+    details.forEach(d=>{
+      if(!d||!d.trades) return;
+      d.trades.forEach(t=>{
+        const ts = t.time||t.close_time||'';
+        if(ts.startsWith(todayISO)){
+          allTrades.push({...t, botName:d.botInfo.name, asset:d.botInfo.asset});
+        }
+      });
+    });
+    allTrades.sort((a,b)=>(a.time||'').localeCompare(b.time||''));
+
+    const wins   = allTrades.filter(t=>t.pnl_eur>0).length;
+    const totPnl = allTrades.reduce((s,t)=>s+(t.pnl_eur||0),0);
+    const wr     = allTrades.length ? Math.round(wins/allTrades.length*100) : 0;
+
+    document.getElementById('lstatus').textContent=`Dashboard attivo — ${allTrades.length} trade oggi`;
+    document.getElementById('kv-trades').textContent = allTrades.length;
+    document.getElementById('kv-pnl').className = `kpi-val ${totPnl>=0?'g':'r'}`;
+    document.getElementById('kv-pnl').textContent = (totPnl>=0?'+':'')+totPnl.toFixed(2)+'€';
+    document.getElementById('kv-wr').className = `kpi-val ${wr>=55?'g':wr>=45?'y':'r'}`;
+    document.getElementById('kv-wr').textContent = wr+'%';
+
+    if(allTrades.length>0){
+      document.getElementById('trades-section').style.display='';
+      const tbody = document.getElementById('trades-body');
+      tbody.innerHTML = allTrades.map(t=>{
+        const side = (t.side||'').toLowerCase();
+        const pnl  = t.pnl_eur||0;
+        const ts   = (t.time||'').slice(11,16);
+        return `<tr>
+          <td>${ts}</td>
+          <td style="color:#e2e8f0;font-weight:600">${t.botName||'—'}</td>
+          <td style="color:#94a3b8">${t.asset||''}</td>
+          <td class="${side==='long'?'g':'r'}">${side.toUpperCase()}</td>
+          <td>${(t.entry||0).toFixed ? (t.entry||0).toFixed(4) : t.entry}</td>
+          <td>${(t.exit||0).toFixed ? (t.exit||0).toFixed(4) : t.exit}</td>
+          <td class="${pnl>0?'g':'r'}" style="font-weight:700">${pnl>=0?'+':''}${pnl.toFixed(2)}€</td>
+          <td style="color:#475569">${t.reason||''}</td>
+        </tr>`;
+      }).join('');
+    } else {
+      document.getElementById('offline-section').style.display='';
+      document.getElementById('offline-section').querySelector('p').innerHTML=
+        'Dashboard attivo ma nessun trade eseguito oggi.<br>I bot potrebbero essere in attesa di setup o il mercato è in range.';
+    }
+  }catch(e){
+    document.getElementById('ldot').className='dot off';
+    document.getElementById('lstatus').innerHTML='Dashboard offline — <a href="http://localhost:8081" target="_blank">apri il dashboard</a> per i dati live';
+    document.getElementById('offline-section').style.display='';
+  }
+}
+loadToday();
+</script>
+</body>
+</html>

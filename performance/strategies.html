@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategie — Nextrade</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0f1e;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+a{color:#60a5fa;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1100px;margin:0 auto;flex-wrap:wrap;gap:10px}
+.nav-logo{font-weight:800;font-size:20px;color:#fff}.nav-logo span{color:#3b82f6}
+.nav-links{display:flex;gap:20px;font-size:14px;flex-wrap:wrap}
+.nav-links a{color:#94a3b8}.nav-links a:hover,.nav-links a.cur{color:#fff}
+.hero{padding:40px 20px 24px;background:radial-gradient(ellipse at 50% 0%,#1a3a6033 0%,transparent 70%)}
+.hero h1{font-size:clamp(20px,4vw,30px);font-weight:900;color:#fff;margin-bottom:6px}
+.hero p{font-size:13px;color:#64748b}
+.section{margin:24px 0}
+.sec-title{font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #1e293b}
+.strat-tbl{width:100%;border-collapse:collapse;font-size:13px}
+.strat-tbl th{text-align:left;padding:9px 12px;color:#64748b;font-size:10px;font-weight:700;border-bottom:1px solid #1e293b;background:#080d1a}
+.strat-tbl th:not(:first-child){text-align:right}
+.strat-tbl td{padding:9px 12px;border-bottom:1px solid #111827}
+.strat-tbl td:not(:first-child){text-align:right}
+.strat-tbl tr:hover td{background:#0d1526}
+.g{color:#4ade80}.b{color:#60a5fa}.y{color:#fbbf24}.r{color:#f87171}
+.badge{display:inline-block;padding:1px 7px;border-radius:3px;font-size:10px;font-weight:700}
+.bg{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.by{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
+.sub-links{display:flex;flex-wrap:wrap;gap:8px}
+.sl{background:#111827;border:1px solid #1e293b;border-radius:8px;padding:9px 16px;font-size:13px;color:#94a3b8;transition:all .15s}
+.sl:hover{border-color:#3b82f6;color:#60a5fa}.sl.cur{border-color:#1d4ed8;background:#1e3a5f;color:#93c5fd}
+footer{padding:24px 20px;text-align:center;font-size:11px;color:#334155;border-top:1px solid #1e293b;margin-top:40px}
+</style>
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a href="../index.html" class="nav-logo">Next<span>trade</span></a>
+  <div class="nav-links">
+    <a href="../segnali.html">Segnali</a>
+    <a href="../chiamate.html">Chiamate</a>
+    <a href="index.html">Performance</a>
+  </div>
+</div></nav>
+
+<div class="container">
+<div class="hero">
+  <h1>Strategie</h1>
+  <p>Performance per famiglia di strategia — Backtest 2 anni · Fee 0% · Leva 10x</p>
+</div>
+
+<div class="section">
+  <div class="sec-title">Breakdown per Strategia</div>
+  <div style="overflow-x:auto;border:1px solid #1e293b;border-radius:12px">
+    <table class="strat-tbl">
+      <thead><tr><th>STRATEGIA</th><th>BOT</th><th>TRADE</th><th>WR%</th><th>PF</th><th>PNL 2 ANNI</th><th>RENDIMENTO</th><th>STATO</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong style="color:#e2e8f0">Scalp RSI+BB 5m</strong><br><span style="font-size:11px;color:#475569">Breakout su RSI ipervenduto + BB squeeze</span></td>
+          <td style="color:#94a3b8">ZEC, XRP, ETH</td>
+          <td style="color:#94a3b8">5.760</td>
+          <td class="g">62.6%</td>
+          <td class="g">1.78</td>
+          <td class="g">+4.017€</td>
+          <td><span class="badge bg">+134%</span></td>
+          <td><span style="color:#4ade80">●</span> Attivo</td>
+        </tr>
+        <tr>
+          <td><strong style="color:#e2e8f0">Scalp ATR 5m</strong><br><span style="font-size:11px;color:#475569">Volatility expansion con trailing ATR</span></td>
+          <td style="color:#94a3b8">OIL, XMR</td>
+          <td style="color:#94a3b8">3.432</td>
+          <td class="g">59.6%</td>
+          <td class="g">1.60</td>
+          <td class="g">+2.443€</td>
+          <td><span class="badge bg">+122%</span></td>
+          <td><span style="color:#4ade80">●</span> Attivo</td>
+        </tr>
+        <tr>
+          <td><strong style="color:#e2e8f0">Scalp MTF 15m</strong><br><span style="font-size:11px;color:#475569">Trend following multi-timeframe</span></td>
+          <td style="color:#94a3b8">SOL</td>
+          <td style="color:#94a3b8">960</td>
+          <td class="g">63.1%</td>
+          <td class="g">1.84</td>
+          <td class="g">+1.697€</td>
+          <td><span class="badge bg">+170%</span></td>
+          <td><span style="color:#4ade80">●</span> Attivo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">Note sui Costi Reali</div>
+  <div style="background:#111827;border:1px solid #1e293b;border-radius:12px;padding:20px;font-size:13px;color:#64748b;line-height:1.8">
+    <p>Il backtest è eseguito con <strong style="color:#94a3b8">fee maker 0%</strong> (MEXC Futures), slippage 0.02%.</p>
+    <p style="margin-top:8px">In live trading con capitale reale, i costi di spread e funding rate riducono significativamente il rendimento degli scalp 5m.
+    La strategia SOL 15m è la più robusta ai costi in quanto tiene le posizioni più a lungo.</p>
+    <p style="margin-top:8px"><a href="../bot/zec-scalp.html">Dettagli bot ZEC</a> · <a href="../bot/sol-v2.html">Dettagli bot SOL</a></p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sub-links">
+    <a href="index.html" class="sl">▦ Overview</a>
+    <a href="daily.html" class="sl">◻ Report Oggi</a>
+    <a href="weekly.html" class="sl">◼ Settimanale</a>
+    <a href="monthly.html" class="sl">▣ Mensile</a>
+    <a href="yearly.html" class="sl">◈ Annuale</a>
+    <a href="strategies.html" class="sl cur">▲ Strategie</a>
+    <a href="assets.html" class="sl">◆ Asset</a>
+  </div>
+</div>
+</div>
+<footer>Nextrade · Backtest fee 0%, slippage 0.02%, leva 10x</footer>
+</body>
+</html>
