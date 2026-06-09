@@ -200,6 +200,29 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
       Caricamento segnali live MEXC...
     </div>
 
+    <!-- REPORT MULTI-PERIODO -->
+    <h2 style="font-size:20px;font-weight:700;color:#fff;margin:8px 0 6px;">Report segnali — Giornaliero · Settimanale · Annuale</h2>
+    <p style="font-size:14px;color:#64748b;margin-bottom:16px;">Segnale ibrido (20 strategie) su 3 orizzonti temporali. Il <strong style="color:#e2e8f0;">Bias Globale</strong> indica la direzione dominante.</p>
+
+    <div id="report-summary" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;font-size:13px;"></div>
+
+    <div class="matrix-wrap" style="margin-bottom:32px;">
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align:left;padding-left:16px;min-width:120px;">Asset</th>
+            <th>Oggi (1d)</th>
+            <th>Settimana (1w)</th>
+            <th>Anno (1M)</th>
+            <th style="min-width:120px;">Bias Globale</th>
+          </tr>
+        </thead>
+        <tbody id="report-tbody">
+          <tr><td colspan="5" style="text-align:center;padding:40px;color:#64748b;font-size:14px;">⟳ Caricamento report multi-periodo...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <!-- ORARI DEI SEGNALI -->
     <h2 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:6px;">Orari dei segnali e sessioni di mercato</h2>
     <p style="font-size:14px;color:#64748b;margin-bottom:16px;">Il crypto trading è 24/7, ma la volatilità e la qualità dei segnali varia per sessione. Orari in CET (ora italiana).</p>
@@ -387,21 +410,31 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
     </div>
 
     <!-- STRATEGIE -->
-    <h2 style="font-size:20px;font-weight:700;color:#fff;margin:40px 0 6px;">Le 10 strategie tecniche analizzate</h2>
-    <p style="font-size:14px;color:#64748b;margin-bottom:4px;">Ogni segnale è il voto aggregato di 10 indicatori tecnici indipendenti</p>
+    <h2 style="font-size:20px;font-weight:700;color:#fff;margin:40px 0 6px;">Le 20 strategie tecniche analizzate</h2>
+    <p style="font-size:14px;color:#64748b;margin-bottom:4px;">Ogni segnale è il voto aggregato di <strong style="color:#e2e8f0;">20 indicatori tecnici indipendenti</strong></p>
     <table class="strat-table">
-      <thead><tr><th>Strategia</th><th>Tipo</th><th>Segnale principale</th></tr></thead>
+      <thead><tr><th>Strategia</th><th>Tipo</th><th>Segnale LONG</th></tr></thead>
       <tbody>
-        <tr><td>EMA Cross</td><td>Trend</td><td>Croce EMA rapida/lenta</td></tr>
-        <tr><td>RSI Divergence</td><td>Momentum</td><td>Divergenza RSI vs prezzo</td></tr>
-        <tr><td>MACD Signal</td><td>Trend/Momentum</td><td>Croce MACD/Signal</td></tr>
-        <tr><td>Bollinger Bands</td><td>Volatilità</td><td>Break delle bande</td></tr>
-        <tr><td>Volume Profile</td><td>Volume</td><td>POC e value area</td></tr>
-        <tr><td>Supertrend</td><td>Trend</td><td>Direzione Supertrend ATR</td></tr>
-        <tr><td>UTBot</td><td>Momentum</td><td>Trailing stop adattivo</td></tr>
-        <tr><td>Support/Resistance</td><td>Struttura</td><td>Break S/R chiave</td></tr>
-        <tr><td>Orderflow Veto</td><td>Liquidità</td><td>Veto su squilibri orderbook</td></tr>
-        <tr><td>News Sentiment</td><td>Fondamentale</td><td>Veto su news major</td></tr>
+        <tr><td>RSI (14)</td><td>Momentum</td><td>RSI &lt; 35 (ipervenduto)</td></tr>
+        <tr><td>EMA Cross 9/21</td><td>Trend</td><td>EMA9 supera EMA21</td></tr>
+        <tr><td>EMA 200</td><td>Trend</td><td>Prezzo sopra EMA200</td></tr>
+        <tr><td>MACD</td><td>Trend/Momentum</td><td>MACD supera Signal Line</td></tr>
+        <tr><td>Bollinger Bands</td><td>Volatilità</td><td>Prezzo sotto banda inferiore</td></tr>
+        <tr><td>Supertrend</td><td>Trend</td><td>Direzione bullish (ATR ×3)</td></tr>
+        <tr><td>UT Bot Trail</td><td>Momentum</td><td>Prezzo sopra trailing stop</td></tr>
+        <tr><td>Stocastico (14)</td><td>Momentum</td><td>K &lt; 20 (ipervenduto)</td></tr>
+        <tr><td>Parabolic SAR</td><td>Trend</td><td>SAR sotto il prezzo</td></tr>
+        <tr><td>Golden Cross 50/200</td><td>Trend</td><td>EMA50 sopra EMA200</td></tr>
+        <tr><td>ADX / DMI</td><td>Trend</td><td>+DI &gt; -DI con ADX &gt; 20</td></tr>
+        <tr><td>CCI (20)</td><td>Momentum</td><td>CCI &gt; +100</td></tr>
+        <tr><td>Williams %R</td><td>Momentum</td><td>WR &lt; -80</td></tr>
+        <tr><td>StochRSI</td><td>Momentum</td><td>K &lt; 0.2</td></tr>
+        <tr><td>Keltner Channel</td><td>Volatilità</td><td>Breakout sopra banda</td></tr>
+        <tr><td>MFI (14)</td><td>Volume</td><td>MFI &lt; 30 (ipervenduto)</td></tr>
+        <tr><td>OBV vs EMA20</td><td>Volume</td><td>OBV sale sopra la sua media</td></tr>
+        <tr><td>TRIX (15)</td><td>Trend</td><td>TRIX positivo e in salita</td></tr>
+        <tr><td>ROC (12)</td><td>Momentum</td><td>Rate of Change &gt; +2%</td></tr>
+        <tr><td>Volume Spike</td><td>Volume</td><td>Vol ×1.5 su candela rialzista</td></tr>
       </tbody>
     </table>
 
@@ -633,7 +666,7 @@ function smaVol(volume,period=20){
 // ── Segnale ──────────────────────────────────────────────────────────
 function computeVotes(df){
   const n=df.c.length;
-  if(n<220)return null;
+  if(n<30)return null;
   const i=n-2; // ultima candela chiusa
   const cv=df.c[i];
   const rsiA=rsi(df.c);
@@ -886,9 +919,68 @@ function updateClock(){
 setInterval(updateClock,1000);
 updateClock();
 
+// ── Report Multi-Periodo ──────────────────────────────────────────────
+const REPORT_TFS=[
+  {key:'1d',limit:300},
+  {key:'1w',limit:300},
+  {key:'1M',limit:120},
+];
+
+function biasHtml(sigs){
+  const l=sigs.filter(h=>h&&h.dir==='LONG').length,s=sigs.filter(h=>h&&h.dir==='SHORT').length;
+  if(l===3)return'<span style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.4);border-radius:6px;padding:3px 12px;font-size:11px;font-weight:800;">▲ BULL FORTE</span>';
+  if(s===3)return'<span style="background:rgba(239,68,68,.25);color:#f87171;border:1px solid rgba(239,68,68,.4);border-radius:6px;padding:3px 12px;font-size:11px;font-weight:800;">▼ BEAR FORTE</span>';
+  if(l===2)return'<span style="background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.25);border-radius:6px;padding:3px 12px;font-size:11px;font-weight:700;">▲ BULLISH</span>';
+  if(s===2)return'<span style="background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.25);border-radius:6px;padding:3px 12px;font-size:11px;font-weight:700;">▼ BEARISH</span>';
+  return'<span style="background:rgba(71,85,105,.1);color:#64748b;border:1px solid rgba(71,85,105,.3);border-radius:6px;padding:3px 12px;font-size:11px;font-weight:700;">─ NEUTRO</span>';
+}
+
+function renderReport(rows){
+  const tbody=document.getElementById('report-tbody');
+  if(!tbody)return;
+  let html='';
+  for(const row of rows){
+    html+=`<tr><td style="text-align:left;padding-left:16px;"><span class="asset-name">${row.label}USDT</span></td>`;
+    for(let j=0;j<REPORT_TFS.length;j++){
+      const h=row.sigs[j],loading=row.loading&&row.sigs[j]===undefined;
+      html+=`<td>${cellHtml(h,loading)}</td>`;
+    }
+    html+=`<td>${biasHtml(row.sigs)}</td></tr>`;
+  }
+  tbody.innerHTML=html||'<tr><td colspan="5" style="text-align:center;padding:20px;color:#64748b;">Nessun dato</td></tr>';
+  // summary bar
+  const sm=document.getElementById('report-summary');
+  if(sm&&rows.some(r=>!r.loading)){
+    const done=rows.filter(r=>!r.loading);
+    const bull=done.filter(r=>{const l=r.sigs.filter(h=>h&&h.dir==='LONG').length;return l>=2;}).length;
+    const bear=done.filter(r=>{const s=r.sigs.filter(h=>h&&h.dir==='SHORT').length;return s>=2;}).length;
+    const strongest=done.reduce((best,r)=>{const sc=r.sigs.reduce((a,h)=>a+(h&&h.dir==='LONG'?h.score:0),0);return sc>best.sc?{label:r.label,sc}:best},{label:'—',sc:0});
+    sm.innerHTML=`<span style="background:#111827;border:1px solid #1e293b;border-radius:6px;padding:5px 12px;color:#4ade80;">▲ Bullish: <strong>${bull}</strong></span><span style="background:#111827;border:1px solid #1e293b;border-radius:6px;padding:5px 12px;color:#f87171;">▼ Bearish: <strong>${bear}</strong></span><span style="background:#111827;border:1px solid #1e293b;border-radius:6px;padding:5px 12px;color:#94a3b8;">Asset più forte: <strong style="color:#e2e8f0;">${strongest.label}</strong></span>`;
+  }
+}
+
+async function refreshReport(){
+  const rows=[];
+  for(const asset of LIVE_ASSETS){
+    const row={label:asset.label,sigs:[],loading:true};
+    rows.push(row);renderReport(rows);
+    for(const rtf of REPORT_TFS){
+      try{
+        const df=await fetchOHLCV(asset.sym,rtf.key,rtf.limit);
+        const votes=computeVotes(df);
+        row.sigs.push(votes?hybrid(votes):null);
+      }catch(e){row.sigs.push(null);}
+      await new Promise(r=>setTimeout(r,100));
+    }
+    row.loading=false;renderReport(rows);
+  }
+}
+
 // ── Init ──────────────────────────────────────────────────────────────
 refreshSignals();
 setInterval(refreshSignals,60000);
+refreshReport();
+setInterval(refreshReport,300000);
 </script>
 </body>
 </html>
