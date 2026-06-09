@@ -43,6 +43,24 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://nuovocanale991-bit.github.io/nextrade/bot/eth-v4.html</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nuovocanale991-bit.github.io/nextrade/bot/sol-v2.html</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nuovocanale991-bit.github.io/nextrade/bot/ut-bot-4h.html</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://nuovocanale991-bit.github.io/nextrade/bot/zec-scalp.html</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
