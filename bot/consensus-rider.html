@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consensus Rider — Nextrade | 8 Indicatori Tecnici BTC/ETH 1h</title>
+<meta name="description" content="Consensus Rider Nextrade: bot 1h su BTC/ETH che entra solo se 6/8 indicatori tecnici concordano. Profit Factor 1.11, veto su news live, filtro orderflow. Paper trading MEXC Futures.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://nextrade.github.io/bot/consensus-rider.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Nextrade Consensus Rider",
+  "description": "Bot di trading algoritmico 1h su BTC/ETH con sistema di voto a 8 indicatori tecnici. Entra solo se 6 o più indicatori concordano. Filtro news e orderflow live.",
+  "brand": {"@type": "Brand", "name": "Nextrade"},
+  "url": "https://nextrade.github.io/bot/consensus-rider.html"
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0f1e;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+a{color:#60a5fa;text-decoration:none}
+.container{max-width:900px;margin:0 auto;padding:0 20px}
+nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:900px;margin:0 auto}
+.nav-logo{font-weight:800;font-size:20px;color:#fff}.nav-logo span{color:#3b82f6}
+.btn{display:inline-block;padding:9px 20px;border-radius:8px;font-weight:700;font-size:13px;border:none;text-decoration:none;transition:opacity .15s}
+.btn-primary{background:#3b82f6;color:#fff}.btn-primary:hover{opacity:.85}
+.btn-outline{background:transparent;color:#3b82f6;border:1px solid #3b82f6}.btn-outline:hover{background:#1e3a5f}
+.hero{padding:48px 20px 36px;background:radial-gradient(ellipse at 50% 0%, #2a1a5f33 0%, transparent 60%)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin:24px 0}
+.stat-card{background:#111827;border:1px solid #1e293b;border-radius:10px;padding:16px;text-align:center}
+.stat-card .val{font-size:24px;font-weight:900}.stat-card .key{font-size:11px;color:#64748b;margin-top:4px}.stat-card .src{font-size:10px;color:#334155;margin-top:3px}
+.pos{color:#22c55e}.neg{color:#ef4444}.neu{color:#f59e0b}
+.section{padding:28px 20px}.section h2{font-size:18px;font-weight:700;color:#fff;margin-bottom:14px}
+.card{background:#111827;border:1px solid #1e293b;border-radius:10px;padding:20px}
+.vote-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #111827}
+.vote-row:last-child{border-bottom:none}
+.vote-num{font-size:22px;font-weight:900;color:#3b82f6;min-width:32px;text-align:center}
+.vote-name{font-size:13px;color:#e2e8f0;font-weight:600;min-width:140px}
+.vote-desc{font-size:12px;color:#64748b}
+.faq-item{border-bottom:1px solid #1e293b;padding:14px 0}
+.faq-item h3{font-size:14px;font-weight:600;color:#e2e8f0;margin-bottom:6px}
+.faq-item p{font-size:13px;color:#94a3b8;line-height:1.6}
+.disclaimer{background:#111827;border:1px solid #1e293b;border-radius:8px;padding:14px 18px;font-size:11px;color:#475569;margin:24px 0}
+footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-align:center;font-size:13px;color:#475569}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">NEX<span>TRADE</span></a>
+    <a href="../index.html#bot" class="btn btn-outline" style="font-size:12px;padding:6px 14px;">← Tutti i Bot</a>
+  </div>
+</nav>
+<main>
+<div class="hero">
+  <div class="container">
+    <nav aria-label="breadcrumb" style="font-size:12px;color:#475569;margin-bottom:14px;">
+      <a href="../index.html">Nextrade</a> › <a href="../index.html#bot">Bot</a> › Consensus Rider
+    </nav>
+    <div style="display:inline-block;background:#312e81;color:#a5b4fc;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;margin-bottom:12px;">MULTI-SEGNALE</div>
+    <h1 style="font-size:clamp(22px,4vw,34px);font-weight:900;color:#fff;margin-bottom:10px;">Consensus Rider — BTC/ETH 1h</h1>
+    <p style="font-size:14px;color:#94a3b8;max-width:580px;">Entra in posizione solo quando <strong style="color:#e2e8f0;">almeno 6 indicatori su 8</strong> concordano nella stessa direzione. Veto automatico su news major e squilibri orderflow. Profit Factor <strong style="color:#22c55e;">1.11</strong>.</p>
+  </div>
+</div>
+<div class="section">
+  <div class="container">
+    <h2>Performance — paper trading giugno 2026</h2>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="val pos">1.11</div><div class="key">Profit Factor</div><div class="src">paper trading live</div></div>
+      <div class="stat-card"><div class="val neu">6/8</div><div class="key">Soglia consenso</div><div class="src">min. per entrare</div></div>
+      <div class="stat-card"><div class="val pos">8</div><div class="key">Indicatori votanti</div><div class="src">tecnici + macro</div></div>
+      <div class="stat-card"><div class="val pos">1h</div><div class="key">Timeframe</div><div class="src">BTC e ETH</div></div>
+      <div class="stat-card"><div class="val pos">News</div><div class="key">Veto live</div><div class="src">filtro macro</div></div>
+      <div class="stat-card"><div class="val pos">2%</div><div class="key">Rischio/trade</div><div class="src">trailing largo</div></div>
+    </div>
+    <div class="disclaimer">Fonte: paper trading MEXC Futures, giugno 2026. Profit Factor calcolato su dati live reali. I risultati passati non garantiscono rendimenti futuri.</div>
+
+    <h2 style="margin-top:28px;">Il sistema di voto a 8 indicatori</h2>
+    <div class="card">
+      <div class="vote-row"><div class="vote-num">1</div><div class="vote-name">EMA Cross</div><div class="vote-desc">Croce EMA veloce/lenta per il trend di breve</div></div>
+      <div class="vote-row"><div class="vote-num">2</div><div class="vote-name">RSI Divergence</div><div class="vote-desc">Divergenza RSI vs prezzo per segnali di inversione</div></div>
+      <div class="vote-row"><div class="vote-num">3</div><div class="vote-name">MACD Signal</div><div class="vote-desc">Croce MACD/Signal per conferma momentum</div></div>
+      <div class="vote-row"><div class="vote-num">4</div><div class="vote-name">Supertrend</div><div class="vote-desc">Direzione Supertrend ATR per trend primario</div></div>
+      <div class="vote-row"><div class="vote-num">5</div><div class="vote-name">Bollinger Break</div><div class="vote-desc">Break delle bande di Bollinger per volatilità espansiva</div></div>
+      <div class="vote-row"><div class="vote-num">6</div><div class="vote-name">Volume Confirm</div><div class="vote-desc">Conferma volume sul segnale di entrata</div></div>
+      <div class="vote-row" style="border-bottom:2px solid #334155"><div class="vote-num" style="color:#f59e0b">7</div><div class="vote-name">News Sentiment</div><div class="vote-desc">Veto automatico in caso di news macro rilevanti</div></div>
+      <div class="vote-row"><div class="vote-num" style="color:#f59e0b">8</div><div class="vote-name">Orderflow Veto</div><div class="vote-desc">Veto su squilibri anomali dell'orderbook live</div></div>
+    </div>
+    <p style="font-size:12px;color:#475569;margin-top:8px;">Indicatori 7 e 8 sono veto — anche con 6/6 voti positivi, un veto blocca l'operazione.</p>
+
+    <h2 style="margin-top:28px;">Domande frequenti</h2>
+    <div>
+      <div class="faq-item">
+        <h3>Come funziona il sistema di consenso del Consensus Rider?</h3>
+        <p>Il bot analizza 8 indicatori tecnici e macro in parallelo. Ogni indicatore vota LONG, SHORT o NEUTRAL. L'operazione viene aperta solo se <strong>almeno 6 indicatori su 8 concordano</strong> nella stessa direzione. Gli indicatori 7 (news) e 8 (orderflow) funzionano da veto — bloccano l'operazione anche con 6 voti positivi se rilevano anomalie.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Perché il Profit Factor è 1.11 e non più alto?</h3>
+        <p>Il sistema di consenso stretto (6/8 minimi) riduce il numero di operazioni, aumentando la qualità ma limitando la quantità. Un PF di 1.11 su operazioni reali MEXC è un risultato positivo verificabile. L'obiettivo è la <strong>consistenza</strong>, non il rendimento massimo.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Cosa succede quando c'è una news importante?</h3>
+        <p>Il bot riceve un veto automatico dall'indicatore News Sentiment. Tutte le nuove operazioni vengono bloccate finché la situazione macro non si stabilizza. Le posizioni già aperte vengono gestite con il trailing stop.</p>
+      </div>
+    </div>
+    <div class="disclaimer">Avvertenza: risultati paper trading. Il trading su futures comporta rischio elevato di perdita del capitale. © 2026 Nextrade</div>
+    <div style="text-align:center;margin-top:24px;">
+      <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener" class="btn btn-primary">Segnali Consensus su Telegram →</a>
+    </div>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="container">
+    <p><strong style="color:#94a3b8;">Nextrade</strong> — Consensus Rider · BTC/ETH 1h</p>
+    <p style="margin-top:6px;"><a href="../index.html">Home</a> · <a href="../segnali.html">Sala Segnali</a> · <a href="https://t.me/GIO33BOT">Telegram</a></p>
+    <p style="margin-top:10px;font-size:11px;">© 2026 Nextrade · Risultati passati non garantiscono rendimenti futuri</p>
+  </div>
+</footer>
+</body>
+</html>

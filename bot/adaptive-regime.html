@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adaptive Regime Agent — Nextrade | Bot Auto Trend/Range 15m MEXC</title>
+<meta name="description" content="Adaptive Regime Agent Nextrade: bot 15m multi-asset che cambia strategia automaticamente in base al regime di mercato (trend o range) usando ADX. Rischio fisso 2% per trade, leva 10x MEXC Futures.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://nextrade.github.io/bot/adaptive-regime.html">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0f1e;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+a{color:#60a5fa;text-decoration:none}
+.container{max-width:900px;margin:0 auto;padding:0 20px}
+nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:900px;margin:0 auto}
+.nav-logo{font-weight:800;font-size:20px;color:#fff}.nav-logo span{color:#3b82f6}
+.btn{display:inline-block;padding:9px 20px;border-radius:8px;font-weight:700;font-size:13px;border:none;text-decoration:none;transition:opacity .15s}
+.btn-primary{background:#3b82f6;color:#fff}.btn-primary:hover{opacity:.85}
+.btn-outline{background:transparent;color:#3b82f6;border:1px solid #3b82f6}.btn-outline:hover{background:#1e3a5f}
+.hero{padding:48px 20px 36px;background:radial-gradient(ellipse at 50% 0%, #1f3a2033 0%, transparent 60%)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin:24px 0}
+.stat-card{background:#111827;border:1px solid #1e293b;border-radius:10px;padding:16px;text-align:center}
+.stat-card .val{font-size:24px;font-weight:900}.stat-card .key{font-size:11px;color:#64748b;margin-top:4px}
+.pos{color:#22c55e}.neg{color:#ef4444}.neu{color:#f59e0b}
+.section{padding:28px 20px}.section h2{font-size:18px;font-weight:700;color:#fff;margin-bottom:14px}
+.card{background:#111827;border:1px solid #1e293b;border-radius:10px;padding:20px}
+.regime-row{display:flex;gap:16px;margin-top:16px;flex-wrap:wrap}
+.regime-box{flex:1;min-width:200px;border:1px solid #1e293b;border-radius:10px;padding:16px}
+.faq-item{border-bottom:1px solid #1e293b;padding:14px 0}
+.faq-item h3{font-size:14px;font-weight:600;color:#e2e8f0;margin-bottom:6px}
+.faq-item p{font-size:13px;color:#94a3b8;line-height:1.6}
+.disclaimer{background:#111827;border:1px solid #1e293b;border-radius:8px;padding:14px 18px;font-size:11px;color:#475569;margin:24px 0}
+footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-align:center;font-size:13px;color:#475569}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">NEX<span>TRADE</span></a>
+    <a href="../index.html#bot" class="btn btn-outline" style="font-size:12px;padding:6px 14px;">← Tutti i Bot</a>
+  </div>
+</nav>
+<main>
+<div class="hero">
+  <div class="container">
+    <nav aria-label="breadcrumb" style="font-size:12px;color:#475569;margin-bottom:14px;">
+      <a href="../index.html">Nextrade</a> › <a href="../index.html#bot">Bot</a> › Adaptive Regime
+    </nav>
+    <div style="display:inline-block;background:#14532d;color:#4ade80;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;margin-bottom:12px;">AUTO REGIME-SWITCH</div>
+    <h1 style="font-size:clamp(22px,4vw,34px);font-weight:900;color:#fff;margin-bottom:10px;">Adaptive Regime Agent</h1>
+    <p style="font-size:14px;color:#94a3b8;max-width:580px;">Bot 15 minuti che <strong style="color:#e2e8f0;">cambia strategia automaticamente</strong> in base al regime di mercato. Usa ADX per rilevare se il mercato è in trend o in range, poi applica la strategia ottimale per ogni situazione.</p>
+  </div>
+</div>
+<div class="section">
+  <div class="container">
+    <h2>Caratteristiche tecniche</h2>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="val pos">Auto</div><div class="key">Regime switch</div></div>
+      <div class="stat-card"><div class="val pos">ADX</div><div class="key">Rilevatore regime</div></div>
+      <div class="stat-card"><div class="val neu">2%</div><div class="key">Rischio/trade</div></div>
+      <div class="stat-card"><div class="val pos">10x</div><div class="key">Leva massima</div></div>
+      <div class="stat-card"><div class="val pos">15m</div><div class="key">Timeframe</div></div>
+      <div class="stat-card"><div class="val pos">Multi</div><div class="key">Asset</div></div>
+    </div>
+
+    <h2 style="margin-top:28px;">Come funziona il regime-switching?</h2>
+    <div class="card">
+      <p style="font-size:14px;color:#94a3b8;margin-bottom:16px;">L'ADX (Average Directional Index) misura la forza del trend senza indicare la direzione. Il bot legge l'ADX ogni candela da 15 minuti e decide quale delle due strategie attivare:</p>
+      <div class="regime-row">
+        <div class="regime-box" style="border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.05)">
+          <div style="font-size:13px;font-weight:700;color:#4ade80;margin-bottom:10px;">ADX alto (>25) — Regime TREND</div>
+          <ul style="font-size:13px;color:#94a3b8;padding-left:16px;line-height:1.8">
+            <li>Strategia trend following attiva</li>
+            <li>Operazioni in direzione del trend</li>
+            <li>Stop loss più largo</li>
+            <li>Lascia correre i profitti</li>
+          </ul>
+        </div>
+        <div class="regime-box" style="border-color:rgba(251,191,36,.3);background:rgba(251,191,36,.05)">
+          <div style="font-size:13px;font-weight:700;color:#fbbf24;margin-bottom:10px;">ADX basso (&lt;25) — Regime RANGE</div>
+          <ul style="font-size:13px;color:#94a3b8;padding-left:16px;line-height:1.8">
+            <li>Strategia mean reversion attiva</li>
+            <li>Compra ai minimi del range, vende ai massimi</li>
+            <li>Take profit veloce</li>
+            <li>Stop loss più stretto</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="margin-top:28px;">Domande frequenti</h2>
+    <div>
+      <div class="faq-item">
+        <h3>Perché cambiare strategia in base al regime di mercato?</h3>
+        <p>Una strategia trend following perde sistematicamente in mercati laterali (range). Una strategia mean reversion perde in mercati direzionali (trend). L'Adaptive Regime Agent elimina questo problema rilevando automaticamente il regime e applicando la strategia corretta.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Come viene calcolato il rischio per trade?</h3>
+        <p>Il rischio è fisso al <strong>2% del capitale</strong> per ogni operazione. Con 500€ di capitale, ogni trade può perdere massimo 10€. La dimensione della posizione viene calcolata automaticamente in base alla distanza dello stop loss dal prezzo di entrata.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Quanto spesso cambia regime il bot?</h3>
+        <p>Il regime cambia quando l'ADX supera o scende sotto la soglia di 25. In media su MEXC Futures su timeframe 15m, il regime cambia 2–5 volte al giorno in periodi di alta volatilità, 0–1 volte in periodi tranquilli.</p>
+      </div>
+    </div>
+    <div class="disclaimer">Bot in paper trading da giugno 2026 su MEXC Futures. Risultati passati non garantiscono rendimenti futuri. © 2026 Nextrade</div>
+    <div style="text-align:center;margin-top:24px;">
+      <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener" class="btn btn-primary">Segnali Adaptive su Telegram →</a>
+    </div>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="container">
+    <p><strong style="color:#94a3b8;">Nextrade</strong> — Adaptive Regime Agent</p>
+    <p style="margin-top:6px;"><a href="../index.html">Home</a> · <a href="../segnali.html">Sala Segnali</a> · <a href="https://t.me/GIO33BOT">Telegram</a></p>
+    <p style="margin-top:10px;font-size:11px;">© 2026 Nextrade · Risultati passati non garantiscono rendimenti futuri</p>
+  </div>
+</footer>
+</body>
+</html>

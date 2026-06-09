@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trend Rider Multi-Asset — Nextrade | CAGR +10.3% BTC ETH SOL</title>
+<meta name="description" content="Trend Rider Multi-Asset Nextrade: bot long-only su BTC/ETH/SOL con filtro EMA200. CAGR stimato +10.3%, drawdown massimo -12%, 8/8 asset positivi out-of-sample. Preserva capitale in bear market.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://nextrade.github.io/bot/trend-rider.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Nextrade Trend Rider Multi-Asset",
+  "description": "Bot di trend following long-only su BTC, ETH, SOL e asset diversificati. CAGR stimato +10.3%, max drawdown -12%, filtro EMA200 per evitare bear market.",
+  "brand": {"@type": "Brand", "name": "Nextrade"},
+  "url": "https://nextrade.github.io/bot/trend-rider.html"
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0f1e;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+a{color:#60a5fa;text-decoration:none}
+.container{max-width:900px;margin:0 auto;padding:0 20px}
+nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:900px;margin:0 auto}
+.nav-logo{font-weight:800;font-size:20px;color:#fff}
+.nav-logo span{color:#3b82f6}
+.btn{display:inline-block;padding:9px 20px;border-radius:8px;font-weight:700;font-size:13px;border:none;text-decoration:none;transition:opacity .15s}
+.btn-primary{background:#3b82f6;color:#fff}
+.btn-primary:hover{opacity:.85}
+.btn-outline{background:transparent;color:#3b82f6;border:1px solid #3b82f6}
+.btn-outline:hover{background:#1e3a5f}
+.hero{padding:48px 20px 36px;background:radial-gradient(ellipse at 50% 0%, #1a3a5f33 0%, transparent 60%)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin:24px 0}
+.stat-card{background:#111827;border:1px solid #1e293b;border-radius:10px;padding:16px;text-align:center}
+.stat-card .val{font-size:26px;font-weight:900;line-height:1.1}
+.stat-card .key{font-size:11px;color:#64748b;margin-top:4px}
+.stat-card .src{font-size:10px;color:#334155;margin-top:3px}
+.pos{color:#22c55e}.neg{color:#ef4444}.neu{color:#f59e0b}
+.section{padding:28px 20px}
+.section h2{font-size:18px;font-weight:700;color:#fff;margin-bottom:14px}
+.card{background:#111827;border:1px solid #1e293b;border-radius:10px;padding:20px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{padding:8px 10px;text-align:left;color:#64748b;font-size:11px;font-weight:700;border-bottom:1px solid #1e293b;background:#080d1a}
+td{padding:8px 10px;border-bottom:1px solid #111827;color:#94a3b8}
+td:first-child{color:#e2e8f0;font-weight:600}
+.faq-item{border-bottom:1px solid #1e293b;padding:14px 0}
+.faq-item h3{font-size:14px;font-weight:600;color:#e2e8f0;margin-bottom:6px}
+.faq-item p{font-size:13px;color:#94a3b8;line-height:1.6}
+.disclaimer{background:#111827;border:1px solid #1e293b;border-radius:8px;padding:14px 18px;font-size:11px;color:#475569;margin:24px 0}
+footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-align:center;font-size:13px;color:#475569}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">NEX<span>TRADE</span></a>
+    <a href="../index.html#bot" class="btn btn-outline" style="font-size:12px;padding:6px 14px;">← Tutti i Bot</a>
+  </div>
+</nav>
+<main>
+<div class="hero">
+  <div class="container">
+    <nav aria-label="breadcrumb" style="font-size:12px;color:#475569;margin-bottom:14px;">
+      <a href="../index.html">Nextrade</a> › <a href="../index.html#bot">Bot</a> › Trend Rider
+    </nav>
+    <div style="display:inline-block;background:#172554;color:#93c5fd;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;margin-bottom:12px;">BASSO RISCHIO</div>
+    <h1 style="font-size:clamp(22px,4vw,34px);font-weight:900;color:#fff;margin-bottom:10px;">Trend Rider Multi-Asset</h1>
+    <p style="font-size:14px;color:#94a3b8;max-width:580px;">Bot long-only per BTC, ETH, SOL e asset diversificati. Opera solo sopra EMA200 — rimane in cash durante i bear market. CAGR stimato <strong style="color:#22c55e;">+10.3%</strong> con drawdown massimo <strong style="color:#f59e0b;">-12%</strong>.</p>
+  </div>
+</div>
+<div class="section">
+  <div class="container">
+    <h2>Performance backtest — multi-asset 4h</h2>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="val pos">+10.3%</div><div class="key">CAGR annuo stimato</div><div class="src">6 asset diversificati</div></div>
+      <div class="stat-card"><div class="val neg">-12%</div><div class="key">Max Drawdown</div><div class="src">vs -70% buy&hold</div></div>
+      <div class="stat-card"><div class="val pos">8/8</div><div class="key">Asset positivi OOS</div><div class="src">Out-of-sample test</div></div>
+      <div class="stat-card"><div class="val pos">EMA200</div><div class="key">Filtro bear market</div><div class="src">Cash se sotto EMA200</div></div>
+      <div class="stat-card"><div class="val neu">4h</div><div class="key">Timeframe</div><div class="src">Trend following</div></div>
+      <div class="stat-card"><div class="val pos">Solo LONG</div><div class="key">Direzione</div><div class="src">No short, no leva alta</div></div>
+    </div>
+    <div class="disclaimer">Fonte: backtest storico multi-asset, giugno 2026. CAGR stimato su BTC/ETH/SOL/SP500/Nasdaq/Oro/Rame. I risultati passati non garantiscono rendimenti futuri.</div>
+
+    <h2 style="margin-top:28px;">Parametri tecnici</h2>
+    <div class="card">
+      <table>
+        <thead><tr><th>Parametro</th><th>Valore</th></tr></thead>
+        <tbody>
+          <tr><td>Asset coperti</td><td>BTC, ETH, SOL + SP500, Nasdaq, Oro, Rame (futuro)</td></tr>
+          <tr><td>Timeframe</td><td>4 ore</td></tr>
+          <tr><td>Strategia</td><td>Trend following long-only con filtro EMA200</td></tr>
+          <tr><td>Condizione di ingresso</td><td>Prezzo cash sopra EMA200 + segnale trend</td></tr>
+          <tr><td>Gestione bear market</td><td>Rimane in CASH automaticamente (nessun trade)</td></tr>
+          <tr><td>Rischio per trade</td><td>2% del capitale</td></tr>
+          <tr><td>Leva</td><td>Bassa (1x–3x consigliata)</td></tr>
+          <tr><td>Capitale minimo</td><td>500€</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="margin-top:28px;">Perché il Trend Rider è il bot più conservativo e affidabile?</h2>
+    <div class="card" style="font-size:14px;color:#94a3b8;line-height:1.8;">
+      <p>Il Trend Rider è l'unico bot Nextrade testato out-of-sample (OOS) su <strong style="color:#e2e8f0;">8 asset diversi</strong>, tutti con risultato positivo. Questo indica robustezza della strategia, non semplice overfitting sui dati storici.</p>
+      <br>
+      <p>Il confronto con buy-and-hold è impietoso: <strong style="color:#22c55e;">CAGR +10.3% con drawdown -12%</strong> contro un buy-and-hold su crypto che può subire drawdown del -70% nei bear market. Il bot semplicemente smette di operare quando il prezzo scende sotto la media mobile a 200 periodi.</p>
+      <br>
+      <p>La diversificazione su 6 asset scorrelati (BTC/ETH/SP500/Nasdaq/Oro/Rame) riduce la correlazione con il solo mercato crypto, stabilizzando i rendimenti nel tempo.</p>
+    </div>
+
+    <h2 style="margin-top:28px;">Domande frequenti</h2>
+    <div>
+      <div class="faq-item">
+        <h3>Perché il Trend Rider opera solo LONG?</h3>
+        <p>La ricerca su 8 asset (giugno 2026) ha dimostrato che le strategie short su crypto hanno edge nullo o negativo per i costi. Il long-only con filtro EMA200 batte il buy-and-hold in 8/8 asset testati, riducendo il drawdown da -70% a -12%.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Cosa fa il bot in un bear market?</h3>
+        <p>Quando il prezzo scende sotto l'EMA200 (media mobile 200 periodi a 4h), il bot rimane automaticamente in <strong style="color:#e2e8f0;">CASH</strong> senza aprire posizioni. Questo è il vantaggio principale rispetto al buy-and-hold che subisce tutto il ribasso.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Su quali asset funziona il Trend Rider?</h3>
+        <p>Attualmente su <strong>BTC, ETH, SOL</strong> su MEXC Futures. La versione multi-asset completa (con SP500, Nasdaq, Oro, Rame) richiede un broker multi-mercato. CAGR stimato con 6 asset diversificati: +10.3% vs +7.5% solo crypto.</p>
+      </div>
+    </div>
+    <div class="disclaimer">Avvertenza: risultati backtest e paper trading. Il trading su futures comporta rischio elevato. I rendimenti passati non garantiscono risultati futuri. © 2026 Nextrade</div>
+    <div style="text-align:center;margin-top:24px;">
+      <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener" class="btn btn-primary">Ricevi i segnali su Telegram →</a>
+    </div>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="container">
+    <p><strong style="color:#94a3b8;">Nextrade</strong> — Trend Rider Multi-Asset</p>
+    <p style="margin-top:6px;"><a href="../index.html">Home</a> · <a href="../segnali.html">Sala Segnali</a> · <a href="https://t.me/GIO33BOT">Telegram</a></p>
+    <p style="margin-top:10px;font-size:11px;">© 2026 Nextrade · Risultati passati non garantiscono rendimenti futuri</p>
+  </div>
+</footer>
+</body>
+</html>

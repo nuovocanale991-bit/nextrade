@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warren MTF — Nextrade | Bot Multi-Timeframe BTCUSDT MEXC</title>
+<meta name="description" content="Warren MTF Nextrade: bot multi-timeframe per BTCUSDT su MEXC Futures. Analisi da 1m a 1h, trail stop dinamico, paper trading attivo con Config C ottimizzata su dati reali.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://nextrade.github.io/bot/warren-mtf.html">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0f1e;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+a{color:#60a5fa;text-decoration:none}
+.container{max-width:900px;margin:0 auto;padding:0 20px}
+nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:900px;margin:0 auto}
+.nav-logo{font-weight:800;font-size:20px;color:#fff}.nav-logo span{color:#3b82f6}
+.btn{display:inline-block;padding:9px 20px;border-radius:8px;font-weight:700;font-size:13px;border:none;text-decoration:none;transition:opacity .15s}
+.btn-primary{background:#3b82f6;color:#fff}.btn-primary:hover{opacity:.85}
+.btn-outline{background:transparent;color:#3b82f6;border:1px solid #3b82f6}.btn-outline:hover{background:#1e3a5f}
+.hero{padding:48px 20px 36px;background:radial-gradient(ellipse at 50% 0%, #3a1a2033 0%, transparent 60%)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin:24px 0}
+.stat-card{background:#111827;border:1px solid #1e293b;border-radius:10px;padding:16px;text-align:center}
+.stat-card .val{font-size:24px;font-weight:900}.stat-card .key{font-size:11px;color:#64748b;margin-top:4px}
+.pos{color:#22c55e}.neg{color:#ef4444}.neu{color:#f59e0b}
+.section{padding:28px 20px}.section h2{font-size:18px;font-weight:700;color:#fff;margin-bottom:14px}
+.card{background:#111827;border:1px solid #1e293b;border-radius:10px;padding:20px}
+.tf-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:16px 0}
+.tf-box{background:#0a0f1e;border:1px solid #334155;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;color:#e2e8f0;text-align:center}
+.tf-arrow{color:#334155;font-size:18px}
+.faq-item{border-bottom:1px solid #1e293b;padding:14px 0}
+.faq-item h3{font-size:14px;font-weight:600;color:#e2e8f0;margin-bottom:6px}
+.faq-item p{font-size:13px;color:#94a3b8;line-height:1.6}
+.disclaimer{background:#111827;border:1px solid #1e293b;border-radius:8px;padding:14px 18px;font-size:11px;color:#475569;margin:24px 0}
+footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-align:center;font-size:13px;color:#475569}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">NEX<span>TRADE</span></a>
+    <a href="../index.html#bot" class="btn btn-outline" style="font-size:12px;padding:6px 14px;">← Tutti i Bot</a>
+  </div>
+</nav>
+<main>
+<div class="hero">
+  <div class="container">
+    <nav aria-label="breadcrumb" style="font-size:12px;color:#475569;margin-bottom:14px;">
+      <a href="../index.html">Nextrade</a> › <a href="../index.html#bot">Bot</a> › Warren MTF
+    </nav>
+    <div style="display:inline-block;background:#78350f;color:#fcd34d;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;margin-bottom:12px;">MULTI-TIMEFRAME</div>
+    <h1 style="font-size:clamp(22px,4vw,34px);font-weight:900;color:#fff;margin-bottom:10px;">Warren MTF — BTCUSDT</h1>
+    <p style="font-size:14px;color:#94a3b8;max-width:580px;">Bot multi-timeframe per BTCUSDT su MEXC Futures. Analizza il mercato da <strong style="color:#e2e8f0;">1 minuto a 1 ora</strong> per trovare segnali con alta probabilità. Trail stop dinamico che segue il prezzo proteggendo i profitti.</p>
+  </div>
+</div>
+<div class="section">
+  <div class="container">
+    <h2>Caratteristiche tecniche</h2>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="val pos">MTF</div><div class="key">Multi-Timeframe</div></div>
+      <div class="stat-card"><div class="val pos">1m</div><div class="key">TF esecuzione</div></div>
+      <div class="stat-card"><div class="val neu">1h</div><div class="key">TF analisi alta</div></div>
+      <div class="stat-card"><div class="val pos">Trail</div><div class="key">Stop dinamico</div></div>
+      <div class="stat-card"><div class="val pos">BTC</div><div class="key">Asset principale</div></div>
+      <div class="stat-card"><div class="val pos">Config C</div><div class="key">Configurazione</div></div>
+    </div>
+
+    <h2 style="margin-top:28px;">Flusso di analisi multi-timeframe</h2>
+    <div class="card">
+      <p style="font-size:14px;color:#94a3b8;margin-bottom:16px;">Warren MTF analizza il mercato su timeframe crescenti prima di eseguire un'operazione. Il segnale è valido solo se tutti i livelli concordano:</p>
+      <div class="tf-flow">
+        <div class="tf-box"><div style="font-size:10px;color:#64748b;">Analisi alta</div>1h + 4h</div>
+        <span class="tf-arrow">→</span>
+        <div class="tf-box"><div style="font-size:10px;color:#64748b;">Conferma</div>15m</div>
+        <span class="tf-arrow">→</span>
+        <div class="tf-box"><div style="font-size:10px;color:#64748b;">Timing</div>5m</div>
+        <span class="tf-arrow">→</span>
+        <div class="tf-box" style="border-color:#3b82f6;color:#60a5fa;"><div style="font-size:10px;color:#3b82f6;">Esecuzione</div>1m</div>
+      </div>
+      <p style="font-size:13px;color:#64748b;margin-top:8px;">L'ordine viene eseguito sul TF 1m solo dopo conferma di trend su 1h/4h e timing corretto su 5m. Questo riduce i falsi segnali e migliora il rapporto reward/risk.</p>
+    </div>
+
+    <h2 style="margin-top:28px;">Cos'è il trailing stop dinamico?</h2>
+    <div class="card" style="font-size:14px;color:#94a3b8;line-height:1.8">
+      <p>Il trail stop segue il prezzo man mano che si muove nella direzione favorevole. A differenza di uno stop fisso, non si abbassa mai — solo si sposta in avanti con il prezzo. Risultato: <strong style="color:#e2e8f0;">la perdita massima è limitata</strong> ma il profitto può crescere senza limite finché il trend continua.</p>
+      <br>
+      <p>Config C (ottimizzata su dati reali 2025–2026) usa un trail ATR con moltiplicatore adattivo che si allarga nei momenti di alta volatilità per evitare l'uscita prematura dai trend forti.</p>
+    </div>
+
+    <h2 style="margin-top:28px;">Domande frequenti</h2>
+    <div>
+      <div class="faq-item">
+        <h3>Cosa significa "multi-timeframe" nel Warren MTF?</h3>
+        <p>Il bot analizza il mercato su più livelli temporali simultaneamente: la tendenza a lungo termine (1h/4h), la conferma intermedia (15m), il timing di entrata preciso (5m) e l'esecuzione dell'ordine (1m). Un'operazione viene aperta solo se tutti i livelli concordano.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Come funziona il trailing stop dinamico di Warren?</h3>
+        <p>Il trailing stop si muove nella direzione del trade proteggendo i profitti accumulati. In caso di inversione, lo stop si chiude alla distanza ATR calcolata. Config C usa un moltiplicatore che si adatta alla volatilità: più il mercato è volatile, più lo stop è largo per evitare uscite premature.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Su quale asset opera Warren MTF?</h3>
+        <p>Warren MTF opera principalmente su <strong>BTCUSDT</strong> perpetual MEXC Futures. BTC è l'asset con maggiore liquidità, spread più basso e meno suscettibile ai pump/dump improvvisi rispetto alle altcoin.</p>
+      </div>
+    </div>
+    <div class="disclaimer">Bot in paper trading attivo su MEXC Futures con Config C. Risultati passati non garantiscono rendimenti futuri. © 2026 Nextrade</div>
+    <div style="text-align:center;margin-top:24px;">
+      <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener" class="btn btn-primary">Segnali Warren su Telegram →</a>
+    </div>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="container">
+    <p><strong style="color:#94a3b8;">Nextrade</strong> — Warren MTF · BTCUSDT</p>
+    <p style="margin-top:6px;"><a href="../index.html">Home</a> · <a href="../segnali.html">Sala Segnali</a> · <a href="https://t.me/GIO33BOT">Telegram</a></p>
+    <p style="margin-top:10px;font-size:11px;">© 2026 Nextrade · Risultati passati non garantiscono rendimenti futuri</p>
+  </div>
+</footer>
+</body>
+</html>

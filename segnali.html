@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sala Segnali LIVE — Nextrade | 10 Asset, 7 Timeframe, 10 Strategie</title>
+<meta name="description" content="Sala segnali trading live Nextrade: 10 asset crypto su MEXC Futures analizzati su 7 timeframe con 10 strategie tecniche. Segnali LONG/SHORT su candela chiusa. Aggiornamento ogni 90 secondi.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://nextrade.github.io/segnali.html">
+<meta property="og:title" content="Sala Segnali LIVE — Nextrade Trading">
+<meta property="og:description" content="10 asset MEXC Futures · 7 timeframe · 10 strategie · Segnali su candela chiusa · Aggiornamento automatico">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Sala Segnali LIVE Nextrade",
+  "description": "Segnali di trading live per MEXC Futures. 10 asset crypto analizzati su 7 timeframe con 10 strategie tecniche. Aggiornamento su candela chiusa.",
+  "url": "https://nextrade.github.io/segnali.html",
+  "inLanguage": "it",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Nextrade", "item": "https://nextrade.github.io"},
+      {"@type": "ListItem", "position": 2, "name": "Sala Segnali", "item": "https://nextrade.github.io/segnali.html"}
+    ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come funziona la sala segnali Nextrade?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La sala segnali Nextrade analizza 10 asset crypto su 7 timeframe (5m, 15m, 30m, 1h, 2h, 4h, 1d) usando 10 strategie tecniche in parallelo. Ogni segnale viene calcolato su candela chiusa per eliminare i falsi segnali intracandle. Il risultato è un segnale ibrido (LONG/SHORT/NEUTRAL) con percentuale di consenso tra le strategie."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quali asset sono coperti dalla sala segnali Nextrade?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La sala segnali Nextrade copre: BTC/USDT, ETH/USDT, XRP/USDT, SOL/USDT, ZEC/USDT, XMR/USDT, BNB/USDT, DOGE/USDT, ADA/USDT, LTC/USDT. Tutti i futures perpetual su MEXC con fee maker 0%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Con quale frequenza si aggiornano i segnali?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I segnali si aggiornano ogni 90 secondi sulla dashboard web. Su Telegram @GIO33BOT vengono inviati in tempo reale alla chiusura di ogni candela sul timeframe rilevante. Il calcolo avviene solo su candela chiusa, non su prezzo live, per garantire segnali stabili."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cosa significa il punteggio percentuale nel segnale?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il punteggio (es. 80%) indica la percentuale di strategie che concordano nella stessa direzione. 80% LONG significa che 8 strategie su 10 segnalano LONG. Sopra il 70% il segnale è considerato forte. Sotto il 50% il segnale è considerato debole o neutro."
+      }
+    }
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0f1e;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+a{color:#60a5fa;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1100px;margin:0 auto;flex-wrap:wrap;gap:10px}
+.nav-logo{font-weight:800;font-size:20px;color:#fff;display:flex;align-items:center;gap:8px}
+.nav-logo span{color:#3b82f6}
+.nav-links{display:flex;gap:20px;font-size:14px}
+.nav-links a{color:#94a3b8}
+.nav-links a:hover{color:#fff}
+.btn{display:inline-block;padding:10px 22px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;border:none;transition:opacity .15s}
+.btn-primary{background:#3b82f6;color:#fff}
+.btn-primary:hover{opacity:.85;text-decoration:none}
+.btn-outline{background:transparent;color:#3b82f6;border:1px solid #3b82f6}
+.btn-outline:hover{background:#1e3a5f;text-decoration:none}
+.page-hero{padding:48px 20px 36px;background:radial-gradient(ellipse at 50% 0%, #1a3a6033 0%, transparent 70%)}
+.page-hero h1{font-size:clamp(22px,4vw,36px);font-weight:900;color:#fff;margin-bottom:10px}
+.page-hero p{font-size:14px;color:#94a3b8;max-width:600px}
+/* MATRICE */
+.matrix-wrap{overflow-x:auto;border:1px solid #1e293b;border-radius:14px;background:#080d1a}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th{background:#0d1526;padding:10px 8px;font-size:11px;color:#64748b;font-weight:700;border-bottom:2px solid #1e293b;white-space:nowrap;text-align:center}
+th:first-child{text-align:left;padding-left:16px}
+td{padding:9px 6px;border-bottom:1px solid #111827;text-align:center}
+tr:hover td{background:#0d1526}
+.asset-name{font-weight:700;color:#fff;font-size:13px}
+.asset-price{font-size:11px;color:#475569;display:block;margin-top:1px}
+.cell{border-radius:6px;padding:4px 8px;font-size:11px;font-weight:700;display:inline-block;min-width:58px}
+.long{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.3)}
+.short{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3)}
+.neutral{background:rgba(71,85,105,.1);color:#475569;border:1px solid rgba(71,85,105,.2)}
+.align-long{background:rgba(34,197,94,.2);color:#4ade80;border:1px solid rgba(34,197,94,.4);border-radius:8px;padding:3px 8px;font-size:11px;font-weight:700;white-space:nowrap}
+.align-short{background:rgba(239,68,68,.2);color:#f87171;border:1px solid rgba(239,68,68,.4);border-radius:8px;padding:3px 8px;font-size:11px;font-weight:700;white-space:nowrap}
+.align-weak{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.3);border-radius:8px;padding:3px 8px;font-size:11px;font-weight:700;white-space:nowrap}
+/* FILTRI */
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.pill{background:#111827;border:1px solid #1e293b;border-radius:6px;padding:5px 14px;font-size:13px;color:#94a3b8;cursor:pointer}
+.pill.on{background:#1d4ed8;border-color:#3b82f6;color:#fff}
+/* COME LEGGERE */
+.how-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:24px}
+.how-card{background:#111827;border:1px solid #1e293b;border-radius:10px;padding:18px}
+.how-card h3{font-size:14px;font-weight:700;color:#e2e8f0;margin-bottom:8px}
+.how-card p{font-size:13px;color:#64748b;line-height:1.6}
+/* STRATEGIE */
+.strat-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:16px}
+.strat-table th{text-align:left;padding:8px 12px;color:#64748b;font-size:11px;font-weight:700;border-bottom:1px solid #1e293b;background:#080d1a}
+.strat-table td{padding:8px 12px;border-bottom:1px solid #111827;color:#94a3b8}
+.strat-table td:first-child{color:#e2e8f0;font-weight:600}
+/* FAQ */
+.faq-item{border-bottom:1px solid #1e293b;padding:18px 0}
+.faq-item h3{font-size:15px;font-weight:600;color:#e2e8f0;margin-bottom:8px}
+.faq-item p{font-size:14px;color:#94a3b8;line-height:1.6}
+/* TELEGRAM CTA */
+.tg-box{background:linear-gradient(135deg,#0c2242 0%,#1a3a60 100%);border:1px solid #1d4ed8;border-radius:14px;padding:32px;text-align:center}
+.tg-box h2{font-size:22px;color:#fff;font-weight:800;margin-bottom:10px}
+.tg-box p{color:#94a3b8;font-size:14px;margin-bottom:20px;max-width:480px;margin-left:auto;margin-right:auto}
+footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-align:center;font-size:13px;color:#475569}
+@media(max-width:600px){.nav-links{display:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">NEX<span>TRADE</span></a>
+    <div class="nav-links">
+      <a href="index.html#bot">I Bot</a>
+      <a href="segnali.html" style="color:#3b82f6;">Sala Segnali</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener">Telegram</a>
+    </div>
+    <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener" class="btn btn-primary">Unisciti →</a>
+  </div>
+</nav>
+
+<main>
+
+<div class="page-hero">
+  <div class="container">
+    <nav aria-label="breadcrumb" style="font-size:12px;color:#475569;margin-bottom:14px;">
+      <a href="index.html">Nextrade</a> › Sala Segnali
+    </nav>
+    <h1>Sala Segnali LIVE — MEXC Futures</h1>
+    <p>10 asset crypto analizzati su 7 timeframe con 10 strategie tecniche. Segnali calcolati su <strong style="color:#e2e8f0;">candela chiusa</strong>. Aggiornamento automatico ogni 90 secondi.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:20px;font-size:13px;">
+      <span style="color:#64748b;">Asset: <strong style="color:#e2e8f0;">10</strong></span>
+      <span style="color:#64748b;">Timeframe: <strong style="color:#e2e8f0;">7</strong></span>
+      <span style="color:#64748b;">Strategie: <strong style="color:#e2e8f0;">10</strong></span>
+      <span style="color:#64748b;">Exchange: <strong style="color:#22c55e;">MEXC Futures (fee 0%)</strong></span>
+    </div>
+  </div>
+</div>
+
+<div style="padding:24px 20px 48px">
+  <div class="container">
+
+    <!-- FILTRI -->
+    <div class="filter-bar">
+      <span style="font-size:13px;color:#64748b;">Mostra:</span>
+      <button class="pill on">Tutti</button>
+      <button class="pill">Solo LONG</button>
+      <button class="pill">Solo SHORT</button>
+      <button class="pill">Allineati (5+ TF)</button>
+    </div>
+
+    <!-- MATRICE SEGNALI STATICA -->
+    <div class="matrix-wrap" style="margin-bottom:32px;">
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align:left;padding-left:16px;min-width:120px;">Asset</th>
+            <th style="min-width:100px;">Allineam.</th>
+            <th>5m</th><th>15m</th><th>1h</th><th>4h</th><th>1d</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align:left;padding-left:16px;"><span class="asset-name">BTCUSDT</span><span class="asset-price">~$105,000</span></td>
+            <td><span class="align-long">↑ LONG (4/5)</span></td>
+            <td><span class="cell long">LONG 80%</span></td>
+            <td><span class="cell long">LONG 70%</span></td>
+            <td><span class="cell long">LONG 80%</span></td>
+            <td><span class="cell long">LONG 90%</span></td>
+            <td><span class="cell neutral">· · ·</span></td>
+          </tr>
+          <tr>
+            <td style="text-align:left;padding-left:16px;"><span class="asset-name">ETHUSDT</span><span class="asset-price">~$2,500</span></td>
+            <td><span class="align-short">↓ SHORT (4/5)</span></td>
+            <td><span class="cell short">SHORT 60%</span></td>
+            <td><span class="cell short">SHORT 70%</span></td>
+            <td><span class="cell short">SHORT 80%</span></td>
+            <td><span class="cell neutral">· · ·</span></td>
+            <td><span class="cell short">SHORT 60%</span></td>
+          </tr>
+          <tr>
+            <td style="text-align:left;padding-left:16px;"><span class="asset-name">ZECUSDT</span><span class="asset-price">~$42</span></td>
+            <td><span class="align-long">↑ LONG (5/5)</span></td>
+            <td><span class="cell long">LONG 90%</span></td>
+            <td><span class="cell long">LONG 80%</span></td>
+            <td><span class="cell long">LONG 70%</span></td>
+            <td><span class="cell long">LONG 70%</span></td>
+            <td><span class="cell long">LONG 60%</span></td>
+          </tr>
+          <tr>
+            <td style="text-align:left;padding-left:16px;"><span class="asset-name">XRPUSDT</span><span class="asset-price">~$0.52</span></td>
+            <td><span class="align-weak">~ LONG (3/5)</span></td>
+            <td><span class="cell neutral">· · ·</span></td>
+            <td><span class="cell long">LONG 60%</span></td>
+            <td><span class="cell long">LONG 70%</span></td>
+            <td><span class="cell neutral">· · ·</span></td>
+            <td><span class="cell short">SHORT 60%</span></td>
+          </tr>
+          <tr>
+            <td style="text-align:left;padding-left:16px;"><span class="asset-name">SOLUSDT</span><span class="asset-price">~$175</span></td>
+            <td><span class="align-short">↓ SHORT (4/5)</span></td>
+            <td><span class="cell short">SHORT 70%</span></td>
+            <td><span class="cell short">SHORT 60%</span></td>
+            <td><span class="cell neutral">· · ·</span></td>
+            <td><span class="cell short">SHORT 80%</span></td>
+            <td><span class="cell short">SHORT 70%</span></td>
+          </tr>
+          <tr>
+            <td style="text-align:left;padding-left:16px;"><span class="asset-name">XMRUSDT</span><span class="asset-price">~$290</span></td>
+            <td><span class="align-long">↑ LONG (3/5)</span></td>
+            <td><span class="cell long">LONG 70%</span></td>
+            <td><span class="cell neutral">· · ·</span></td>
+            <td><span class="cell long">LONG 80%</span></td>
+            <td><span class="cell long">LONG 60%</span></td>
+            <td><span class="cell neutral">· · ·</span></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr style="background:#0d1526;">
+            <td style="text-align:left;padding-left:16px;font-size:11px;color:#475569;padding:8px 6px;">Totale</td>
+            <td></td>
+            <td style="font-size:11px;"><span style="color:#4ade80;">3L</span> <span style="color:#f87171;">2S</span></td>
+            <td style="font-size:11px;"><span style="color:#4ade80;">3L</span> <span style="color:#f87171;">2S</span></td>
+            <td style="font-size:11px;"><span style="color:#4ade80;">4L</span> <span style="color:#f87171;">1S</span></td>
+            <td style="font-size:11px;"><span style="color:#4ade80;">3L</span> <span style="color:#f87171;">2S</span></td>
+            <td style="font-size:11px;"><span style="color:#4ade80;">1L</span> <span style="color:#f87171;">3S</span></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <p style="font-size:12px;color:#475569;margin-bottom:32px;">
+      Dati di esempio aggiornati a giugno 2026. La sala segnali live è disponibile su Telegram <a href="https://t.me/GIO33BOT">@GIO33BOT</a> in tempo reale.
+    </p>
+
+    <!-- COME LEGGERE -->
+    <h2 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:6px;">Come leggere la matrice segnali</h2>
+    <p style="font-size:14px;color:#64748b;margin-bottom:4px;">Guida rapida all'interpretazione dei segnali Nextrade</p>
+    <div class="how-grid">
+      <div class="how-card">
+        <h3>LONG — segnale rialzista</h3>
+        <p>La maggioranza delle strategie segnala un'opportunità di acquisto (long). La percentuale indica quante strategie concordano. Sopra 70% il segnale è forte.</p>
+      </div>
+      <div class="how-card">
+        <h3>SHORT — segnale ribassista</h3>
+        <p>La maggioranza delle strategie segnala un'opportunità di vendita (short). Sopra 70% SHORT il segnale è forte. In bear market dominante i segnali SHORT aumentano.</p>
+      </div>
+      <div class="how-card">
+        <h3>· · · — segnale neutro</h3>
+        <p>Le strategie sono divise o nessuna maggioranza chiara. Nessuna operazione consigliata su questo asset/timeframe. Meglio aspettare chiarezza direzionale.</p>
+      </div>
+      <div class="how-card">
+        <h3>Allineamento multi-TF</h3>
+        <p>La colonna "Allineam." mostra se la direzione è coerente su più timeframe. "LONG 5/5" significa che tutti i 5 TF analizzati concordano: segnale molto forte.</p>
+      </div>
+    </div>
+
+    <!-- STRATEGIE -->
+    <h2 style="font-size:20px;font-weight:700;color:#fff;margin:40px 0 6px;">Le 10 strategie tecniche analizzate</h2>
+    <p style="font-size:14px;color:#64748b;margin-bottom:4px;">Ogni segnale è il voto aggregato di 10 indicatori tecnici indipendenti</p>
+    <table class="strat-table">
+      <thead><tr><th>Strategia</th><th>Tipo</th><th>Segnale principale</th></tr></thead>
+      <tbody>
+        <tr><td>EMA Cross</td><td>Trend</td><td>Croce EMA rapida/lenta</td></tr>
+        <tr><td>RSI Divergence</td><td>Momentum</td><td>Divergenza RSI vs prezzo</td></tr>
+        <tr><td>MACD Signal</td><td>Trend/Momentum</td><td>Croce MACD/Signal</td></tr>
+        <tr><td>Bollinger Bands</td><td>Volatilità</td><td>Break delle bande</td></tr>
+        <tr><td>Volume Profile</td><td>Volume</td><td>POC e value area</td></tr>
+        <tr><td>Supertrend</td><td>Trend</td><td>Direzione Supertrend ATR</td></tr>
+        <tr><td>UTBot</td><td>Momentum</td><td>Trailing stop adattivo</td></tr>
+        <tr><td>Support/Resistance</td><td>Struttura</td><td>Break S/R chiave</td></tr>
+        <tr><td>Orderflow Veto</td><td>Liquidità</td><td>Veto su squilibri orderbook</td></tr>
+        <tr><td>News Sentiment</td><td>Fondamentale</td><td>Veto su news major</td></tr>
+      </tbody>
+    </table>
+
+    <!-- FAQ -->
+    <h2 style="font-size:20px;font-weight:700;color:#fff;margin:48px 0 6px;">Domande frequenti sui segnali</h2>
+    <div style="margin-top:16px;">
+      <div class="faq-item">
+        <h3>Come funziona la sala segnali Nextrade?</h3>
+        <p>La sala segnali analizza 10 asset crypto su 7 timeframe usando 10 strategie tecniche in parallelo. Ogni segnale viene calcolato su <strong style="color:#e2e8f0;">candela chiusa</strong> per eliminare i falsi segnali intracandle. Il risultato è un segnale ibrido (LONG/SHORT/NEUTRAL) con percentuale di consenso.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Quali asset sono coperti dalla sala segnali?</h3>
+        <p>BTC, ETH, XRP, SOL, ZEC, XMR, BNB, DOGE, ADA, LTC — tutti i futures perpetual MEXC con fee maker 0%. I prezzi mostrati sono in USD, le operazioni avvengono in coppia USDT.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Con quale frequenza si aggiornano i segnali?</h3>
+        <p>Aggiornamento ogni 90 secondi sulla dashboard. Su Telegram <a href="https://t.me/GIO33BOT">@GIO33BOT</a> i segnali vengono inviati in tempo reale alla chiusura di ogni candela. Il calcolo avviene solo su candela chiusa, non su prezzo live.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Cosa significa il punteggio percentuale?</h3>
+        <p>80% LONG = 8 strategie su 10 segnalano LONG. Sopra 70% il segnale è considerato forte. Sotto 50% il segnale è debole o neutro e non viene raccomandato per operare.</p>
+      </div>
+    </div>
+
+    <!-- TELEGRAM CTA -->
+    <div class="tg-box" style="margin-top:48px;">
+      <h2>Ricevi i segnali in tempo reale</h2>
+      <p>Unisciti al canale Telegram @GIO33BOT per ricevere ogni segnale in tempo reale, con asset, direzione, timeframe e forza del segnale.</p>
+      <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:16px;padding:12px 28px;">
+        Unisciti a @GIO33BOT →
+      </a>
+    </div>
+
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="container">
+    <p><strong style="color:#94a3b8;">Nextrade</strong> — Sala Segnali MEXC Futures</p>
+    <p style="margin-top:6px;">Telegram: <a href="https://t.me/GIO33BOT">@GIO33BOT</a> · Email: riccogiorgio91@gmail.com</p>
+    <p style="margin-top:10px;font-size:11px;">I segnali sono solo informativi. Il trading su futures comporta rischio elevato. © 2026 Nextrade</p>
+  </div>
+</footer>
+
+</body>
+</html>

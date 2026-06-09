@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nextrade — Bot di Trading Algoritmico su MEXC Futures | Risultati Verificati</title>
+<meta name="description" content="Nextrade offre bot di trading algoritmico su MEXC Futures con backtest verificati. ZEC Scalp +91.6% in 44 giorni, Trend Rider CAGR +10.3%. Segnali live, zero commissioni MEXC.">
+<meta name="keywords" content="bot trading mexc, bot trading algoritmico, trading automatico crypto, segnali trading, bot zec, mexc futures bot">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://nextrade.github.io/">
+<meta property="og:title" content="Nextrade — Bot di Trading Algoritmico su MEXC Futures">
+<meta property="og:description" content="5 bot algoritmici con risultati backtest verificati. ZEC Scalp +91.6%, Trend Rider +10.3% annuo. Segnali live su Telegram.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Nextrade",
+  "description": "Piattaforma di bot di trading algoritmico per MEXC Futures con risultati backtest verificati e segnali live.",
+  "url": "https://nextrade.github.io",
+  "inLanguage": "it",
+  "offers": {
+    "@type": "AggregateOffer",
+    "offerCount": 5,
+    "priceCurrency": "EUR"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Cos'è Nextrade?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nextrade è una suite di bot di trading algoritmico progettati per MEXC Futures. Ogni bot opera in modalità automatica su asset crypto (BTC, ETH, ZEC, SOL) utilizzando strategie tecniche come scalping, trend following e analisi multi-timeframe."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto guadagna il miglior bot Nextrade?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il bot ZEC Scalp V3 ha registrato +91.6% in 44 giorni di backtest su ZECUSDT 5m (fonte: MEXC paper trading, giugno 2026). Il Trend Rider multi-asset ha ottenuto un CAGR stimato del +10.3% con drawdown massimo del -12% su BTC/ETH/SP500/Nasdaq/Oro/Rame."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I bot Nextrade funzionano su MEXC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì. Tutti i bot Nextrade sono sviluppati e ottimizzati per MEXC Futures (perpetual). MEXC applica fee 0% sul maker per i futures, il che massimizza il rendimento netto. I bot si connettono tramite API MEXC in modalità paper trading o live."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto capitale serve per usare i bot Nextrade?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il capitale minimo consigliato è 500€ per bot, con leva 5x o 10x. Il rischio per trade è fisso al 2% del capitale (ad eccezione degli scalp a 0.5%). Con 500€ e leva 5x, ogni trade a rischio 2% equivale a 10€ di rischio massimo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Come ricevo i segnali di trading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I segnali vengono inviati in tempo reale sul canale Telegram @GIO33BOT. Ogni segnale include: asset, direzione (LONG/SHORT), timeframe, forza del segnale e percentuale di consenso tra le strategie."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I risultati dei bot sono garantiti?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. I risultati passati e i backtest non garantiscono rendimenti futuri. Il trading su futures crypto comporta rischio elevato di perdita del capitale. I dati presentati sono backtest storici o paper trading. Ogni utente è responsabile delle proprie decisioni di investimento."
+      }
+    }
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0f1e;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+a{color:#60a5fa;text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+/* NAV */
+nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1100px;margin:0 auto;flex-wrap:wrap;gap:10px}
+.nav-logo{font-weight:800;font-size:20px;color:#fff;display:flex;align-items:center;gap:8px}
+.nav-logo span{color:#3b82f6}
+.nav-links{display:flex;gap:20px;font-size:14px}
+.nav-links a{color:#94a3b8}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.btn{display:inline-block;padding:10px 22px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;border:none;transition:opacity .15s}
+.btn-primary{background:#3b82f6;color:#fff}
+.btn-primary:hover{opacity:.85;text-decoration:none}
+.btn-outline{background:transparent;color:#3b82f6;border:1px solid #3b82f6}
+.btn-outline:hover{background:#1e3a5f;text-decoration:none}
+/* HERO */
+.hero{padding:70px 20px 60px;text-align:center;background:radial-gradient(ellipse at 50% 0%, #1e3a5f33 0%, transparent 70%)}
+.hero h1{font-size:clamp(26px,5vw,46px);font-weight:900;color:#fff;line-height:1.15;margin-bottom:16px}
+.hero h1 span{color:#3b82f6}
+.hero p{font-size:clamp(14px,2.5vw,18px);color:#94a3b8;max-width:620px;margin:0 auto 28px}
+.hero-stats{display:flex;justify-content:center;flex-wrap:wrap;gap:30px;margin-top:36px}
+.hero-stat{text-align:center}
+.hero-stat .num{font-size:32px;font-weight:900;color:#3b82f6}
+.hero-stat .lbl{font-size:12px;color:#64748b;margin-top:2px}
+/* SEZIONI */
+section{padding:56px 20px}
+.section-title{font-size:clamp(20px,3vw,28px);font-weight:800;color:#fff;margin-bottom:8px}
+.section-sub{font-size:14px;color:#64748b;margin-bottom:36px}
+/* BOT CARDS */
+.bots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.bot-card{background:#111827;border:1px solid #1e293b;border-radius:14px;padding:22px;transition:border-color .2s;display:flex;flex-direction:column;gap:12px}
+.bot-card:hover{border-color:#3b82f6}
+.bot-card h3{font-size:17px;font-weight:700;color:#fff}
+.bot-meta{font-size:12px;color:#64748b}
+.bot-stat-row{display:flex;gap:10px;flex-wrap:wrap}
+.stat-pill{background:#0a0f1e;border:1px solid #1e293b;border-radius:6px;padding:5px 10px;font-size:12px;text-align:center}
+.stat-pill .v{font-weight:700;font-size:15px;display:block}
+.stat-pill .v.pos{color:#22c55e}
+.stat-pill .v.neg{color:#ef4444}
+.stat-pill .v.neu{color:#f59e0b}
+.stat-pill .k{color:#64748b;font-size:10px}
+.bot-desc{font-size:13px;color:#94a3b8;line-height:1.5}
+.badge-new{background:#1d4ed8;color:#93c5fd;font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;margin-left:8px}
+/* SIGNALS */
+.signals-preview{background:#111827;border:1px solid #1e293b;border-radius:14px;padding:30px;display:flex;flex-direction:column;gap:16px}
+.sig-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;font-size:13px}
+.sig-long{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25)}
+.sig-short{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25)}
+.sig-tag{font-weight:700;font-size:11px;padding:3px 8px;border-radius:4px;min-width:48px;text-align:center}
+.sig-tag.L{background:#166534;color:#4ade80}
+.sig-tag.S{background:#7f1d1d;color:#f87171}
+.sig-asset{font-weight:600;color:#fff;min-width:60px}
+.sig-detail{color:#64748b;flex:1}
+.sig-score{font-size:11px;color:#94a3b8}
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:0}
+.faq-item{border-bottom:1px solid #1e293b;padding:18px 0}
+.faq-item h3{font-size:15px;font-weight:600;color:#e2e8f0;margin-bottom:8px}
+.faq-item p{font-size:14px;color:#94a3b8;line-height:1.6}
+/* DISCLAIMER */
+.disclaimer{background:#111827;border:1px solid #1e293b;border-radius:10px;padding:16px 20px;font-size:12px;color:#475569;line-height:1.5}
+/* FOOTER */
+footer{background:#0d1526;border-top:1px solid #1e293b;padding:30px 20px;text-align:center;font-size:13px;color:#475569}
+footer strong{color:#94a3b8}
+/* UTILITY */
+.text-green{color:#22c55e}
+.text-blue{color:#3b82f6}
+.bg-section{background:#080d1a}
+@media(max-width:600px){.nav-links{display:none}.hero{padding:48px 16px 40px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">NEX<span>TRADE</span></div>
+    <div class="nav-links">
+      <a href="#bot">I Bot</a>
+      <a href="segnali.html">Sala Segnali</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener">Telegram</a>
+    </div>
+    <a href="segnali.html" class="btn btn-primary">Segnali LIVE</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <h1>Bot di Trading Algoritmico<br>per <span>MEXC Futures</span></h1>
+    <p>5 strategie automatiche con backtest verificati su dati reali MEXC. Fee 0% maker, segnali live su Telegram, rischio fisso per trade.</p>
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+      <a href="#bot" class="btn btn-primary">Scopri i Bot</a>
+      <a href="segnali.html" class="btn btn-outline">Sala Segnali LIVE</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">+91.6%</div><div class="lbl">ZEC Scalp — 44 giorni backtest</div></div>
+      <div class="hero-stat"><div class="num">+10.3%</div><div class="lbl">Trend Rider — CAGR annuo stimato</div></div>
+      <div class="hero-stat"><div class="num">5</div><div class="lbl">Bot attivi su MEXC Futures</div></div>
+      <div class="hero-stat"><div class="num">0%</div><div class="lbl">Fee maker MEXC Futures</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BOT -->
+<section id="bot" class="bg-section">
+  <div class="container">
+    <h2 class="section-title">I 5 Bot più performanti</h2>
+    <p class="section-sub">Dati backtest aggiornati a giugno 2026 · Fonte: MEXC paper trading · Ordine per rendimento backtest</p>
+    <div class="bots-grid">
+
+      <!-- ZEC -->
+      <article class="bot-card">
+        <div>
+          <h3>ZEC Scalp V3 <span class="badge-new">TOP</span></h3>
+          <div class="bot-meta">ZECUSDT · 5 minuti · Leva 5–10x · MEXC Futures</div>
+        </div>
+        <div class="bot-stat-row">
+          <div class="stat-pill"><span class="v pos">+91.6%</span><span class="k">Backtest 44d</span></div>
+          <div class="stat-pill"><span class="v neg">-8.2%</span><span class="k">Max Drawdown</span></div>
+          <div class="stat-pill"><span class="v neu">63%</span><span class="k">Win Rate</span></div>
+          <div class="stat-pill"><span class="v pos">2.1</span><span class="k">Profit Factor</span></div>
+        </div>
+        <p class="bot-desc">Strategia scalping su ZEC/USDT con uscita veloce su spike. Miglior backtest della suite in 44 giorni (mag–giu 2026). Fee 0% maker MEXC.</p>
+        <a href="bot/zec-scalp.html" class="btn btn-outline" style="align-self:flex-start;padding:7px 16px;font-size:13px;">Dettagli →</a>
+      </article>
+
+      <!-- TREND RIDER -->
+      <article class="bot-card">
+        <div>
+          <h3>Trend Rider Multi-Asset</h3>
+          <div class="bot-meta">BTC/ETH/SOL · 4 ore · Solo LONG · Filtro EMA200</div>
+        </div>
+        <div class="bot-stat-row">
+          <div class="stat-pill"><span class="v pos">+10.3%</span><span class="k">CAGR stimato</span></div>
+          <div class="stat-pill"><span class="v neg">-12%</span><span class="k">Max Drawdown</span></div>
+          <div class="stat-pill"><span class="v neu">Basso</span><span class="k">Rischio</span></div>
+          <div class="stat-pill"><span class="v pos">8/8</span><span class="k">Asset positivi OOS</span></div>
+        </div>
+        <p class="bot-desc">Long-only su BTC, ETH, SOL più asset scorrelati (SP500, Nasdaq, Oro, Rame). Entra solo sopra EMA200, preserva capitale in bear market.</p>
+        <a href="bot/trend-rider.html" class="btn btn-outline" style="align-self:flex-start;padding:7px 16px;font-size:13px;">Dettagli →</a>
+      </article>
+
+      <!-- CONSENSUS RIDER -->
+      <article class="bot-card">
+        <div>
+          <h3>Consensus Rider</h3>
+          <div class="bot-meta">BTC/ETH · 1 ora · Multi-segnale · 8 indicatori</div>
+        </div>
+        <div class="bot-stat-row">
+          <div class="stat-pill"><span class="v pos">1.11</span><span class="k">Profit Factor</span></div>
+          <div class="stat-pill"><span class="v pos">8</span><span class="k">Indicatori voto</span></div>
+          <div class="stat-pill"><span class="v neu">News</span><span class="k">Veto live</span></div>
+          <div class="stat-pill"><span class="v pos">1h</span><span class="k">Timeframe</span></div>
+        </div>
+        <p class="bot-desc">Entra solo se almeno 6/8 indicatori tecnici concordano. Filtro veto su news e orderflow live. Lascia correre i trend, taglia le perdite veloce.</p>
+        <a href="bot/consensus-rider.html" class="btn btn-outline" style="align-self:flex-start;padding:7px 16px;font-size:13px;">Dettagli →</a>
+      </article>
+
+      <!-- ADAPTIVE REGIME -->
+      <article class="bot-card">
+        <div>
+          <h3>Adaptive Regime Agent</h3>
+          <div class="bot-meta">Multi-asset · 15 minuti · Auto regime-switch</div>
+        </div>
+        <div class="bot-stat-row">
+          <div class="stat-pill"><span class="v pos">Auto</span><span class="k">Trend/Range</span></div>
+          <div class="stat-pill"><span class="v neu">2%</span><span class="k">Rischio/trade</span></div>
+          <div class="stat-pill"><span class="v pos">10x</span><span class="k">Leva</span></div>
+          <div class="stat-pill"><span class="v pos">ADX</span><span class="k">Regime filter</span></div>
+        </div>
+        <p class="bot-desc">Cambia strategia automaticamente in base al regime di mercato (trend o range) usando ADX. Gestione del rischio fissa al 2% per trade.</p>
+        <a href="bot/adaptive-regime.html" class="btn btn-outline" style="align-self:flex-start;padding:7px 16px;font-size:13px;">Dettagli →</a>
+      </article>
+
+      <!-- WARREN MTF -->
+      <article class="bot-card">
+        <div>
+          <h3>Warren MTF</h3>
+          <div class="bot-meta">BTCUSDT · Multi-timeframe · Config C · Paper</div>
+        </div>
+        <div class="bot-stat-row">
+          <div class="stat-pill"><span class="v pos">MTF</span><span class="k">Analisi</span></div>
+          <div class="stat-pill"><span class="v pos">1m</span><span class="k">Esecuzione</span></div>
+          <div class="stat-pill"><span class="v neu">Trail</span><span class="k">Stop loss</span></div>
+          <div class="stat-pill"><span class="v pos">BTC</span><span class="k">Asset</span></div>
+        </div>
+        <p class="bot-desc">Bot multi-timeframe per BTCUSDT con analisi da 1m a 1h. Trail stop dinamico. Attivo in paper trading con Config C ottimizzata su dati reali.</p>
+        <a href="bot/warren-mtf.html" class="btn btn-outline" style="align-self:flex-start;padding:7px 16px;font-size:13px;">Dettagli →</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- SEGNALI PREVIEW -->
+<section id="segnali">
+  <div class="container">
+    <h2 class="section-title">Sala Segnali LIVE</h2>
+    <p class="section-sub">10 asset · 7 timeframe · 10 strategie · aggiornamento su candela chiusa</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start" class="signals-layout">
+      <div class="signals-preview">
+        <div style="font-size:12px;color:#64748b;font-weight:600;letter-spacing:.5px;">ANTEPRIMA SEGNALI — esempio</div>
+        <div class="sig-row sig-long">
+          <span class="sig-tag L">LONG</span>
+          <span class="sig-asset">BTCUSDT</span>
+          <span class="sig-detail">1h · 8/10 strategie concordano</span>
+          <span class="sig-score">80%</span>
+        </div>
+        <div class="sig-row sig-short">
+          <span class="sig-tag S">SHORT</span>
+          <span class="sig-asset">ETHUSDT</span>
+          <span class="sig-detail">4h · 7/10 strategie concordano</span>
+          <span class="sig-score">70%</span>
+        </div>
+        <div class="sig-row sig-long">
+          <span class="sig-tag L">LONG</span>
+          <span class="sig-asset">ZECUSDT</span>
+          <span class="sig-detail">5m · 9/10 strategie concordano</span>
+          <span class="sig-score">90%</span>
+        </div>
+        <div class="sig-row sig-short">
+          <span class="sig-tag S">SHORT</span>
+          <span class="sig-asset">XRPUSDT</span>
+          <span class="sig-detail">15m · 6/10 strategie concordano</span>
+          <span class="sig-score">60%</span>
+        </div>
+        <a href="segnali.html" class="btn btn-primary" style="align-self:flex-start;margin-top:6px;">Sala Segnali LIVE →</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div>
+          <h3 style="font-size:16px;color:#fff;font-weight:700;margin-bottom:8px;">Come funziona la Sala Segnali?</h3>
+          <p style="font-size:14px;color:#94a3b8;line-height:1.7;">La sala segnali analizza 10 asset crypto su 7 timeframe diversi (5m, 15m, 1h, 4h, 1d e più) usando 10 strategie tecniche in parallelo. Il segnale viene emesso solo su <strong style="color:#e2e8f0;">candela chiusa</strong>, non su prezzo in corso, per eliminare i falsi segnali.</p>
+        </div>
+        <div>
+          <h3 style="font-size:16px;color:#fff;font-weight:700;margin-bottom:8px;">Come ricevo i segnali?</h3>
+          <p style="font-size:14px;color:#94a3b8;line-height:1.7;">I segnali vengono pubblicati in tempo reale su <strong style="color:#38bdf8;">Telegram @GIO33BOT</strong>. Ogni messaggio include: asset, direzione, timeframe, percentuale di consenso e forza del segnale ibrido.</p>
+        </div>
+        <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener" class="btn btn-outline" style="align-self:flex-start;">
+          Unisciti su Telegram →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="bg-section">
+  <div class="container">
+    <h2 class="section-title">Domande frequenti sui bot Nextrade</h2>
+    <p class="section-sub">Risposte dirette alle domande più comuni sul trading algoritmico con Nextrade</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Cos'è Nextrade e come funziona?</h3>
+        <p>Nextrade è una suite di bot di trading algoritmico sviluppati per MEXC Futures. Ogni bot analizza il mercato in automatico, genera segnali basati su indicatori tecnici e, in modalità live, apre/chiude posizioni tramite API MEXC senza intervento manuale.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Quanto guadagna il miglior bot Nextrade?</h3>
+        <p>Il bot ZEC Scalp V3 ha registrato <strong class="text-green">+91.6% in 44 giorni</strong> di backtest su ZECUSDT 5m (fonte: MEXC paper trading, giugno 2026, 500€ capitale, leva 5x). Il Trend Rider multi-asset ha ottenuto un CAGR stimato del <strong class="text-green">+10.3%</strong> con drawdown massimo del -12% su 6 asset diversificati.</p>
+      </div>
+      <div class="faq-item">
+        <h3>I bot Nextrade funzionano su MEXC Futures?</h3>
+        <p>Sì. Tutti i bot Nextrade sono ottimizzati per MEXC Futures (perpetual). MEXC applica <strong class="text-green">fee 0% sul maker</strong> per i futures, il che massimizza il rendimento netto rispetto ad altri exchange. La connessione avviene tramite API MEXC in modalità paper o live.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Quanto capitale serve per iniziare?</h3>
+        <p>Il capitale minimo consigliato è <strong>500€ per bot</strong>, con leva 5x o 10x. Il rischio per trade è fisso al 2% del capitale. Con 500€ e leva 5x, ogni trade a rischio 2% equivale a 10€ di rischio massimo per operazione.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Come ricevo i segnali di trading Nextrade?</h3>
+        <p>I segnali vengono inviati in tempo reale sul canale Telegram <strong class="text-blue">@GIO33BOT</strong>. Ogni segnale include: asset, direzione (LONG/SHORT), timeframe, forza del segnale e percentuale di consenso tra le 10 strategie analizzate.</p>
+      </div>
+      <div class="faq-item">
+        <h3>I risultati dei bot Nextrade sono garantiti?</h3>
+        <p>No. I risultati passati e i backtest non garantiscono rendimenti futuri. Il trading su futures crypto comporta rischio elevato di perdita del capitale investito. I dati presentati sono backtest storici o paper trading. Ogni utente è responsabile delle proprie decisioni di investimento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section style="padding:20px">
+  <div class="container">
+    <div class="disclaimer">
+      <strong>Avvertenza legale:</strong> Nextrade è uno strumento informatico di analisi tecnica. Non costituisce consulenza finanziaria né sollecitazione all'investimento. Il trading su futures crypto comporta rischio elevato di perdita del capitale. I risultati di backtest e paper trading non garantiscono rendimenti futuri. Verifica le leggi vigenti nel tuo paese prima di operare su derivati crypto. Dati aggiornati a giugno 2026.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p style="margin-bottom:8px;"><strong>Nextrade</strong> — Bot di Trading Algoritmico su MEXC Futures</p>
+    <p>Telegram: <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener">@GIO33BOT</a> · Email: riccogiorgio91@gmail.com</p>
+    <p style="margin-top:12px;font-size:11px;">© 2026 Nextrade · I risultati passati non garantiscono rendimenti futuri · Solo scopi informativi</p>
+  </div>
+</footer>
+
+<style>
+@media(max-width:700px){
+  .signals-layout{grid-template-columns:1fr!important}
+}
+</style>
+</body>
+</html>
