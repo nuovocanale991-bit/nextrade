@@ -153,11 +153,11 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
       <a href="index.html">Nextrade</a> › Sala Segnali
     </nav>
     <h1>Sala Segnali LIVE <span style="background:#22c55e22;color:#4ade80;border:1px solid #22c55e44;border-radius:6px;font-size:13px;padding:3px 10px;font-weight:600;vertical-align:middle;">● LIVE</span></h1>
-    <p>6 asset crypto analizzati su 5 timeframe con 10 strategie tecniche. Segnali calcolati su <strong style="color:#e2e8f0;">candela chiusa</strong>. Dati live Binance · Aggiornamento ogni 60 secondi.</p>
+    <p>6 asset crypto analizzati su 5 timeframe con <strong style="color:#e2e8f0;">20 strategie tecniche</strong>. Segnali calcolati su <strong style="color:#e2e8f0;">candela chiusa</strong>. Volume in tempo reale · Aggiornamento ogni 60 secondi.</p>
     <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:20px;font-size:13px;">
       <span style="color:#64748b;">Asset: <strong style="color:#e2e8f0;">6</strong></span>
       <span style="color:#64748b;">Timeframe: <strong style="color:#e2e8f0;">5</strong></span>
-      <span style="color:#64748b;">Strategie: <strong style="color:#e2e8f0;">10</strong></span>
+      <span style="color:#64748b;">Strategie: <strong style="color:#e2e8f0;">20</strong></span>
       <span style="color:#64748b;">Fonte: <strong style="color:#f59e0b;">Binance Public API</strong></span>
     </div>
   </div>
@@ -558,6 +558,78 @@ function psar(high,low,af0=0.02,afMax=0.20){
   return dir;
 }
 
+// ── Indicatori aggiuntivi ─────────────────────────────────────────────
+function adxdmi(high,low,close,period=14){
+  const n=close.length,tr=[0],dmP=[0],dmM=[0];
+  for(let i=1;i<n;i++){
+    const up=high[i]-high[i-1],dn=low[i-1]-low[i];
+    tr.push(Math.max(high[i]-low[i],Math.abs(high[i]-close[i-1]),Math.abs(low[i]-close[i-1])));
+    dmP.push(up>dn&&up>0?up:0);dmM.push(dn>up&&dn>0?dn:0);
+  }
+  function ws(arr,p){const o=new Array(n).fill(null);let s=0;for(let i=1;i<=p;i++)s+=arr[i];o[p]=s;for(let i=p+1;i<n;i++)o[i]=o[i-1]-o[i-1]/p+arr[i];return o;}
+  const AT=ws(tr,period),DP=ws(dmP,period),DM=ws(dmM,period);
+  const dip=new Array(n).fill(null),dim=new Array(n).fill(null),dx=new Array(n).fill(null);
+  for(let i=period;i<n;i++){if(!AT[i]||AT[i]===0)continue;dip[i]=100*DP[i]/AT[i];dim[i]=100*DM[i]/AT[i];const s2=dip[i]+dim[i];if(s2>0)dx[i]=100*Math.abs(dip[i]-dim[i])/s2;}
+  const adx=new Array(n).fill(null);const st2=period*2;let s2=0,c2=0;
+  for(let i=period;i<st2&&i<n;i++){if(dx[i]!==null){s2+=dx[i];c2++;}}
+  if(c2>0&&st2-1<n)adx[st2-1]=s2/c2;
+  for(let i=st2;i<n;i++){if(adx[i-1]===null||dx[i]===null)continue;adx[i]=(adx[i-1]*(period-1)+dx[i])/period;}
+  return[adx,dip,dim];
+}
+
+function cci(high,low,close,period=20){
+  const tp=high.map((h,i)=>(h+low[i]+close[i])/3),out=new Array(close.length).fill(null);
+  for(let i=period-1;i<close.length;i++){const sl=tp.slice(i-period+1,i+1),m=sl.reduce((a,b)=>a+b,0)/period,md=sl.reduce((a,b)=>a+Math.abs(b-m),0)/period;out[i]=md===0?0:(tp[i]-m)/(0.015*md);}
+  return out;
+}
+
+function williamsR(high,low,close,period=14){
+  const out=new Array(close.length).fill(null);
+  for(let i=period-1;i<close.length;i++){const hi=Math.max(...high.slice(i-period+1,i+1)),lo=Math.min(...low.slice(i-period+1,i+1));out[i]=hi===lo?-50:-100*(hi-close[i])/(hi-lo);}
+  return out;
+}
+
+function stochRSI(close,rsiP=14,stP=14){
+  const rA=rsi(close,rsiP),n=close.length,out=new Array(n).fill(null);
+  for(let i=rsiP+stP-1;i<n;i++){const sl=rA.slice(i-stP+1,i+1).filter(v=>v!==null);if(sl.length<stP)continue;const hi=Math.max(...sl),lo=Math.min(...sl),curr=rA[i];if(curr===null)continue;out[i]=hi===lo?0.5:(curr-lo)/(hi-lo);}
+  return out;
+}
+
+function keltner(close,high,low,ep=20,ap=10,mult=2.0){
+  const mid=ema(close,ep),atrV=atr(high,low,close,ap);
+  return[mid.map((v,i)=>v!==null&&atrV[i]!==null?v+mult*atrV[i]:null),mid.map((v,i)=>v!==null&&atrV[i]!==null?v-mult*atrV[i]:null)];
+}
+
+function mfi(high,low,close,volume,period=14){
+  const n=close.length,tp=high.map((h,i)=>(h+low[i]+close[i])/3),out=new Array(n).fill(null);
+  for(let i=period;i<n;i++){let pos=0,neg=0;for(let j=i-period+1;j<=i;j++){const f=tp[j]*volume[j];if(tp[j]>tp[j-1])pos+=f;else if(tp[j]<tp[j-1])neg+=f;}out[i]=neg===0?100:100-100/(1+pos/neg);}
+  return out;
+}
+
+function obvEma(close,volume,emaPeriod=20){
+  const n=close.length,o=[0];
+  for(let i=1;i<n;i++){if(close[i]>close[i-1])o.push(o[i-1]+volume[i]);else if(close[i]<close[i-1])o.push(o[i-1]-volume[i]);else o.push(o[i-1]);}
+  return[o,ema(o,emaPeriod)];
+}
+
+function trix(close,period=15){
+  const e3=ema(ema(ema(close,period),period),period),out=new Array(close.length).fill(null);
+  for(let i=1;i<close.length;i++){if(e3[i]!==null&&e3[i-1]!==null&&e3[i-1]!==0)out[i]=(e3[i]-e3[i-1])/e3[i-1]*100;}
+  return out;
+}
+
+function roc(close,period=12){
+  const out=new Array(close.length).fill(null);
+  for(let i=period;i<close.length;i++){if(close[i-period]!==0)out[i]=(close[i]-close[i-period])/close[i-period]*100;}
+  return out;
+}
+
+function smaVol(volume,period=20){
+  const out=new Array(volume.length).fill(null);
+  for(let i=period-1;i<volume.length;i++){const sl=volume.slice(i-period+1,i+1);out[i]=sl.reduce((a,b)=>a+b,0)/period;}
+  return out;
+}
+
 // ── Segnale ──────────────────────────────────────────────────────────
 function computeVotes(df){
   const n=df.c.length;
@@ -603,6 +675,54 @@ function computeVotes(df){
   if(psD[i]!==null)v.PSAR={dir:psD[i]===1?'LONG':'SHORT'};else v.PSAR={dir:'NEUTRAL'};
 
   if(e50[i]&&e200[i])v.GDX={dir:e50[i]>e200[i]?'LONG':'SHORT'};else v.GDX={dir:'NEUTRAL'};
+
+  // ADX/DMI
+  const[adxA,dipA,dimA]=adxdmi(df.h,df.l,df.c);
+  if(adxA[i]!==null&&dipA[i]!==null&&dimA[i]!==null){if(adxA[i]<20)v.ADX={dir:'NEUTRAL'};else v.ADX={dir:dipA[i]>dimA[i]?'LONG':'SHORT'};}
+  else v.ADX={dir:'NEUTRAL'};
+
+  // CCI
+  const cciV=cci(df.h,df.l,df.c)[i];
+  if(cciV!==null){if(cciV>100)v.CCI={dir:'LONG'};else if(cciV<-100)v.CCI={dir:'SHORT'};else v.CCI={dir:'NEUTRAL'};}
+  else v.CCI={dir:'NEUTRAL'};
+
+  // Williams %R
+  const wrV=williamsR(df.h,df.l,df.c)[i];
+  if(wrV!==null){if(wrV<-80)v.WR={dir:'LONG'};else if(wrV>-20)v.WR={dir:'SHORT'};else v.WR={dir:'NEUTRAL'};}
+  else v.WR={dir:'NEUTRAL'};
+
+  // StochRSI
+  const srV=stochRSI(df.c)[i];
+  if(srV!==null){if(srV<0.2)v.SRSI={dir:'LONG'};else if(srV>0.8)v.SRSI={dir:'SHORT'};else v.SRSI={dir:'NEUTRAL'};}
+  else v.SRSI={dir:'NEUTRAL'};
+
+  // Keltner Channel
+  const[kUp,kLo]=keltner(df.c,df.h,df.l);
+  if(cv&&kUp[i]&&kLo[i]){if(cv>kUp[i])v.KELT={dir:'LONG'};else if(cv<kLo[i])v.KELT={dir:'SHORT'};else v.KELT={dir:'NEUTRAL'};}
+  else v.KELT={dir:'NEUTRAL'};
+
+  // MFI
+  const mfiV=mfi(df.h,df.l,df.c,df.v)[i];
+  if(mfiV!==null){if(mfiV<30)v.MFI={dir:'LONG'};else if(mfiV>70)v.MFI={dir:'SHORT'};else v.MFI={dir:'NEUTRAL'};}
+  else v.MFI={dir:'NEUTRAL'};
+
+  // OBV vs EMA20
+  const[obvA,obvE]=obvEma(df.c,df.v);
+  if(obvE[i]!==null)v.OBV={dir:obvA[i]>obvE[i]?'LONG':'SHORT'};else v.OBV={dir:'NEUTRAL'};
+
+  // TRIX
+  const trixV=trix(df.c)[i];
+  if(trixV!==null)v.TRIX={dir:trixV>0?'LONG':'SHORT'};else v.TRIX={dir:'NEUTRAL'};
+
+  // ROC
+  const rocV=roc(df.c)[i];
+  if(rocV!==null){if(rocV>2)v.ROC={dir:'LONG'};else if(rocV<-2)v.ROC={dir:'SHORT'};else v.ROC={dir:'NEUTRAL'};}
+  else v.ROC={dir:'NEUTRAL'};
+
+  // Volume spike confirmation
+  const vmA=smaVol(df.v)[i],volV=df.v[i];
+  if(vmA&&volV){const r=volV/vmA;v.VOL={dir:r>1.5?(df.c[i]>df.c[i-1]?'LONG':'SHORT'):'NEUTRAL'};}
+  else v.VOL={dir:'NEUTRAL'};
 
   return v;
 }
@@ -676,7 +796,8 @@ function renderMatrix(rows){
     if(activeFilter==='short'&&row.align!=='SHORT')continue;
     if(activeFilter==='aligned'&&!['LONG','SHORT'].includes(row.align))continue;
     const pr=row.price?fmtP(row.price):'—';
-    html+=`<tr><td style="text-align:left;padding-left:16px;"><span class="asset-name">${row.label}USDT</span><span class="asset-price">${pr}</span></td><td>${alignHtml(row.tfs,row.loading)}</td>`;
+    const vr=row.volRatio;const volStr=vr?` <span style="font-size:9px;color:${vr>1.5?'#22c55e':vr>0.8?'#64748b':'#ef4444'};">Vol×${vr.toFixed(1)}</span>`:'';
+    html+=`<tr><td style="text-align:left;padding-left:16px;"><span class="asset-name">${row.label}USDT</span><span class="asset-price">${pr}${volStr}</span></td><td>${alignHtml(row.tfs,row.loading)}</td>`;
     for(let j=0;j<LIVE_TFS.length;j++){
       const h=row.tfs[j];
       if(h&&h.dir==='LONG')totals[j].l++;else if(h&&h.dir==='SHORT')totals[j].s++;
@@ -705,7 +826,11 @@ async function refreshSignals(){
     for(const tf of LIVE_TFS){
       try{
         const df=await fetchOHLCV(asset.sym,tf,300);
-        if(!row.price&&df.c.length>0)row.price=df.c[df.c.length-1];
+        if(!row.price&&df.c.length>0){
+          row.price=df.c[df.c.length-1];
+          const vn=df.v.length,vm=smaVol(df.v);
+          if(vm[vn-2]&&df.v[vn-2])row.volRatio=df.v[vn-2]/vm[vn-2];
+        }
         const votes=computeVotes(df);
         row.tfs.push(votes?hybrid(votes):null);
       }catch(e){
