@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sala Segnali LIVE — Nextrade | 10 Asset, 7 Timeframe, 10 Strategie</title>
-<meta name="description" content="Sala segnali trading live Nextrade: 6 asset crypto su MEXC analizzati su 5 timeframe con 10 strategie tecniche. Segnali LONG/SHORT su candela chiusa. Dati live da MEXC API.">
+<title>Sala Segnali LIVE — Nextrade | 6 Asset, 5 Timeframe, 20 Strategie</title>
+<meta name="description" content="Sala segnali trading live Nextrade: 6 asset crypto analizzati su 5 timeframe con 20 strategie tecniche. Segnali LONG/SHORT su candela chiusa. Aggiornamento ogni 60 secondi.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://nuovocanale991-bit.github.io/nextrade/segnali.html">
 <meta property="og:title" content="Sala Segnali LIVE — Nextrade Trading">
-<meta property="og:description" content="10 asset MEXC Futures · 7 timeframe · 10 strategie · Segnali su candela chiusa · Aggiornamento automatico">
+<meta property="og:description" content="6 asset crypto · 5 timeframe · 20 strategie · Segnali su candela chiusa · Aggiornamento ogni 60 secondi">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
 <script type="application/ld+json">
@@ -16,7 +16,7 @@
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Sala Segnali LIVE Nextrade",
-  "description": "Segnali di trading live per MEXC Futures. 10 asset crypto analizzati su 7 timeframe con 10 strategie tecniche. Aggiornamento su candela chiusa.",
+  "description": "Segnali di trading live su Binance/MEXC. 6 asset crypto analizzati su 5 timeframe con 20 strategie tecniche. Aggiornamento ogni 60 secondi su candela chiusa.",
   "url": "https://nuovocanale991-bit.github.io/nextrade/segnali.html",
   "inLanguage": "it",
   "breadcrumb": {
@@ -38,7 +38,7 @@
       "name": "Come funziona la sala segnali Nextrade?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "La sala segnali Nextrade analizza 10 asset crypto su 7 timeframe (5m, 15m, 30m, 1h, 2h, 4h, 1d) usando 10 strategie tecniche in parallelo. Ogni segnale viene calcolato su candela chiusa per eliminare i falsi segnali intracandle. Il risultato è un segnale ibrido (LONG/SHORT/NEUTRAL) con percentuale di consenso tra le strategie."
+        "text": "La sala segnali Nextrade analizza 6 asset crypto su 5 timeframe (5m, 15m, 1h, 4h, 1d) usando 20 strategie tecniche in parallelo. Ogni segnale viene calcolato su candela chiusa per eliminare i falsi segnali intracandle. Il risultato è un segnale ibrido (LONG/SHORT/NEUTRAL) con percentuale di consenso tra le strategie."
       }
     },
     {
@@ -46,7 +46,7 @@
       "name": "Quali asset sono coperti dalla sala segnali Nextrade?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "La sala segnali Nextrade copre: BTC/USDT, ETH/USDT, XRP/USDT, SOL/USDT, ZEC/USDT, XMR/USDT, BNB/USDT, DOGE/USDT, ADA/USDT, LTC/USDT. Tutti i futures perpetual su MEXC con fee maker 0%."
+        "text": "La sala segnali Nextrade copre: BTC/USDT, ETH/USDT, SOL/USDT, XRP/USDT, BNB/USDT, DOGE/USDT. Dati live da Binance API (CORS-enabled), aggiornamento ogni 60 secondi."
       }
     },
     {
@@ -54,7 +54,7 @@
       "name": "Con quale frequenza si aggiornano i segnali?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "I segnali si aggiornano ogni 90 secondi sulla dashboard web. Su Telegram @GIO33BOT vengono inviati in tempo reale alla chiusura di ogni candela sul timeframe rilevante. Il calcolo avviene solo su candela chiusa, non su prezzo live, per garantire segnali stabili."
+        "text": "I segnali si aggiornano ogni 60 secondi sulla dashboard web. Su Telegram @GIO33BOT vengono inviati in tempo reale alla chiusura di ogni candela sul timeframe rilevante. Il calcolo avviene solo su candela chiusa, non su prezzo live, per garantire segnali stabili."
       }
     },
     {
@@ -62,7 +62,7 @@
       "name": "Cosa significa il punteggio percentuale nel segnale?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Il punteggio (es. 80%) indica la percentuale di strategie che concordano nella stessa direzione. 80% LONG significa che 8 strategie su 10 segnalano LONG. Sopra il 70% il segnale è considerato forte. Sotto il 50% il segnale è considerato debole o neutro."
+        "text": "Il punteggio (es. 80%) indica la percentuale di strategie che concordano nella stessa direzione. 80% LONG significa che 16 strategie su 20 segnalano LONG. Sopra il 70% il segnale è considerato forte. Sotto il 50% il segnale è considerato debole o neutro."
       }
     }
   ]
@@ -139,6 +139,7 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
       <a href="index.html#bot">I Bot</a>
       <a href="segnali.html" style="color:#3b82f6;">Sala Segnali</a>
       <a href="calendario.html">Calendario</a>
+      <a href="pricing.html">Prezzi</a>
       <a href="index.html#faq">FAQ</a>
       <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener">Telegram</a>
     </div>
@@ -369,21 +370,22 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
       </div>
       <div class="faq-item">
         <h3>Con quale frequenza si aggiornano i segnali?</h3>
-        <p>Aggiornamento ogni 90 secondi sulla dashboard. Su Telegram <a href="https://t.me/GIO33BOT">@GIO33BOT</a> i segnali vengono inviati in tempo reale alla chiusura di ogni candela. Il calcolo avviene solo su candela chiusa, non su prezzo live.</p>
+        <p>Aggiornamento ogni 60 secondi sulla dashboard. Su Telegram <a href="https://t.me/GIO33BOT">@GIO33BOT</a> i segnali vengono inviati in tempo reale alla chiusura di ogni candela. Il calcolo avviene solo su candela chiusa, non su prezzo live.</p>
       </div>
       <div class="faq-item">
         <h3>Cosa significa il punteggio percentuale?</h3>
-        <p>80% LONG = 8 strategie su 10 segnalano LONG. Sopra 70% il segnale è considerato forte. Sotto 50% il segnale è debole o neutro e non viene raccomandato per operare.</p>
+        <p>80% LONG = 16 strategie su 20 segnalano LONG. Sopra 70% il segnale è considerato forte. Sotto 50% il segnale è debole o neutro e non viene raccomandato per operare.</p>
       </div>
     </div>
 
-    <!-- TELEGRAM CTA -->
+    <!-- CTA FINALE -->
     <div class="tg-box" style="margin-top:48px;">
-      <h2>Ricevi i segnali in tempo reale</h2>
-      <p>Unisciti al canale Telegram @GIO33BOT per ricevere ogni segnale in tempo reale, con asset, direzione, timeframe e forza del segnale.</p>
-      <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:16px;padding:12px 28px;">
-        Unisciti a @GIO33BOT →
-      </a>
+      <h2>Vuoi i segnali in tempo reale?</h2>
+      <p>Passa a Pro per sbloccare alert Telegram istantanei, tutti i timeframe e l'accesso ai bot algoritmici. Inizia con 7 giorni di prova gratuita.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a href="pricing.html" class="btn btn-primary" style="font-size:16px;padding:12px 28px;">Vedi i Piani →</a>
+        <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:15px;padding:12px 24px;">Telegram @GIO33BOT</a>
+      </div>
     </div>
 
   </div>
@@ -392,9 +394,9 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
 
 <footer>
   <div class="container">
-    <p><strong style="color:#94a3b8;">Nextrade</strong> — Sala Segnali MEXC Futures</p>
-    <p style="margin-top:6px;">Telegram: <a href="https://t.me/GIO33BOT">@GIO33BOT</a> · Email: riccogiorgio91@gmail.com</p>
-    <p style="margin-top:10px;font-size:11px;">I segnali sono solo informativi. Il trading su futures comporta rischio elevato. © 2026 Nextrade</p>
+    <p style="margin-bottom:8px;"><strong style="color:#94a3b8;">Nextrade</strong> — Segnali Trading Crypto Live</p>
+    <p>Telegram: <a href="https://t.me/GIO33BOT">@GIO33BOT</a> · <a href="pricing.html">Piani</a> · <a href="legal/privacy.html">Privacy</a> · <a href="legal/terms.html">Termini</a></p>
+    <p style="margin-top:10px;font-size:11px;">I segnali sono solo informativi. Il trading su futures comporta rischio elevato di perdita del capitale. © 2026 Nextrade</p>
   </div>
 </footer>
 
