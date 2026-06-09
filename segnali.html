@@ -16,7 +16,7 @@
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Sala Segnali LIVE Nextrade",
-  "description": "Segnali di trading live su Binance/MEXC. 6 asset crypto analizzati su 5 timeframe con 20 strategie tecniche. Aggiornamento ogni 60 secondi su candela chiusa.",
+  "description": "Segnali di trading live via Binance API. 6 asset crypto analizzati su 5 timeframe con 20 strategie tecniche. Aggiornamento ogni 60 secondi su candela chiusa.",
   "url": "https://nuovocanale991-bit.github.io/nextrade/segnali.html",
   "inLanguage": "it",
   "breadcrumb": {
@@ -143,7 +143,7 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
       <a href="index.html#faq">FAQ</a>
       <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener">Telegram</a>
     </div>
-    <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener" class="btn btn-primary">Unisciti →</a>
+    <a href="pricing.html" class="btn btn-primary">Vedi i Piani →</a>
   </div>
 </nav>
 
@@ -190,7 +190,7 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
         <tbody id="signal-tbody">
           <tr>
             <td colspan="7" style="text-align:center;padding:40px;color:#64748b;font-size:14px;">
-              ⟳ Caricamento segnali live MEXC...
+              ⟳ Caricamento segnali live Binance...
             </td>
           </tr>
         </tbody>
@@ -199,7 +199,7 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
     </div>
 
     <div id="signal-status" style="font-size:12px;color:#475569;margin-bottom:32px;">
-      Caricamento segnali live MEXC...
+      Caricamento segnali live Binance...
     </div>
 
     <!-- REPORT MULTI-PERIODO -->
@@ -362,11 +362,11 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
     <div style="margin-top:16px;">
       <div class="faq-item">
         <h3>Come funziona la sala segnali Nextrade?</h3>
-        <p>La sala segnali analizza 10 asset crypto su 7 timeframe usando 10 strategie tecniche in parallelo. Ogni segnale viene calcolato su <strong style="color:#e2e8f0;">candela chiusa</strong> per eliminare i falsi segnali intracandle. Il risultato è un segnale ibrido (LONG/SHORT/NEUTRAL) con percentuale di consenso.</p>
+        <p>La sala segnali analizza <strong>6 asset crypto su 5 timeframe</strong> (5m, 15m, 1h, 4h, 1d) usando <strong>20 strategie tecniche</strong> in parallelo. Ogni segnale viene calcolato su <strong style="color:#e2e8f0;">candela chiusa</strong> per eliminare i falsi segnali intracandle. Il risultato è un segnale ibrido (LONG/SHORT/NEUTRAL) con percentuale di consenso.</p>
       </div>
       <div class="faq-item">
         <h3>Quali asset sono coperti dalla sala segnali?</h3>
-        <p>BTC, ETH, XRP, SOL, ZEC, XMR, BNB, DOGE, ADA, LTC — tutti i futures perpetual MEXC con fee maker 0%. I prezzi mostrati sono in USD, le operazioni avvengono in coppia USDT.</p>
+        <p>BTC/USDT, ETH/USDT, SOL/USDT, XRP/USDT, BNB/USDT, DOGE/USDT — dati live da <strong style="color:#e2e8f0;">Binance API</strong> (pubblica, CORS-enabled). I bot algoritmici operano su <strong style="color:#e2e8f0;">MEXC Futures</strong> (fee maker 0%).</p>
       </div>
       <div class="faq-item">
         <h3>Con quale frequenza si aggiornano i segnali?</h3>
@@ -381,7 +381,7 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
     <!-- CTA FINALE -->
     <div class="tg-box" style="margin-top:48px;">
       <h2>Vuoi i segnali in tempo reale?</h2>
-      <p>Passa a Pro per sbloccare alert Telegram istantanei, tutti i timeframe e l'accesso ai bot algoritmici. Inizia con 7 giorni di prova gratuita.</p>
+      <p>Passa a Pro per sbloccare alert Telegram istantanei, tutti e 5 i timeframe e <strong>1 bot algoritmico omaggio incluso</strong> (ETH V4 15m). Tutti i bot nel Premium. Inizia con 7 giorni di prova gratuita.</p>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
         <a href="pricing.html" class="btn btn-primary" style="font-size:16px;padding:12px 28px;">Vedi i Piani →</a>
         <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:15px;padding:12px 24px;">Telegram @GIO33BOT</a>
@@ -770,7 +770,7 @@ function renderMatrix(rows){
 // ── Aggiornamento ─────────────────────────────────────────────────────
 async function refreshSignals(){
   const st=document.getElementById('signal-status');
-  if(st)st.innerHTML='<span style="color:#3b82f6;">⟳ Aggiornamento segnali live MEXC...</span>';
+  if(st)st.innerHTML='<span style="color:#3b82f6;">⟳ Aggiornamento segnali live Binance...</span>';
   const rows=[];
   for(const asset of LIVE_ASSETS){
     const row={label:asset.label,price:null,tfs:[],align:null,loading:true};
