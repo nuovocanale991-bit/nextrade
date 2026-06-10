@@ -10,13 +10,16 @@
 <link rel="canonical" href="https://nuovocanale991-bit.github.io/nextrade/chiamate.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <meta property="og:title" content="Chiamate Crypto LIVE — Nextrade | 12 Asset con SL/TP">
 <meta property="og:description" content="Setup live su BTC, ETH, SOL, XRP + 8 altri con Stop Loss e Take Profit calcolati su ATR. 5 timeframe, 20 strategie tecniche.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebPage","name":"Chiamate Crypto LIVE — Nextrade","description":"Setup operativi live su 12 asset crypto con Stop Loss e Take Profit calcolati su ATR(14). 20 strategie × 5 timeframe. Aggiornamento ogni 60 secondi.","url":"https://nuovocanale991-bit.github.io/nextrade/chiamate.html","inLanguage":"it-IT","breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Nextrade","item":"https://nuovocanale991-bit.github.io/nextrade/"},{"@type":"ListItem","position":2,"name":"Chiamate","item":"https://nuovocanale991-bit.github.io/nextrade/chiamate.html"},{"@type":"ListItem","position":3,"name":"Crypto","item":"https://nuovocanale991-bit.github.io/nextrade/chiamate.html"}]}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Cosa sono le chiamate di trading crypto di Nextrade?","acceptedAnswer":{"@type":"Answer","text":"Sono setup operativi live su 12 asset crypto (BTC, ETH, SOL, XRP e altri) con direzione LONG o SHORT calcolata da 20 strategie tecniche su 5 timeframe (5m, 15m, 1h, 4h, 1d) usando dati pubblici Binance, aggiornati ogni 60 secondi."}},{"@type":"Question","name":"Come vengono calcolati Stop Loss e Take Profit?","acceptedAnswer":{"@type":"Answer","text":"Usiamo la volatilità reale dell'asset tramite ATR(14) sul timeframe 1h: Stop Loss = 1,5×ATR dal prezzo di entry, Take Profit 1 = 1×ATR, Take Profit 2 = 2×ATR. Così i livelli si adattano automaticamente alla volatilità di ogni mercato."}},{"@type":"Question","name":"Ogni quanto si aggiornano le chiamate?","acceptedAnswer":{"@type":"Answer","text":"Le chiamate live si aggiornano ogni 60 secondi tramite API Binance pubblica. Il report multi-periodo (giornaliero, settimanale, mensile) si aggiorna ogni 5 minuti."}},{"@type":"Question","name":"I segnali Nextrade sono consulenza finanziaria?","acceptedAnswer":{"@type":"Answer","text":"No. Sono segnali informativi calcolati algoritmicamente su candele chiuse. Non costituiscono consulenza finanziaria: imposta sempre uno stop loss e le performance passate non garantiscono rendimenti futuri."}}]}
 </script>
 <style>
 :root{
@@ -241,6 +244,37 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:20px 24p
   .hero-row{flex-direction:column}
   footer{padding:16px}
 }
+
+/* ── SKIN FUTURISTICO ────────────────────────────────────────── */
+:root{--glow-rgb:59,130,246}
+body{background:#04070f}
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(1100px 540px at 85% -10%,rgba(59,130,246,.13),transparent 60%),
+  radial-gradient(900px 500px at -5% 110%,rgba(34,211,238,.07),transparent 60%),
+  repeating-linear-gradient(0deg,transparent 0 47px,rgba(99,140,255,.028) 47px 48px),
+  repeating-linear-gradient(90deg,transparent 0 47px,rgba(99,140,255,.028) 47px 48px)}
+::selection{background:rgba(var(--glow-rgb),.4);color:#fff}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:#060a14}
+::-webkit-scrollbar-thumb{background:#1a2742;border-radius:5px}
+::-webkit-scrollbar-thumb:hover{background:#24365c}
+.top-nav{background:rgba(7,11,22,.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(var(--glow-rgb),.22);box-shadow:0 1px 0 rgba(var(--glow-rgb),.08),0 8px 28px rgba(0,0,0,.5)}
+.nav-logo{letter-spacing:.6px;text-shadow:0 0 16px rgba(var(--glow-rgb),.55)}
+.sidebar{background:rgba(4,7,15,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-right:1px solid rgba(var(--glow-rgb),.14)}
+.sb-item.active{box-shadow:inset 2px 0 0 rgb(var(--glow-rgb)),0 0 16px rgba(var(--glow-rgb),.12)}
+.page-hero h1{text-shadow:0 0 28px rgba(var(--glow-rgb),.4);letter-spacing:-.5px}
+.ccard{background:rgba(9,14,28,.66);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.ccard:hover{box-shadow:0 0 0 1px rgba(var(--glow-rgb),.4),0 0 26px rgba(var(--glow-rgb),.16),0 16px 36px rgba(0,0,0,.55)}
+.kpi-strip,.box,.rtile,.stat-box,.hist-card{background:rgba(9,14,28,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.crv,.rscore,.kpi-v,.stat-box-val{font-family:'JetBrains Mono',Consolas,monospace}
+.faq-box{background:rgba(9,14,28,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:12px;margin-bottom:28px;overflow:hidden}
+.faq-box details{border-bottom:1px solid var(--border)}
+.faq-box details:last-child{border-bottom:none}
+.faq-box summary{padding:14px 18px;font-size:14px;font-weight:700;color:var(--text);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-box summary::-webkit-details-marker{display:none}
+.faq-box summary::after{content:'+';color:var(--dim);font-size:18px;font-weight:400;flex-shrink:0}
+.faq-box details[open] summary::after{content:'–'}
+.faq-box .faq-a{padding:0 18px 14px;font-size:13px;color:var(--muted);line-height:1.7}
 </style>
 </head>
 <body>
@@ -505,6 +539,30 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:20px 24p
       <a href="segnali.html" style="text-decoration:none">
         <div class="hist-card"><div class="hist-icon">⊞</div><div class="hist-title">Matrice</div><div class="hist-meta">Tutti i segnali 12×5</div></div>
       </a>
+    </div>
+
+    <!-- ── SEZIONE 7: FAQ (AEO) ── -->
+    <div class="sec">
+      <h2>❓ Domande Frequenti</h2>
+      <p>Come funzionano le chiamate crypto di Nextrade.</p>
+    </div>
+    <div class="faq-box">
+      <details>
+        <summary>Cosa sono le chiamate di trading crypto di Nextrade?</summary>
+        <div class="faq-a">Sono setup operativi live su 12 asset crypto (BTC, ETH, SOL, XRP e altri) con direzione LONG o SHORT calcolata da 20 strategie tecniche su 5 timeframe (5m, 15m, 1h, 4h, 1d) usando dati pubblici Binance, aggiornati ogni 60 secondi.</div>
+      </details>
+      <details>
+        <summary>Come vengono calcolati Stop Loss e Take Profit?</summary>
+        <div class="faq-a">Usiamo la volatilità reale dell'asset tramite ATR(14) sul timeframe 1h: Stop Loss = 1,5×ATR dal prezzo di entry, Take Profit 1 = 1×ATR, Take Profit 2 = 2×ATR. Così i livelli si adattano automaticamente alla volatilità di ogni mercato.</div>
+      </details>
+      <details>
+        <summary>Ogni quanto si aggiornano le chiamate?</summary>
+        <div class="faq-a">Le chiamate live si aggiornano ogni 60 secondi tramite API Binance pubblica. Il report multi-periodo (giornaliero, settimanale, mensile) si aggiorna ogni 5 minuti.</div>
+      </details>
+      <details>
+        <summary>I segnali Nextrade sono consulenza finanziaria?</summary>
+        <div class="faq-a">No. Sono segnali informativi calcolati algoritmicamente su candele chiuse. Non costituiscono consulenza finanziaria: imposta sempre uno stop loss e le performance passate non garantiscono rendimenti futuri.</div>
+      </details>
     </div>
 
     <!-- CTA -->
