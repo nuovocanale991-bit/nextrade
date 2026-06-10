@@ -170,51 +170,44 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
   </div>
 </div>
 
-<!-- MARKET CARDS -->
+<!-- MARKET CARDS LIVE -->
 <section class="bg-section">
   <div class="container">
     <h2 class="section-title">Segnali in tempo reale</h2>
-    <p class="section-sub">Anteprima segnali ibridi · Dati aggiornati nella Sala Segnali LIVE</p>
+    <p id="signal-status" class="section-sub">⟳ Caricamento dati live da Yahoo Finance...</p>
     <div class="market-grid">
-
-      <div class="market-card">
-        <h3>S&P500 <span class="market-badge badge-green">LONG</span></h3>
-        <div class="market-price">5.280 pt</div>
-        <div class="market-change pos">+0.82% oggi</div>
-        <div class="signal-bar">
-          <span class="sig-pill sig-long">LONG 1h</span>
-          <span class="sig-pill sig-long">LONG 4h</span>
-          <span class="sig-pill sig-neutral">NEUTRO 15m</span>
+      <div class="market-card" id="card-sp500">
+        <h3>S&amp;P500 <span class="market-badge badge-yellow" id="badge-sp500">⟳</span></h3>
+        <div class="market-price" id="price-sp500">—</div>
+        <div class="market-change" id="change-sp500">caricamento...</div>
+        <div class="signal-bar" id="sigs-sp500">
+          <span class="sig-pill sig-neutral">1h ⟳</span>
+          <span class="sig-pill sig-neutral">4h ⟳</span>
+          <span class="sig-pill sig-neutral">1d ⟳</span>
         </div>
-        <p class="market-desc">Trend rialzista sopra EMA200. RSI 1h a 62 — momentum positivo. Resistenza chiave: 5.320. Supporto: 5.180.</p>
       </div>
-
-      <div class="market-card">
-        <h3>Nasdaq 100 <span class="market-badge badge-green">LONG</span></h3>
-        <div class="market-price">18.340 pt</div>
-        <div class="market-change pos">+1.14% oggi</div>
-        <div class="signal-bar">
-          <span class="sig-pill sig-long">LONG 1h</span>
-          <span class="sig-pill sig-long">LONG 4h</span>
-          <span class="sig-pill sig-long">LONG 1d</span>
+      <div class="market-card" id="card-nasdaq">
+        <h3>Nasdaq 100 <span class="market-badge badge-yellow" id="badge-nasdaq">⟳</span></h3>
+        <div class="market-price" id="price-nasdaq">—</div>
+        <div class="market-change" id="change-nasdaq">caricamento...</div>
+        <div class="signal-bar" id="sigs-nasdaq">
+          <span class="sig-pill sig-neutral">1h ⟳</span>
+          <span class="sig-pill sig-neutral">4h ⟳</span>
+          <span class="sig-pill sig-neutral">1d ⟳</span>
         </div>
-        <p class="market-desc">Forte momentum tech. 15/20 strategie concordano LONG sul 4h. Correlazione positiva con BTC (0.68). EMA50 sopra EMA200.</p>
       </div>
-
-      <div class="market-card">
-        <h3>Oro (XAU/USD) <span class="market-badge badge-yellow">NEUTRO</span></h3>
-        <div class="market-price">$2.318</div>
-        <div class="market-change neg">-0.31% oggi</div>
-        <div class="signal-bar">
-          <span class="sig-pill sig-neutral">NEUTRO 1h</span>
-          <span class="sig-pill sig-long">LONG 4h</span>
-          <span class="sig-pill sig-neutral">NEUTRO 15m</span>
+      <div class="market-card" id="card-gold">
+        <h3>Oro (XAU/USD) <span class="market-badge badge-yellow" id="badge-gold">⟳</span></h3>
+        <div class="market-price" id="price-gold">—</div>
+        <div class="market-change" id="change-gold">caricamento...</div>
+        <div class="signal-bar" id="sigs-gold">
+          <span class="sig-pill sig-neutral">1h ⟳</span>
+          <span class="sig-pill sig-neutral">4h ⟳</span>
+          <span class="sig-pill sig-neutral">1d ⟳</span>
         </div>
-        <p class="market-desc">Consolidamento in range. Supporto forte: $2.280. Resistenza: $2.360. RSI 4h a 54 — zona neutrale. Safe haven attivo in caso di risk-off.</p>
       </div>
-
     </div>
-    <p style="margin-top:16px;font-size:12px;color:#334155;text-align:center;">⚠️ Dati di esempio · Segnali live disponibili nella <a href="segnali.html">Sala Segnali</a> · Non è consulenza finanziaria</p>
+    <p style="margin-top:16px;font-size:12px;color:#334155;text-align:center;">Dati live via Yahoo Finance API · Non è consulenza finanziaria</p>
   </div>
 </section>
 
@@ -352,5 +345,67 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
 <style>
 @media(max-width:700px){.how-grid{grid-template-columns:1fr!important}}
 </style>
+<script src="signals.js"></script>
+<script>
+const TRAD_ASSETS_PAGE=[
+  {id:'sp500', label:'S&P 500', sym:'ES=F'},
+  {id:'nasdaq', label:'Nasdaq',  sym:'NQ=F'},
+  {id:'gold',   label:'Oro',     sym:'GC=F'},
+];
+
+function sigPill(sig,tf){
+  if(!sig)return`<span class="sig-pill sig-neutral">${tf} —</span>`;
+  const cls=sig.dir==='LONG'?'sig-long':sig.dir==='SHORT'?'sig-short':'sig-neutral';
+  const lbl=sig.dir==='NEUTRAL'?'NEUTRO':sig.dir;
+  return`<span class="sig-pill ${cls}">${lbl} ${tf} ${sig.score}%</span>`;
+}
+
+function updateCard(id,price,chg24,sig1h,sig4h,sig1d){
+  const sigs=[sig1h,sig4h,sig1d].filter(Boolean);
+  const longs=sigs.filter(s=>s.dir==='LONG').length;
+  const shorts=sigs.filter(s=>s.dir==='SHORT').length;
+  const overall=longs>shorts?'LONG':shorts>longs?'SHORT':'NEUTRO';
+  const badge=document.getElementById('badge-'+id);
+  badge.textContent=overall;
+  badge.className='market-badge '+(overall==='LONG'?'badge-green':overall==='SHORT'?'badge-red':'badge-yellow');
+  document.getElementById('price-'+id).textContent=fmtP(price);
+  const chgEl=document.getElementById('change-'+id);
+  const sign=chg24>=0?'+':'';
+  chgEl.textContent=sign+chg24.toFixed(2)+'% 24h';
+  chgEl.className='market-change '+(chg24>=0?'pos':'neg');
+  document.getElementById('sigs-'+id).innerHTML=sigPill(sig1h,'1h')+sigPill(sig4h,'4h')+sigPill(sig1d,'1d');
+}
+
+async function refreshTradPage(){
+  const st=document.getElementById('signal-status');
+  if(st)st.innerHTML='<span style="color:#3b82f6;">⟳ Aggiornamento dati live...</span>';
+  for(const asset of TRAD_ASSETS_PAGE){
+    try{
+      const df1h=await fetchYahoo(asset.sym,'1h');
+      const n=df1h.c.length;
+      const price=df1h.c[n-1];
+      const chg24=n>=25?(df1h.c[n-1]-df1h.c[n-25])/df1h.c[n-25]*100:0;
+      const sig1h=computeVotes(df1h)?hybrid(computeVotes(df1h)):null;
+      await new Promise(r=>setTimeout(r,250));
+      const df4h=await fetchYahoo(asset.sym,'4h');
+      const sig4h=computeVotes(df4h)?hybrid(computeVotes(df4h)):null;
+      await new Promise(r=>setTimeout(r,250));
+      const df1d=await fetchYahoo(asset.sym,'1d');
+      const sig1d=computeVotes(df1d)?hybrid(computeVotes(df1d)):null;
+      updateCard(asset.id,price,chg24,sig1h,sig4h,sig1d);
+    }catch(e){
+      const badge=document.getElementById('badge-'+asset.id);
+      if(badge)badge.textContent='ERR';
+      console.error(asset.label,e.message);
+    }
+    await new Promise(r=>setTimeout(r,300));
+  }
+  const ts=new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  if(st)st.innerHTML=`Ultimo aggiornamento: <strong style="color:#e2e8f0;">${ts}</strong> · Prossimo: 60s · <a href="javascript:void(0)" onclick="refreshTradPage()" style="color:#3b82f6;">Aggiorna ora</a>`;
+}
+
+refreshTradPage();
+setInterval(refreshTradPage,60000);
+</script>
 </body>
 </html>

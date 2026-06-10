@@ -167,39 +167,34 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
   </div>
 </div>
 
-<!-- MARKET CARDS -->
+<!-- MARKET CARDS LIVE -->
 <section class="bg-section">
   <div class="container">
     <h2 class="section-title">Segnali in tempo reale</h2>
-    <p class="section-sub">Anteprima segnali ibridi · Dati live disponibili nella Sala Segnali</p>
+    <p id="signal-status" class="section-sub">⟳ Caricamento dati live da Yahoo Finance...</p>
     <div class="market-grid">
-
-      <div class="market-card">
-        <h3>Argento (XAG/USD) <span class="market-badge badge-yellow">NEUTRO</span></h3>
-        <div class="market-price">$27.84</div>
-        <div class="market-change pos">+0.44% oggi</div>
-        <div class="signal-bar">
-          <span class="sig-pill sig-long">LONG 4h</span>
-          <span class="sig-pill sig-neutral">NEUTRO 1h</span>
-          <span class="sig-pill sig-neutral">NEUTRO 15m</span>
+      <div class="market-card" id="card-silver">
+        <h3>Argento (XAG/USD) <span class="market-badge badge-yellow" id="badge-silver">⟳</span></h3>
+        <div class="market-price" id="price-silver">—</div>
+        <div class="market-change" id="change-silver">caricamento...</div>
+        <div class="signal-bar" id="sigs-silver">
+          <span class="sig-pill sig-neutral">1h ⟳</span>
+          <span class="sig-pill sig-neutral">4h ⟳</span>
+          <span class="sig-pill sig-neutral">1d ⟳</span>
         </div>
-        <p class="market-desc">Correlazione alta con Oro (0.85). Zona supporto: $26.80. Resistenza: $29.00. Alta volatilità intradía — usare timeframe 4h per segnali più stabili.</p>
       </div>
-
-      <div class="market-card">
-        <h3>Petrolio WTI <span class="market-badge badge-red">SHORT</span></h3>
-        <div class="market-price">$78.40</div>
-        <div class="market-change neg">-1.23% oggi</div>
-        <div class="signal-bar">
-          <span class="sig-pill sig-short">SHORT 1h</span>
-          <span class="sig-pill sig-short">SHORT 4h</span>
-          <span class="sig-pill sig-neutral">NEUTRO 1d</span>
+      <div class="market-card" id="card-oil">
+        <h3>Petrolio WTI <span class="market-badge badge-yellow" id="badge-oil">⟳</span></h3>
+        <div class="market-price" id="price-oil">—</div>
+        <div class="market-change" id="change-oil">caricamento...</div>
+        <div class="signal-bar" id="sigs-oil">
+          <span class="sig-pill sig-neutral">1h ⟳</span>
+          <span class="sig-pill sig-neutral">4h ⟳</span>
+          <span class="sig-pill sig-neutral">1d ⟳</span>
         </div>
-        <p class="market-desc">Pressione ribassista con inventari in aumento. RSI 4h a 38 — zona oversold in avvicinamento. Supporto chiave: $76.00. Resistenza: $80.50.</p>
       </div>
-
     </div>
-    <p style="margin-top:16px;font-size:12px;color:#334155;text-align:center;">⚠️ Dati di esempio · Segnali live disponibili nella <a href="segnali.html">Sala Segnali</a> · Non è consulenza finanziaria</p>
+    <p style="margin-top:16px;font-size:12px;color:#334155;text-align:center;">Dati live via Yahoo Finance API · Non è consulenza finanziaria</p>
   </div>
 </section>
 
@@ -278,6 +273,68 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
 </section>
 
 </main>
+
+<script src="signals.js"></script>
+<script>
+const COMM_ASSETS_PAGE=[
+  {id:'silver', label:'Argento', sym:'SI=F'},
+  {id:'oil',    label:'Petrolio WTI', sym:'CL=F'},
+];
+
+function sigPillMP(sig,tf){
+  if(!sig)return`<span class="sig-pill sig-neutral">${tf} —</span>`;
+  const cls=sig.dir==='LONG'?'sig-long':sig.dir==='SHORT'?'sig-short':'sig-neutral';
+  const lbl=sig.dir==='NEUTRAL'?'NEUTRO':sig.dir;
+  return`<span class="sig-pill ${cls}">${lbl} ${tf} ${sig.score}%</span>`;
+}
+
+function updateCardMP(id,price,chg24,sig1h,sig4h,sig1d){
+  const sigs=[sig1h,sig4h,sig1d].filter(Boolean);
+  const longs=sigs.filter(s=>s.dir==='LONG').length;
+  const shorts=sigs.filter(s=>s.dir==='SHORT').length;
+  const overall=longs>shorts?'LONG':shorts>longs?'SHORT':'NEUTRO';
+  const badge=document.getElementById('badge-'+id);
+  badge.textContent=overall;
+  badge.className='market-badge '+(overall==='LONG'?'badge-green':overall==='SHORT'?'badge-red':'badge-yellow');
+  document.getElementById('price-'+id).textContent=fmtP(price);
+  const chgEl=document.getElementById('change-'+id);
+  const sign=chg24>=0?'+':'';
+  chgEl.textContent=sign+chg24.toFixed(2)+'% 24h';
+  chgEl.className='market-change '+(chg24>=0?'pos':'neg');
+  document.getElementById('sigs-'+id).innerHTML=sigPillMP(sig1h,'1h')+sigPillMP(sig4h,'4h')+sigPillMP(sig1d,'1d');
+}
+
+async function refreshCommPage(){
+  const st=document.getElementById('signal-status');
+  if(st)st.innerHTML='<span style="color:#f59e0b;">⟳ Aggiornamento dati live...</span>';
+  for(const asset of COMM_ASSETS_PAGE){
+    try{
+      const df1h=await fetchYahoo(asset.sym,'1h');
+      const n=df1h.c.length;
+      const price=df1h.c[n-1];
+      const chg24=n>=25?(df1h.c[n-1]-df1h.c[n-25])/df1h.c[n-25]*100:0;
+      const sig1h=computeVotes(df1h)?hybrid(computeVotes(df1h)):null;
+      await new Promise(r=>setTimeout(r,250));
+      const df4h=await fetchYahoo(asset.sym,'4h');
+      const sig4h=computeVotes(df4h)?hybrid(computeVotes(df4h)):null;
+      await new Promise(r=>setTimeout(r,250));
+      const df1d=await fetchYahoo(asset.sym,'1d');
+      const sig1d=computeVotes(df1d)?hybrid(computeVotes(df1d)):null;
+      updateCardMP(asset.id,price,chg24,sig1h,sig4h,sig1d);
+    }catch(e){
+      const badge=document.getElementById('badge-'+asset.id);
+      if(badge)badge.textContent='ERR';
+      console.error(asset.label,e.message);
+    }
+    await new Promise(r=>setTimeout(r,300));
+  }
+  const ts=new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  if(st)st.innerHTML=`Ultimo aggiornamento: <strong style="color:#e2e8f0;">${ts}</strong> · Prossimo: 60s · <a href="javascript:void(0)" onclick="refreshCommPage()" style="color:#f59e0b;">Aggiorna ora</a>`;
+}
+
+refreshCommPage();
+setInterval(refreshCommPage,60000);
+</script>
 
 <footer>
   <div class="container">
