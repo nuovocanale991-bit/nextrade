@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nextrade AI — Analisi di Mercato Gratuita</title>
+<meta name="description" content="Chiedi analisi tecnica su BTC, ETH, SOL e qualsiasi asset. Supporti, resistenze, trend, indicatori. Gratuito, nessun account richiesto.">
+<link rel="canonical" href="https://nuovocanale991-bit.github.io/nextrade/ai.html">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0f1e;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+a{color:#60a5fa;text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:0 20px}
+nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1100px;margin:0 auto;flex-wrap:wrap;gap:10px}
+.nav-logo{font-weight:800;font-size:20px;color:#fff;display:flex;align-items:center;gap:8px}
+.nav-logo span{color:#3b82f6}
+.nav-links{display:flex;gap:20px;font-size:14px}
+.nav-links a{color:#94a3b8}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.btn{display:inline-block;padding:10px 22px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;border:none;transition:opacity .15s;text-align:center}
+.btn-primary{background:#3b82f6;color:#fff}
+.btn-primary:hover{opacity:.85;text-decoration:none}
+/* HERO */
+.ai-hero{padding:40px 20px 24px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#1a3a6033 0%,transparent 70%)}
+.ai-hero h1{font-size:clamp(22px,4vw,30px);font-weight:900;color:#fff;margin-bottom:8px}
+.ai-hero p{font-size:14px;color:#94a3b8;max-width:480px;margin:0 auto}
+.ai-badge{display:inline-block;background:#22c55e22;color:#4ade80;border:1px solid #22c55e44;border-radius:99px;font-size:11px;font-weight:700;padding:3px 10px;margin-bottom:12px}
+/* CHAT */
+.chat-wrap{background:#111827;border:1px solid #1e293b;border-radius:16px;overflow:hidden;margin-top:24px}
+.chat-header{background:#0d1526;padding:11px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #1e293b}
+.ai-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.chat-header-text{font-size:13px;font-weight:600;color:#e2e8f0}
+.rate-bar{padding:7px 16px;background:#0a0f1e;border-bottom:1px solid #1e293b;font-size:11px;color:#475569;display:flex;justify-content:space-between;align-items:center}
+.chat-window{height:360px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+.msg{display:flex;gap:10px;max-width:88%}
+.msg.user{flex-direction:row-reverse;align-self:flex-end}
+.msg-bubble{padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.65;word-break:break-word}
+.msg.ai .msg-bubble{background:#1e293b;color:#e2e8f0;border-radius:4px 12px 12px 12px}
+.msg.user .msg-bubble{background:#1d4ed8;color:#fff;border-radius:12px 4px 12px 12px}
+.msg-avatar{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:2px}
+.msg.ai .msg-avatar{background:#1e3a5f;border:1px solid #2d4a7a}
+.msg.user .msg-avatar{background:#1d4ed8}
+.typing-dots span{display:inline-block;width:6px;height:6px;border-radius:50%;background:#60a5fa;margin:0 2px;animation:bounce .8s infinite}
+.typing-dots span:nth-child(2){animation-delay:.15s}
+.typing-dots span:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+/* QUICK PROMPTS */
+.quick-prompts{padding:10px 16px;border-top:1px solid #0a0f1e;display:flex;gap:8px;flex-wrap:wrap}
+.qp-btn{background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:12px;padding:5px 12px;border-radius:99px;cursor:pointer;transition:all .15s;white-space:nowrap;font-family:inherit}
+.qp-btn:hover{background:#2d3f55;border-color:#475569;color:#e2e8f0}
+/* INPUT */
+.chat-input-row{display:flex;gap:8px;padding:12px 16px;border-top:1px solid #1e293b;background:#0d1526}
+#user-input{flex:1;background:#1e293b;border:1px solid #334155;border-radius:8px;padding:9px 14px;color:#e2e8f0;font-size:14px;outline:none;font-family:inherit;transition:border-color .15s}
+#user-input:focus{border-color:#3b82f6}
+#user-input::placeholder{color:#475569}
+#user-input:disabled{opacity:.5}
+#send-btn{background:#3b82f6;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-weight:700;font-size:13px;cursor:pointer;transition:opacity .15s;white-space:nowrap;font-family:inherit}
+#send-btn:hover{opacity:.85}
+#send-btn:disabled{opacity:.4;cursor:not-allowed}
+.setup-notice{background:#1a2535;border:1px dashed #2d4a7a;border-radius:10px;padding:16px 20px;margin-top:16px;font-size:13px;color:#94a3b8}
+.setup-notice code{background:#0d1526;padding:2px 6px;border-radius:4px;font-size:12px;color:#fbbf24;font-family:monospace}
+footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-align:center;font-size:13px;color:#475569}
+@media(max-width:600px){.nav-links{display:none}.chat-window{height:300px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">NEX<span>TRADE</span></a>
+    <div class="nav-links">
+      <a href="index.html#bot">I Bot</a>
+      <a href="segnali.html">Sala Segnali</a>
+      <a href="calendario.html">Calendario</a>
+      <a href="ai.html" style="color:#3b82f6;">AI Gratuita</a>
+      <a href="pricing.html">Prezzi</a>
+      <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener">Telegram</a>
+    </div>
+    <a href="pricing.html" class="btn btn-primary">Piani →</a>
+  </div>
+</nav>
+
+<main>
+  <div class="ai-hero">
+    <div class="container">
+      <div class="ai-badge">Gratuita · Nessun account richiesto</div>
+      <h1>Nextrade AI — Analisi di Mercato</h1>
+      <p>Chiedi analisi tecnica su qualsiasi asset crypto. Supporti, resistenze, trend, indicatori — risposta in italiano in secondi.</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-bottom:48px;">
+    <div class="chat-wrap">
+      <div class="chat-header">
+        <div class="ai-dot"></div>
+        <div class="chat-header-text">Nextrade AI · Analisi Tecnica</div>
+        <div style="margin-left:auto;font-size:11px;color:#475569;">claude-haiku</div>
+      </div>
+      <div class="rate-bar">
+        <span>Domande oggi: <strong id="rate-used">0</strong> / <strong id="rate-limit">5</strong></span>
+        <span id="rate-msg" style="color:#64748b;"></span>
+      </div>
+      <div class="chat-window" id="chat-window"></div>
+      <div class="quick-prompts">
+        <button class="qp-btn" onclick="sendQuick('Analisi tecnica BTC oggi: trend principale, supporti e resistenze chiave, RSI e MACD.')">📊 BTC</button>
+        <button class="qp-btn" onclick="sendQuick('Analisi tecnica ETH: trend, livelli chiave, momentum attuale.')">🔵 ETH</button>
+        <button class="qp-btn" onclick="sendQuick('Analisi tecnica SOL: struttura del prezzo, supporti, bias direzionale.')">🟣 SOL</button>
+        <button class="qp-btn" onclick="sendQuick('Come impostare un trade su futures con RSI + EMA200? Spiega entry, stop-loss e target.')">📚 Setup RSI+EMA</button>
+        <button class="qp-btn" onclick="sendQuick('Qual è il sentiment generale del mercato crypto in questo momento? Bull o bear? Perché?')">🌡️ Sentiment</button>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" id="user-input" placeholder="Es: analisi BTC, livelli ETH, come usare il MACD su futures..." maxlength="400" autocomplete="off">
+        <button id="send-btn" onclick="handleSend()">Invia →</button>
+      </div>
+    </div>
+
+    <div id="setup-notice" class="setup-notice" style="display:none;">
+      ⚙️ <strong>Chiave API mancante</strong> — vai su <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color:#60a5fa;">aistudio.google.com</a>, crea una chiave gratuita (nessuna carta) e incollala in <code>API_KEY</code> nel file <code>ai.html</code>.
+    </div>
+
+    <div style="margin-top:14px;background:#111827;border:1px solid #1e293b;border-radius:10px;padding:13px 18px;font-size:12px;color:#475569;">
+      <strong>Avvertenza:</strong> L'AI fornisce analisi tecnica educativa, non consulenza finanziaria. Il trading su futures comporta rischio elevato di perdita del capitale. I dati di mercato potrebbero non essere aggiornati in tempo reale.
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div style="max-width:1100px;margin:0 auto;">
+    <p style="margin-bottom:8px;"><strong>Nextrade</strong> — Segnali Trading Crypto Live</p>
+    <p>Telegram: <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener">@GIO33BOT</a> · <a href="segnali.html">Sala Segnali</a> · <a href="pricing.html">Prezzi</a> · <a href="legal/privacy.html">Privacy</a></p>
+    <p style="margin-top:12px;font-size:11px;">© 2026 Nextrade · Non è consulenza finanziaria</p>
+  </div>
+</footer>
+
+<script>
+/*
+  SETUP — 2 minuti, completamente GRATUITO:
+  1. Vai su https://aistudio.google.com/app/apikey
+  2. Clicca "Create API Key" (account Google, nessuna carta)
+  3. Copia la chiave e incollala in API_KEY qui sotto
+  4. (Opzionale) In Google Cloud Console puoi limitare la chiave al solo dominio del sito
+*/
+
+const API_KEY    = 'AIzaSyCxxu5t4OXuHHCMsS3vW-EUWtOYYedXog0';
+const MODEL      = 'gemini-2.0-flash';
+const DAILY_LIMIT = 5;
+const STORE_KEY  = 'nt_ai_v2';
+
+const SYSTEM = `Sei l'assistente AI di Nextrade, specializzato in analisi tecnica di mercati crypto e trading su futures (MEXC Futures).
+Aiuti con: trend e pattern grafici, livelli di supporto/resistenza, indicatori tecnici (RSI, MACD, EMA, Bollinger Bands, ATR, Volume), gestione del rischio, strategia di trading.
+Asset principali: BTC, ETH, SOL, XRP, BNB, ADA, Oro, S&P500, Nasdaq.
+Rispondi SEMPRE in italiano, sii conciso (max 160 parole), usa elenchi puntati per i livelli chiave, termina sempre con "⚠️ Non è consulenza finanziaria."`;
+
+let history = [];
+
+function getUsage() {
+  try {
+    const d = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
+    const today = new Date().toDateString();
+    return d.date === today ? d : { date: today, count: 0 };
+  } catch { return { date: new Date().toDateString(), count: 0 }; }
+}
+function saveUsage(u) { try { localStorage.setItem(STORE_KEY, JSON.stringify(u)); } catch {} }
+
+function updateRateBar() {
+  const u = getUsage();
+  document.getElementById('rate-used').textContent = u.count;
+  if (u.count >= DAILY_LIMIT) {
+    document.getElementById('rate-msg').textContent = '— limite giornaliero raggiunto';
+    document.getElementById('send-btn').disabled = true;
+    document.getElementById('user-input').disabled = true;
+    document.querySelectorAll('.qp-btn').forEach(b => b.disabled = true);
+  }
+}
+
+function esc(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function appendMsg(role, text) {
+  const win = document.getElementById('chat-window');
+  const el = document.createElement('div');
+  el.className = 'msg ' + role;
+  el.innerHTML = `<div class="msg-avatar">${role === 'ai' ? '🤖' : '👤'}</div>
+    <div class="msg-bubble">${esc(text).replace(/\n/g,'<br>')}</div>`;
+  win.appendChild(el);
+  win.scrollTop = win.scrollHeight;
+}
+
+function showTyping() {
+  const win = document.getElementById('chat-window');
+  const el = document.createElement('div');
+  el.className = 'msg ai'; el.id = 'typing';
+  el.innerHTML = `<div class="msg-avatar">🤖</div><div class="msg-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
+  win.appendChild(el);
+  win.scrollTop = win.scrollHeight;
+}
+function hideTyping() { const t = document.getElementById('typing'); if (t) t.remove(); }
+
+async function callAI(text) {
+  history.push({ role: 'user', parts: [{ text }] });
+  if (history.length > 12) history = history.slice(-12);
+
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      systemInstruction: { parts: [{ text: SYSTEM }] },
+      contents: history,
+      generationConfig: { maxOutputTokens: 450, temperature: 0.7 },
+    }),
+  });
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const data = await res.json();
+  const reply = data.candidates[0].content.parts[0].text;
+  history.push({ role: 'model', parts: [{ text: reply }] });
+  return reply;
+}
+
+async function handleSend() {
+  if (!API_KEY) { document.getElementById('setup-notice').style.display = 'block'; return; }
+  const input = document.getElementById('user-input');
+  const text = input.value.trim();
+  if (!text) return;
+  const u = getUsage();
+  if (u.count >= DAILY_LIMIT) return;
+  input.value = '';
+  document.getElementById('send-btn').disabled = true;
+  appendMsg('user', text);
+  showTyping();
+  try {
+    const reply = await callAI(text);
+    hideTyping();
+    appendMsg('ai', reply);
+    u.count++; saveUsage(u); updateRateBar();
+  } catch (e) {
+    hideTyping();
+    appendMsg('ai', '⚠️ Errore. Controlla la chiave API o riprova tra qualche secondo.');
+  } finally {
+    if (getUsage().count < DAILY_LIMIT) document.getElementById('send-btn').disabled = false;
+    input.focus();
+  }
+}
+
+function sendQuick(t) { document.getElementById('user-input').value = t; handleSend(); }
+
+document.getElementById('user-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); }
+});
+
+updateRateBar();
+if (!API_KEY) {
+  appendMsg('ai', 'Ciao! Sono Nextrade AI.\n\nPer attivarmi: vai su aistudio.google.com, crea una chiave gratuita e incollala in API_KEY nel file ai.html.\n\nPer domande urgenti scrivi su Telegram @GIO33BOT.');
+} else {
+  appendMsg('ai', 'Ciao! Sono Nextrade AI 🤖\n\nChiedimi analisi tecniche su BTC, ETH, SOL o qualsiasi altro asset — supporti, resistenze, trend, indicatori.\n\nHai 5 domande gratuite al giorno. Usa i pulsanti rapidi o scrivi la tua domanda.');
+}
+</script>
+</body>
+</html>
