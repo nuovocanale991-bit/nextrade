@@ -245,27 +245,34 @@ function resampleOHLCV(df,n){
 async function fetchYahoo(symbol,interval){
   const MAP={'5m':{yi:'5m',yr:'5d'},'15m':{yi:'15m',yr:'60d'},'1h':{yi:'60m',yr:'90d'},'4h':{yi:'60m',yr:'90d'},'1d':{yi:'1d',yr:'2y'}};
   const{yi,yr}=MAP[interval]||MAP['1h'];
-  const url=`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=${yi}&range=${yr}`;
-  const r=await fetch(url,{headers:{'Accept':'application/json'}});
-  if(!r.ok)throw new Error(`YF HTTP ${r.status}`);
-  const data=await r.json();
-  if(!data.chart||!data.chart.result)throw new Error('YF no data');
-  const res=data.chart.result[0];
-  const ts=res.timestamp,q=res.indicators.quote[0];
-  const valid=ts.map((_,i)=>q.close[i]!=null);
-  const df={
-    t:ts.filter((_,i)=>valid[i]).map(t=>t*1000),
-    o:q.open.filter((_,i)=>valid[i]),
-    h:q.high.filter((_,i)=>valid[i]),
-    l:q.low.filter((_,i)=>valid[i]),
-    c:q.close.filter((_,i)=>valid[i]),
-    v:(q.volume||ts.map(()=>0)).filter((_,i)=>valid[i]),
-  };
-  if(interval==='4h')return resampleOHLCV(df,4);
-  return df;
+  const hosts=['query1','query2'];
+  let lastErr;
+  for(const host of hosts){
+    try{
+      const url=`https://${host}.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=${yi}&range=${yr}`;
+      const r=await fetch(url,{headers:{'Accept':'application/json'}});
+      if(!r.ok)throw new Error(`YF HTTP ${r.status}`);
+      const data=await r.json();
+      if(!data.chart||!data.chart.result)throw new Error('YF no data');
+      const res=data.chart.result[0];
+      const ts=res.timestamp,q=res.indicators.quote[0];
+      const valid=ts.map((_,i)=>q.close[i]!=null);
+      const df={
+        t:ts.filter((_,i)=>valid[i]).map(t=>t*1000),
+        o:q.open.filter((_,i)=>valid[i]),
+        h:q.high.filter((_,i)=>valid[i]),
+        l:q.low.filter((_,i)=>valid[i]),
+        c:q.close.filter((_,i)=>valid[i]),
+        v:(q.volume||ts.map(()=>0)).filter((_,i)=>valid[i]),
+      };
+      if(interval==='4h')return resampleOHLCV(df,4);
+      return df;
+    }catch(e){lastErr=e;}
+  }
+  throw lastErr;
 }
 function fmtP(p){
-  if(p>=10000)return '$'+Math.round(p).toLocaleString('en-US');
+  if(p>=1000)return '$'+Math.round(p).toLocaleString('en-US');
   if(p>=100)return '$'+p.toFixed(2);
   if(p>=10)return '$'+p.toFixed(2);
   if(p>=1)return '$'+p.toFixed(3);

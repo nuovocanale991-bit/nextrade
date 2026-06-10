@@ -156,13 +156,13 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
       <a href="index.html">Nextrade</a> › <a href="segnali.html">Sala Segnali</a> › Mercati Tradizionali
     </nav>
     <h1>Segnali LIVE — <span>Mercati Tradizionali</span></h1>
-    <p>Analisi tecnica in tempo reale su <strong style="color:#e2e8f0;">S&P500, Nasdaq e Oro</strong>. 20 strategie, 5 timeframe, aggiornamento ogni 60 secondi su candela chiusa. Correlazione live con BTC e crypto.</p>
+    <p>Analisi tecnica in tempo reale su <strong style="color:#e2e8f0;">S&P500, Nasdaq, Dow Jones, Russell 2000, DAX e Nikkei</strong>. 20 strategie, 5 timeframe, aggiornamento ogni 60 secondi su candela chiusa.</p>
     <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
       <a href="segnali.html" class="btn btn-primary">Sala Segnali LIVE →</a>
       <a href="pricing.html" class="btn btn-outline">Sblocca Alert Telegram</a>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><div class="num">3</div><div class="lbl">Mercati tradizionali</div></div>
+      <div class="hero-stat"><div class="num">6</div><div class="lbl">Indici globali</div></div>
       <div class="hero-stat"><div class="num">20</div><div class="lbl">Strategie tecniche</div></div>
       <div class="hero-stat"><div class="num">5</div><div class="lbl">Timeframe coperti</div></div>
       <div class="hero-stat"><div class="num">60s</div><div class="lbl">Aggiornamento</div></div>
@@ -177,34 +177,40 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
     <p id="signal-status" class="section-sub">⟳ Caricamento dati live da Yahoo Finance...</p>
     <div class="market-grid">
       <div class="market-card" id="card-sp500">
-        <h3>S&amp;P500 <span class="market-badge badge-yellow" id="badge-sp500">⟳</span></h3>
+        <h3>S&amp;P 500 <span class="market-badge badge-yellow" id="badge-sp500">⟳</span></h3>
         <div class="market-price" id="price-sp500">—</div>
         <div class="market-change" id="change-sp500">caricamento...</div>
-        <div class="signal-bar" id="sigs-sp500">
-          <span class="sig-pill sig-neutral">1h ⟳</span>
-          <span class="sig-pill sig-neutral">4h ⟳</span>
-          <span class="sig-pill sig-neutral">1d ⟳</span>
-        </div>
+        <div class="signal-bar" id="sigs-sp500"><span class="sig-pill sig-neutral">1h ⟳</span><span class="sig-pill sig-neutral">4h ⟳</span><span class="sig-pill sig-neutral">1d ⟳</span></div>
       </div>
       <div class="market-card" id="card-nasdaq">
         <h3>Nasdaq 100 <span class="market-badge badge-yellow" id="badge-nasdaq">⟳</span></h3>
         <div class="market-price" id="price-nasdaq">—</div>
         <div class="market-change" id="change-nasdaq">caricamento...</div>
-        <div class="signal-bar" id="sigs-nasdaq">
-          <span class="sig-pill sig-neutral">1h ⟳</span>
-          <span class="sig-pill sig-neutral">4h ⟳</span>
-          <span class="sig-pill sig-neutral">1d ⟳</span>
-        </div>
+        <div class="signal-bar" id="sigs-nasdaq"><span class="sig-pill sig-neutral">1h ⟳</span><span class="sig-pill sig-neutral">4h ⟳</span><span class="sig-pill sig-neutral">1d ⟳</span></div>
       </div>
-      <div class="market-card" id="card-gold">
-        <h3>Oro (XAU/USD) <span class="market-badge badge-yellow" id="badge-gold">⟳</span></h3>
-        <div class="market-price" id="price-gold">—</div>
-        <div class="market-change" id="change-gold">caricamento...</div>
-        <div class="signal-bar" id="sigs-gold">
-          <span class="sig-pill sig-neutral">1h ⟳</span>
-          <span class="sig-pill sig-neutral">4h ⟳</span>
-          <span class="sig-pill sig-neutral">1d ⟳</span>
-        </div>
+      <div class="market-card" id="card-dow">
+        <h3>Dow Jones <span class="market-badge badge-yellow" id="badge-dow">⟳</span></h3>
+        <div class="market-price" id="price-dow">—</div>
+        <div class="market-change" id="change-dow">caricamento...</div>
+        <div class="signal-bar" id="sigs-dow"><span class="sig-pill sig-neutral">1h ⟳</span><span class="sig-pill sig-neutral">4h ⟳</span><span class="sig-pill sig-neutral">1d ⟳</span></div>
+      </div>
+      <div class="market-card" id="card-rty">
+        <h3>Russell 2000 <span class="market-badge badge-yellow" id="badge-rty">⟳</span></h3>
+        <div class="market-price" id="price-rty">—</div>
+        <div class="market-change" id="change-rty">caricamento...</div>
+        <div class="signal-bar" id="sigs-rty"><span class="sig-pill sig-neutral">1h ⟳</span><span class="sig-pill sig-neutral">4h ⟳</span><span class="sig-pill sig-neutral">1d ⟳</span></div>
+      </div>
+      <div class="market-card" id="card-dax">
+        <h3>DAX 40 <span class="market-badge badge-yellow" id="badge-dax">⟳</span></h3>
+        <div class="market-price" id="price-dax">—</div>
+        <div class="market-change" id="change-dax">caricamento...</div>
+        <div class="signal-bar" id="sigs-dax"><span class="sig-pill sig-neutral">1h ⟳</span><span class="sig-pill sig-neutral">4h ⟳</span><span class="sig-pill sig-neutral">1d ⟳</span></div>
+      </div>
+      <div class="market-card" id="card-nikkei">
+        <h3>Nikkei 225 <span class="market-badge badge-yellow" id="badge-nikkei">⟳</span></h3>
+        <div class="market-price" id="price-nikkei">—</div>
+        <div class="market-change" id="change-nikkei">caricamento...</div>
+        <div class="signal-bar" id="sigs-nikkei"><span class="sig-pill sig-neutral">1h ⟳</span><span class="sig-pill sig-neutral">4h ⟳</span><span class="sig-pill sig-neutral">1d ⟳</span></div>
       </div>
     </div>
     <p style="margin-top:16px;font-size:12px;color:#334155;text-align:center;">Dati live via Yahoo Finance API · Non è consulenza finanziaria</p>
@@ -348,9 +354,12 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
 <script src="signals.js"></script>
 <script>
 const TRAD_ASSETS_PAGE=[
-  {id:'sp500', label:'S&P 500', sym:'ES=F'},
-  {id:'nasdaq', label:'Nasdaq',  sym:'NQ=F'},
-  {id:'gold',   label:'Oro',     sym:'GC=F'},
+  {id:'sp500',  label:'S&P 500',    sym:'ES=F'},
+  {id:'nasdaq', label:'Nasdaq 100', sym:'NQ=F'},
+  {id:'dow',    label:'Dow Jones',  sym:'YM=F'},
+  {id:'rty',    label:'Russell 2000',sym:'RTY=F'},
+  {id:'dax',    label:'DAX 40',     sym:'^GDAXI'},
+  {id:'nikkei', label:'Nikkei 225', sym:'NKD=F'},
 ];
 
 function sigPill(sig,tf){
@@ -360,7 +369,7 @@ function sigPill(sig,tf){
   return`<span class="sig-pill ${cls}">${lbl} ${tf} ${sig.score}%</span>`;
 }
 
-function updateCard(id,price,chg24,sig1h,sig4h,sig1d){
+function updateCard(id,price,chgD,sig1h,sig4h,sig1d){
   const sigs=[sig1h,sig4h,sig1d].filter(Boolean);
   const longs=sigs.filter(s=>s.dir==='LONG').length;
   const shorts=sigs.filter(s=>s.dir==='SHORT').length;
@@ -370,9 +379,9 @@ function updateCard(id,price,chg24,sig1h,sig4h,sig1d){
   badge.className='market-badge '+(overall==='LONG'?'badge-green':overall==='SHORT'?'badge-red':'badge-yellow');
   document.getElementById('price-'+id).textContent=fmtP(price);
   const chgEl=document.getElementById('change-'+id);
-  const sign=chg24>=0?'+':'';
-  chgEl.textContent=sign+chg24.toFixed(2)+'% 24h';
-  chgEl.className='market-change '+(chg24>=0?'pos':'neg');
+  const sign=chgD>=0?'+':'';
+  chgEl.textContent=sign+chgD.toFixed(2)+'% 1d';
+  chgEl.className='market-change '+(chgD>=0?'pos':'neg');
   document.getElementById('sigs-'+id).innerHTML=sigPill(sig1h,'1h')+sigPill(sig4h,'4h')+sigPill(sig1d,'1d');
 }
 
@@ -382,23 +391,25 @@ async function refreshTradPage(){
   for(const asset of TRAD_ASSETS_PAGE){
     try{
       const df1h=await fetchYahoo(asset.sym,'1h');
-      const n=df1h.c.length;
-      const price=df1h.c[n-1];
-      const chg24=n>=25?(df1h.c[n-1]-df1h.c[n-25])/df1h.c[n-25]*100:0;
-      const sig1h=computeVotes(df1h)?hybrid(computeVotes(df1h)):null;
-      await new Promise(r=>setTimeout(r,250));
+      await new Promise(r=>setTimeout(r,300));
       const df4h=await fetchYahoo(asset.sym,'4h');
-      const sig4h=computeVotes(df4h)?hybrid(computeVotes(df4h)):null;
-      await new Promise(r=>setTimeout(r,250));
+      await new Promise(r=>setTimeout(r,300));
       const df1d=await fetchYahoo(asset.sym,'1d');
-      const sig1d=computeVotes(df1d)?hybrid(computeVotes(df1d)):null;
-      updateCard(asset.id,price,chg24,sig1h,sig4h,sig1d);
+      const price=df1h.c[df1h.c.length-1];
+      const nd=df1d.c.length;
+      const chgD=nd>=2?(df1d.c[nd-1]-df1d.c[nd-2])/df1d.c[nd-2]*100:0;
+      const v1h=computeVotes(df1h);const sig1h=v1h?hybrid(v1h):null;
+      const v4h=computeVotes(df4h);const sig4h=v4h?hybrid(v4h):null;
+      const v1d=computeVotes(df1d);const sig1d=v1d?hybrid(v1d):null;
+      updateCard(asset.id,price,chgD,sig1h,sig4h,sig1d);
     }catch(e){
       const badge=document.getElementById('badge-'+asset.id);
       if(badge)badge.textContent='ERR';
+      const ce=document.getElementById('change-'+asset.id);
+      if(ce){ce.textContent='Errore dati';ce.className='market-change';}
       console.error(asset.label,e.message);
     }
-    await new Promise(r=>setTimeout(r,300));
+    await new Promise(r=>setTimeout(r,400));
   }
   const ts=new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
   if(st)st.innerHTML=`Ultimo aggiornamento: <strong style="color:#e2e8f0;">${ts}</strong> · Prossimo: 60s · <a href="javascript:void(0)" onclick="refreshTradPage()" style="color:#3b82f6;">Aggiorna ora</a>`;
