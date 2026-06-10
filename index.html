@@ -228,6 +228,13 @@ nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-i
 .nav-item:hover>a::after{transform:rotate(180deg)}
 .dropdown{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(-6px);background:#0d1526;border:1px solid #1e293b;border-radius:14px;padding:16px;opacity:0;visibility:hidden;transition:opacity .18s,transform .18s;z-index:200;box-shadow:0 20px 60px rgba(0,0,0,.6);pointer-events:none}
 .nav-item:hover .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto}
+/* SEGNALI DROPDOWN */
+.dd-segnali{min-width:300px;display:flex;flex-direction:column;gap:6px}
+.dd-sig-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;border:1px solid transparent;transition:background .15s,border-color .15s;text-decoration:none!important;color:#e2e8f0}
+.dd-sig-item:hover{background:#1e293b;border-color:#334155;text-decoration:none!important}
+.dd-sig-info{display:flex;flex-direction:column;gap:1px}
+.dd-sig-name{font-size:13px;font-weight:600;color:#e2e8f0}
+.dd-sig-meta{font-size:11px;color:#64748b}
 /* BOT DROPDOWN */
 .dd-bots{min-width:520px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .dd-bot-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;border:1px solid transparent;transition:background .15s,border-color .15s;text-decoration:none!important}
@@ -369,7 +376,28 @@ footer strong{color:#94a3b8}
         </div>
       </div>
 
-      <a href="segnali.html">Sala Segnali</a>
+      <!-- Sala Segnali dropdown -->
+      <div class="nav-item">
+        <a href="segnali.html">Sala Segnali</a>
+        <div class="dropdown dd-segnali">
+          <div class="dd-header">SEGNALI LIVE</div>
+          <a href="segnali.html" class="dd-sig-item">
+            <div class="dd-bot-icon" style="background:#0a1628;font-size:18px;">🔵</div>
+            <div class="dd-sig-info"><span class="dd-sig-name">Crypto</span><span class="dd-sig-meta">BTC, ETH, SOL, XRP, BNB, ADA + 6 altri</span></div>
+          </a>
+          <a href="mercati-tradizionali.html" class="dd-sig-item">
+            <div class="dd-bot-icon" style="background:#0a1e0a;font-size:18px;">📈</div>
+            <div class="dd-sig-info"><span class="dd-sig-name">Mercati Tradizionali</span><span class="dd-sig-meta">S&amp;P500, Nasdaq, Oro</span></div>
+          </a>
+          <a href="materie-prime.html" class="dd-sig-item">
+            <div class="dd-bot-icon" style="background:#1a1003;font-size:18px;">🛢️</div>
+            <div class="dd-sig-info"><span class="dd-sig-name">Materie Prime</span><span class="dd-sig-meta">Argento, Petrolio WTI</span></div>
+          </a>
+          <div class="dd-separator"></div>
+          <a href="segnali.html" style="display:block;text-align:center;font-size:13px;font-weight:600;color:#3b82f6;padding:6px 0;text-decoration:none;">Sala Segnali LIVE →</a>
+        </div>
+      </div>
+
       <a href="chiamate.html">Chiamate</a>
       <a href="calendario.html">Calendario</a>
 
