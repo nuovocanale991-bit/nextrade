@@ -17,9 +17,26 @@ nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-i
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1100px;margin:0 auto;flex-wrap:wrap;gap:10px}
 .nav-logo{font-weight:800;font-size:20px;color:#fff}
 .nav-logo span{color:#3b82f6}
-.nav-links{display:flex;gap:20px;font-size:14px}
-.nav-links a{color:#94a3b8}
-.nav-links a:hover{color:#fff;text-decoration:none}
+.nav-links{display:flex;gap:4px;font-size:14px;align-items:center}
+.nav-links a{color:#94a3b8;padding:6px 10px;border-radius:6px;transition:color .15s,background .15s}
+.nav-links a:hover{color:#fff;text-decoration:none;background:#1e293b}
+.nav-item{position:relative}
+.nav-item>a{display:flex;align-items:center;gap:4px}
+.nav-item>a::after{content:'▾';font-size:10px;opacity:.6;transition:transform .2s}
+.nav-item:hover>a::after{transform:rotate(180deg)}
+.dropdown{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(-6px);background:#0d1526;border:1px solid #1e293b;border-radius:14px;padding:16px;opacity:0;visibility:hidden;transition:opacity .18s,transform .18s;z-index:200;box-shadow:0 20px 60px rgba(0,0,0,.6);pointer-events:none}
+.nav-item:hover .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.dd-bots{min-width:480px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dd-segnali{min-width:300px;display:flex;flex-direction:column;gap:6px}
+.dd-bot-item,.dd-sig-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;border:1px solid transparent;transition:background .15s;text-decoration:none!important;color:#e2e8f0}
+.dd-bot-item:hover,.dd-sig-item:hover{background:#1e293b;border-color:#334155;text-decoration:none!important}
+.dd-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.dd-info{display:flex;flex-direction:column;gap:1px}
+.dd-name{font-size:13px;font-weight:600;color:#e2e8f0}
+.dd-meta{font-size:11px;color:#64748b}
+.dd-stat{font-size:11px;font-weight:700;color:#22c55e}
+.dd-header{font-size:11px;font-weight:700;color:#475569;letter-spacing:.6px;padding:0 4px;margin-bottom:2px}
+.dd-separator{height:1px;background:#1e293b;margin:6px 0}
 .btn{display:inline-block;padding:10px 22px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;border:none;transition:opacity .15s}
 .btn-primary{background:#3b82f6;color:#fff}
 .btn-primary:hover{opacity:.85;text-decoration:none}
@@ -153,12 +170,45 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:22px 20px;text-al
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">NEX<span>TRADE</span></a>
     <div class="nav-links">
-      <a href="index.html#bot">I Bot</a>
-      <a href="segnali.html">Sala Segnali</a>
-      <a href="chiamate.html" style="color:#3b82f6;font-weight:600;">Chiamate</a>
+      <div class="nav-item">
+        <a href="index.html#bot">I Bot</a>
+        <div class="dropdown dd-bots">
+          <div style="grid-column:1/-1;margin-bottom:4px;" class="dd-header">BOT ALGORITMICI</div>
+          <a href="bot/trend-rider.html" class="dd-bot-item"><div class="dd-icon" style="background:#052e16;">📈</div><div class="dd-info"><span class="dd-name">Trend Rider</span><span class="dd-meta">BTC/ETH/SOL · 4h</span><span class="dd-stat">+10.3% CAGR</span></div></a>
+          <a href="bot/eth-v4.html" class="dd-bot-item"><div class="dd-icon" style="background:#0d1f3c;">⟠</div><div class="dd-info"><span class="dd-name">ETH V4 15m</span><span class="dd-meta">ETHUSDT · 15m</span><span class="dd-stat">+232% netto</span></div></a>
+          <a href="bot/sol-v2.html" class="dd-bot-item"><div class="dd-icon" style="background:#1a0533;">◎</div><div class="dd-info"><span class="dd-name">SOL V2 15m</span><span class="dd-meta">SOLUSDT · 15m</span><span class="dd-stat">+41% netto</span></div></a>
+          <a href="bot/ut-bot-4h.html" class="dd-bot-item"><div class="dd-icon" style="background:#1c1003;">🔄</div><div class="dd-info"><span class="dd-name">UT Bot 4h</span><span class="dd-meta">BTCUSDT · 4h</span><span class="dd-stat">+257% 24 mesi</span></div></a>
+          <div style="grid-column:1/-1;" class="dd-separator"></div>
+          <a href="index.html#bot" class="dd-bot-item" style="grid-column:1/-1;justify-content:center;color:#3b82f6;font-size:13px;font-weight:600;">Vedi tutti i bot →</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="segnali.html">Sala Segnali</a>
+        <div class="dropdown dd-segnali">
+          <div class="dd-header">SEGNALI LIVE</div>
+          <a href="segnali.html" class="dd-sig-item"><div class="dd-icon" style="background:#0a1628;font-size:18px;">🔵</div><div class="dd-info"><span class="dd-name">Crypto</span><span class="dd-meta">BTC, ETH, SOL, XRP + 8 altri</span></div></a>
+          <a href="mercati-tradizionali.html" class="dd-sig-item"><div class="dd-icon" style="background:#0a1e0a;font-size:18px;">📈</div><div class="dd-info"><span class="dd-name">Mercati Tradizionali</span><span class="dd-meta">S&amp;P500, Nasdaq, DAX + altri</span></div></a>
+          <a href="materie-prime.html" class="dd-sig-item"><div class="dd-icon" style="background:#1a1003;font-size:18px;">🛢️</div><div class="dd-info"><span class="dd-name">Materie Prime</span><span class="dd-meta">Oro, Argento, Petrolio, Rame</span></div></a>
+          <a href="forex.html" class="dd-sig-item"><div class="dd-icon" style="background:#110a1f;font-size:18px;">💱</div><div class="dd-info"><span class="dd-name">Forex</span><span class="dd-meta">EUR/USD, GBP/USD + 5 major</span></div></a>
+          <div class="dd-separator"></div>
+          <a href="segnali.html" style="display:block;text-align:center;font-size:13px;font-weight:600;color:#3b82f6;padding:6px 0;text-decoration:none;">Sala Segnali LIVE →</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="chiamate.html" style="color:#3b82f6;font-weight:700;">Chiamate</a>
+        <div class="dropdown dd-segnali">
+          <div class="dd-header">CHIAMATE LIVE</div>
+          <a href="chiamate.html" class="dd-sig-item" style="background:#0a1628;border-color:#1e3a5f;"><div class="dd-icon" style="background:#0a1628;font-size:18px;">🔵</div><div class="dd-info"><span class="dd-name" style="color:#60a5fa;">Crypto</span><span class="dd-meta">BTC, ETH, SOL + 9 altri</span></div></a>
+          <a href="chiamate-tradizionali.html" class="dd-sig-item"><div class="dd-icon" style="background:#0a1e0a;font-size:18px;">📈</div><div class="dd-info"><span class="dd-name">Mercati Tradizionali</span><span class="dd-meta">S&amp;P500, Nasdaq, DAX, Nikkei</span></div></a>
+          <a href="chiamate-materie-prime.html" class="dd-sig-item"><div class="dd-icon" style="background:#1a1003;font-size:18px;">🛢️</div><div class="dd-info"><span class="dd-name">Materie Prime</span><span class="dd-meta">Oro, Argento, Petrolio, Rame</span></div></a>
+          <a href="chiamate-forex.html" class="dd-sig-item"><div class="dd-icon" style="background:#110a1f;font-size:18px;">💱</div><div class="dd-info"><span class="dd-name">Forex</span><span class="dd-meta">EUR/USD, GBP/USD + 5 major</span></div></a>
+          <div class="dd-separator"></div>
+          <a href="chiamate.html" style="display:block;text-align:center;font-size:13px;font-weight:600;color:#3b82f6;padding:6px 0;text-decoration:none;">Tutte le Chiamate →</a>
+        </div>
+      </div>
       <a href="calendario.html">Calendario</a>
+      <a href="ai.html" style="color:#3b82f6;font-weight:700;">Agent AI</a>
       <a href="pricing.html">Prezzi</a>
-      <a href="index.html#faq">FAQ</a>
       <a href="https://t.me/GIO33BOT" target="_blank" rel="noopener">Telegram</a>
     </div>
     <a href="pricing.html" class="btn btn-primary">Vedi i Piani →</a>
