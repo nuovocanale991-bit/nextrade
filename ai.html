@@ -102,7 +102,9 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
 .upgrade-btn-primary:hover{opacity:.92;transform:translateY(-2px);box-shadow:0 6px 20px rgba(59,130,246,.45)}
 .upgrade-btn-close{background:transparent;color:#475569;border:1px solid #1e293b;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;transition:color .15s,border-color .15s;font-family:inherit}
 .upgrade-btn-close:hover{color:#94a3b8;border-color:#334155}
-/* dim chat input area visually when limit reached */
+/* overlay trasparente che cattura i click quando il limite è raggiunto */
+.chat-wrap{position:relative}
+.chat-input-blocker{display:none;position:absolute;bottom:0;left:0;right:0;height:130px;z-index:50;cursor:not-allowed;background:transparent}
 .limit-hit #user-input{cursor:not-allowed}
 .limit-hit .qp-btn{opacity:.45;cursor:not-allowed}
 </style>
@@ -189,6 +191,8 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
         <input type="text" id="user-input" placeholder="Es: analisi BTC adesso, livelli ETH, il Trend Rider è long o short?" maxlength="400" autocomplete="off">
         <button id="send-btn" onclick="handleSend()">Invia →</button>
       </div>
+      <!-- overlay che intercetta i click su input/send disabilitati -->
+      <div class="chat-input-blocker" id="chat-input-blocker"></div>
     </div>
 
     <div id="setup-notice" class="setup-notice" style="display:none;">
@@ -390,8 +394,9 @@ function updateRateBar() {
     document.getElementById('rate-msg').textContent = '— limite giornaliero raggiunto';
     document.getElementById('send-btn').disabled = true;
     document.getElementById('user-input').disabled = true;
-    // classe visuale; i click su qp-btn e input sono intercettati dall'event delegation
     document.querySelector('.chat-wrap').classList.add('limit-hit');
+    // mostra l'overlay che cattura i click su elementi disabled
+    document.getElementById('chat-input-blocker').style.display = 'block';
   }
 }
 
@@ -533,6 +538,14 @@ document.addEventListener('keydown', e => {
 document.getElementById('upgradeModal').addEventListener('click', e => {
   if (e.target === e.currentTarget) closeUpgradeModal();
 });
+
+// l'overlay sull'area input apre la modal (cattura click su elementi disabled)
+document.getElementById('chat-input-blocker').addEventListener('click', openUpgradeModal);
+
+// se il limite era già raggiunto al caricamento pagina, mostra subito l'overlay
+if (getUsage().count >= DAILY_LIMIT) {
+  document.getElementById('chat-input-blocker').style.display = 'block';
+}
 
 // ── INTERCETTORI LIMITE ───────────────────────────────────────────────────────
 // Blocca click su input/send/qp-btn quando il limite è raggiunto.
