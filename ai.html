@@ -39,13 +39,22 @@ nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-i
 .btn{display:inline-block;padding:10px 22px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;border:none;transition:opacity .15s;text-align:center}
 .btn-primary{background:#3b82f6;color:#fff}
 .btn-primary:hover{opacity:.85;text-decoration:none}
-/* HERO */
 .ai-hero{padding:40px 20px 24px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#1a3a6033 0%,transparent 70%)}
 .ai-hero h1{font-size:clamp(22px,4vw,30px);font-weight:900;color:#fff;margin-bottom:8px}
 .ai-hero p{font-size:14px;color:#94a3b8;max-width:480px;margin:0 auto}
 .ai-badge{display:inline-block;background:#22c55e22;color:#4ade80;border:1px solid #22c55e44;border-radius:99px;font-size:11px;font-weight:700;padding:3px 10px;margin-bottom:12px}
+/* MARKET TICKER */
+.market-ticker{background:#0d1526;border:1px solid #1e293b;border-radius:10px;padding:10px 16px;margin-top:16px;display:flex;gap:16px;flex-wrap:wrap;font-size:12px;align-items:center;min-height:38px}
+.ticker-item{display:flex;align-items:center;gap:6px}
+.ticker-label{color:#475569;font-weight:600}
+.ticker-price{color:#e2e8f0;font-weight:700}
+.ticker-rsi{font-size:11px;padding:2px 6px;border-radius:4px;font-weight:600}
+.rsi-ob{background:#ef444422;color:#f87171}
+.rsi-os{background:#22c55e22;color:#4ade80}
+.rsi-neutral{background:#1e293b;color:#94a3b8}
+.ticker-loading{color:#475569;font-size:12px;animation:pulse 1.5s infinite}
 /* CHAT */
-.chat-wrap{background:#111827;border:1px solid #1e293b;border-radius:16px;overflow:hidden;margin-top:24px}
+.chat-wrap{background:#111827;border:1px solid #1e293b;border-radius:16px;overflow:hidden;margin-top:16px}
 .chat-header{background:#0d1526;padding:11px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #1e293b}
 .ai-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
@@ -64,11 +73,9 @@ nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-i
 .typing-dots span:nth-child(2){animation-delay:.15s}
 .typing-dots span:nth-child(3){animation-delay:.3s}
 @keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
-/* QUICK PROMPTS */
 .quick-prompts{padding:10px 16px;border-top:1px solid #0a0f1e;display:flex;gap:8px;flex-wrap:wrap}
 .qp-btn{background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:12px;padding:5px 12px;border-radius:99px;cursor:pointer;transition:all .15s;white-space:nowrap;font-family:inherit}
 .qp-btn:hover{background:#2d3f55;border-color:#475569;color:#e2e8f0}
-/* INPUT */
 .chat-input-row{display:flex;gap:8px;padding:12px 16px;border-top:1px solid #1e293b;background:#0d1526}
 #user-input{flex:1;background:#1e293b;border:1px solid #334155;border-radius:8px;padding:9px 14px;color:#e2e8f0;font-size:14px;outline:none;font-family:inherit;transition:border-color .15s}
 #user-input:focus{border-color:#3b82f6}
@@ -80,7 +87,7 @@ nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-i
 .setup-notice{background:#1a2535;border:1px dashed #2d4a7a;border-radius:10px;padding:16px 20px;margin-top:16px;font-size:13px;color:#94a3b8}
 .setup-notice code{background:#0d1526;padding:2px 6px;border-radius:4px;font-size:12px;color:#fbbf24;font-family:monospace}
 footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-align:center;font-size:13px;color:#475569}
-@media(max-width:600px){.nav-links{display:none}.chat-window{height:300px}}
+@media(max-width:600px){.nav-links{display:none}.chat-window{height:300px}.market-ticker{gap:10px}}
 </style>
 </head>
 <body>
@@ -129,17 +136,23 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
 <main>
   <div class="ai-hero">
     <div class="container">
-      <div class="ai-badge">Agent AI · Nessun account richiesto</div>
+      <div class="ai-badge">Agent AI · Dati live · Nessun account richiesto</div>
       <h1>Nextrade Agent AI — Analisi di Mercato</h1>
-      <p>Chiedi analisi tecnica su qualsiasi asset crypto. Supporti, resistenze, trend, indicatori — risposta in italiano in secondi.</p>
+      <p>Chiedi analisi tecnica su qualsiasi asset crypto. Prezzi live, RSI, trend, supporti e resistenze — risposta in italiano in secondi.</p>
     </div>
   </div>
 
   <div class="container" style="padding-bottom:48px;">
+
+    <!-- MARKET TICKER LIVE -->
+    <div class="market-ticker" id="market-ticker">
+      <span class="ticker-loading">⏳ Caricamento dati live...</span>
+    </div>
+
     <div class="chat-wrap">
       <div class="chat-header">
         <div class="ai-dot"></div>
-        <div class="chat-header-text">Nextrade AI · Analisi Tecnica</div>
+        <div class="chat-header-text">Nextrade AI · Analisi Tecnica Live</div>
         <div style="margin-left:auto;font-size:11px;color:#475569;">llama-3.3-70b</div>
       </div>
       <div class="rate-bar">
@@ -148,14 +161,15 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
       </div>
       <div class="chat-window" id="chat-window"></div>
       <div class="quick-prompts">
-        <button class="qp-btn" onclick="sendQuick('Analisi tecnica BTC oggi: trend principale, supporti e resistenze chiave, RSI e MACD.')">📊 BTC</button>
-        <button class="qp-btn" onclick="sendQuick('Analisi tecnica ETH: trend, livelli chiave, momentum attuale.')">🔵 ETH</button>
-        <button class="qp-btn" onclick="sendQuick('Analisi tecnica SOL: struttura del prezzo, supporti, bias direzionale.')">🟣 SOL</button>
-        <button class="qp-btn" onclick="sendQuick('Come impostare un trade su futures con RSI + EMA200? Spiega entry, stop-loss e target.')">📚 Setup RSI+EMA</button>
-        <button class="qp-btn" onclick="sendQuick('Qual è il sentiment generale del mercato crypto in questo momento? Bull o bear? Perché?')">🌡️ Sentiment</button>
+        <button class="qp-btn" onclick="sendQuick('Analisi tecnica BTC adesso: trend attuale, supporti e resistenze chiave, RSI e segnale operativo.')">📊 BTC live</button>
+        <button class="qp-btn" onclick="sendQuick('Analisi tecnica ETH adesso: trend, livelli chiave, momentum e bias direzionale.')">🔵 ETH live</button>
+        <button class="qp-btn" onclick="sendQuick('Analisi tecnica SOL adesso: struttura del prezzo, supporti, bias direzionale.')">🟣 SOL live</button>
+        <button class="qp-btn" onclick="sendQuick('Guardando i dati live dei bot Nextrade (Trend Rider 4h, ETH V4 15m, UT Bot 4h), quale asset ha il setup migliore adesso?')">🤖 Setup bot</button>
+        <button class="qp-btn" onclick="sendQuick('Come impostare un trade su futures con RSI + EMA200? Entry, stop-loss e target con i prezzi attuali di BTC.')">📚 Setup RSI+EMA</button>
+        <button class="qp-btn" onclick="sendQuick('Qual è il sentiment generale del mercato crypto adesso? Analizza BTC, ETH e SOL e dimmi bull o bear.')">🌡️ Sentiment</button>
       </div>
       <div class="chat-input-row">
-        <input type="text" id="user-input" placeholder="Es: analisi BTC, livelli ETH, come usare il MACD su futures..." maxlength="400" autocomplete="off">
+        <input type="text" id="user-input" placeholder="Es: analisi BTC adesso, livelli ETH, il Trend Rider è long o short?" maxlength="400" autocomplete="off">
         <button id="send-btn" onclick="handleSend()">Invia →</button>
       </div>
     </div>
@@ -165,7 +179,7 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
     </div>
 
     <div style="margin-top:14px;background:#111827;border:1px solid #1e293b;border-radius:10px;padding:13px 18px;font-size:12px;color:#475569;">
-      <strong>Avvertenza:</strong> L'AI fornisce analisi tecnica educativa, non consulenza finanziaria. Il trading su futures comporta rischio elevato di perdita del capitale. I dati di mercato potrebbero non essere aggiornati in tempo reale.
+      <strong>Avvertenza:</strong> L'AI fornisce analisi tecnica educativa, non consulenza finanziaria. Il trading su futures comporta rischio elevato di perdita del capitale. Dati di mercato forniti da Binance API in tempo reale.
     </div>
   </div>
 </main>
@@ -185,13 +199,151 @@ const DAILY_LIMIT = 5;
 const STORE_KEY   = 'nt_ai_v3';
 const ENDPOINT    = 'https://api.groq.com/openai/v1/chat/completions';
 
-const SYSTEM = `Sei l'assistente AI di Nextrade, specializzato in analisi tecnica di mercati crypto e trading su futures (MEXC Futures).
-Aiuti con: trend e pattern grafici, livelli di supporto/resistenza, indicatori tecnici (RSI, MACD, EMA, Bollinger Bands, ATR, Volume), gestione del rischio, strategia di trading.
-Asset principali: BTC, ETH, SOL, XRP, BNB, ADA, Oro, S&P500, Nasdaq.
-Rispondi SEMPRE in italiano, sii conciso (max 160 parole), usa elenchi puntati per i livelli chiave, termina sempre con "⚠️ Non è consulenza finanziaria."`;
+// Base system prompt — il contesto di mercato live viene aggiunto dinamicamente in callAI()
+const SYSTEM_BASE = `Sei l'assistente AI di Nextrade, piattaforma italiana di trading algoritmico crypto su MEXC Futures.
+Hai accesso a dati di mercato LIVE che vengono forniti all'inizio di ogni messaggio come blocco "DATI MERCATO LIVE".
+REGOLE FONDAMENTALI:
+- Usa SEMPRE i dati live forniti per rispondere: prezzi, RSI, trend EMA. NON inventare valori.
+- Se i dati live non sono disponibili, dillo esplicitamente.
+- Rispondi SEMPRE in italiano, sii conciso (max 180 parole), usa elenchi puntati per livelli chiave.
+- Termina sempre con "⚠️ Non è consulenza finanziaria."
+BOT NEXTRADE DISPONIBILI:
+- Trend Rider 4h: long-only su BTC/ETH/SOL, EMA200 filtro, CAGR 10.3%, DD max -9%
+- ETH V4 15m: long+short su ETHUSDT, +232% netto
+- SOL V2 15m: long+short su SOLUSDT, +41% netto
+- UT Bot 4h: long+short su BTCUSDT, +257% in 24 mesi
+- ZEC Scalp V3 5m: scalping su ZECUSDT, +91.6% lordo
+SALA SEGNALI: analisi multi-timeframe (5m/15m/1h/4h/1d) con 20 strategie tecniche in parallelo su 17 asset.
+Quando rispondi a domande sui bot o sulla Sala Segnali, fai riferimento a questi dati reali.`;
+
+// Dati di mercato in memoria (aggiornati ogni volta che si carica la pagina + ogni domanda)
+let marketCache = null;
+let marketCacheTime = 0;
+const CACHE_TTL = 60000; // 1 minuto
 
 let history = [];
 
+// ── Calcoli tecnici ──────────────────────────────────────────────────────────
+function calcRSI(closes, period = 14) {
+  if (closes.length < period + 1) return null;
+  let gains = 0, losses = 0;
+  for (let i = closes.length - period; i < closes.length; i++) {
+    const diff = closes[i] - closes[i - 1];
+    if (diff > 0) gains += diff; else losses -= diff;
+  }
+  const avgGain = gains / period;
+  const avgLoss = losses / period;
+  if (avgLoss === 0) return 100;
+  return 100 - 100 / (1 + avgGain / avgLoss);
+}
+
+function calcEMA(closes, period) {
+  if (closes.length < period) return null;
+  const k = 2 / (period + 1);
+  let ema = closes.slice(0, period).reduce((a, b) => a + b) / period;
+  for (let i = period; i < closes.length; i++) ema = closes[i] * k + ema * (1 - k);
+  return ema;
+}
+
+function calcChange24h(closes) {
+  if (closes.length < 25) return null;
+  const now = closes[closes.length - 1];
+  const prev = closes[closes.length - 25];
+  return ((now - prev) / prev * 100);
+}
+
+// ── Fetch dati Binance ───────────────────────────────────────────────────────
+async function fetchAsset(symbol, name) {
+  const url = `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=1h&limit=60`;
+  const r = await fetch(url);
+  if (!r.ok) throw new Error('Binance ' + r.status);
+  const data = await r.json();
+  const closes = data.map(k => parseFloat(k[4]));
+  const price = closes[closes.length - 1];
+  const rsi = calcRSI(closes, 14);
+  const ema20 = calcEMA(closes, 20);
+  const ema50 = calcEMA(closes, 50);
+  const chg = calcChange24h(closes);
+  const trend = ema20 && ema50
+    ? (price > ema20 && ema20 > ema50 ? 'BULLISH' : price < ema20 && ema20 < ema50 ? 'BEARISH' : 'NEUTRO')
+    : (ema20 ? (price > ema20 ? 'sopra EMA20' : 'sotto EMA20') : '—');
+  return { name, symbol, price, rsi, ema20, ema50, chg, trend };
+}
+
+async function fetchAllMarkets() {
+  const now = Date.now();
+  if (marketCache && now - marketCacheTime < CACHE_TTL) return marketCache;
+
+  const pairs = [
+    { symbol: 'BTCUSDT', name: 'BTC' },
+    { symbol: 'ETHUSDT', name: 'ETH' },
+    { symbol: 'SOLUSDT', name: 'SOL' },
+    { symbol: 'XRPUSDT', name: 'XRP' },
+    { symbol: 'BNBUSDT', name: 'BNB' },
+  ];
+
+  const results = await Promise.allSettled(pairs.map(p => fetchAsset(p.symbol, p.name)));
+  const assets = results
+    .filter(r => r.status === 'fulfilled')
+    .map(r => r.value);
+
+  marketCache = assets;
+  marketCacheTime = now;
+  return assets;
+}
+
+// ── Ticker UI ────────────────────────────────────────────────────────────────
+function rsiClass(rsi) {
+  if (rsi === null) return 'rsi-neutral';
+  if (rsi >= 70) return 'rsi-ob';
+  if (rsi <= 30) return 'rsi-os';
+  return 'rsi-neutral';
+}
+
+function renderTicker(assets) {
+  const ticker = document.getElementById('market-ticker');
+  if (!assets || assets.length === 0) {
+    ticker.innerHTML = '<span style="color:#ef4444;font-size:12px;">⚠️ Dati live non disponibili</span>';
+    return;
+  }
+  const now = new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
+  let html = `<span style="color:#475569;font-size:11px;">🔴 LIVE ${now}</span>`;
+  for (const a of assets) {
+    const rsiVal = a.rsi !== null ? a.rsi.toFixed(0) : '—';
+    const chgStr = a.chg !== null ? (a.chg >= 0 ? `+${a.chg.toFixed(1)}%` : `${a.chg.toFixed(1)}%`) : '';
+    const chgColor = a.chg !== null ? (a.chg >= 0 ? '#4ade80' : '#f87171') : '#94a3b8';
+    const priceStr = a.price >= 1000
+      ? a.price.toLocaleString('it-IT', { maximumFractionDigits: 0 })
+      : a.price.toLocaleString('it-IT', { maximumFractionDigits: 3 });
+    html += `<div class="ticker-item">
+      <span class="ticker-label">${a.name}</span>
+      <span class="ticker-price">$${priceStr}</span>
+      <span style="color:${chgColor};font-size:11px;">${chgStr}</span>
+      <span class="ticker-rsi ${rsiClass(a.rsi)}">RSI ${rsiVal}</span>
+    </div>`;
+  }
+  ticker.innerHTML = html;
+}
+
+// ── Contesto mercato per il system prompt ────────────────────────────────────
+function buildMarketContext(assets) {
+  if (!assets || assets.length === 0) return '';
+  const now = new Date().toLocaleString('it-IT', { timeZone: 'UTC', hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit' });
+  let lines = [`--- DATI MERCATO LIVE (${now} UTC) ---`];
+  for (const a of assets) {
+    const rsiStr = a.rsi !== null ? `RSI1h=${a.rsi.toFixed(1)}` : 'RSI=n/d';
+    const chgStr = a.chg !== null ? ` var24h=${a.chg >= 0 ? '+' : ''}${a.chg.toFixed(2)}%` : '';
+    const priceStr = a.price >= 1000
+      ? a.price.toLocaleString('en-US', { maximumFractionDigits: 0 })
+      : a.price.toLocaleString('en-US', { maximumFractionDigits: 4 });
+    const emaStr = a.ema20 ? ` EMA20=$${a.ema20 >= 1000 ? a.ema20.toLocaleString('en-US', {maximumFractionDigits:0}) : a.ema20.toFixed(3)}` : '';
+    lines.push(`${a.name}: $${priceStr}${chgStr} | ${rsiStr} | Trend=${a.trend}${emaStr}`);
+  }
+  lines.push('---');
+  return '\n\n' + lines.join('\n');
+}
+
+// ── Utility ──────────────────────────────────────────────────────────────────
 function getUsage() {
   try {
     const d = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
@@ -236,9 +388,20 @@ function showTyping() {
 }
 function hideTyping() { const t = document.getElementById('typing'); if (t) t.remove(); }
 
+// ── Chiamata AI con contesto live ────────────────────────────────────────────
 async function callAI(text) {
   history.push({ role: 'user', content: text });
   if (history.length > 12) history = history.slice(-12);
+
+  // Aggiorna dati mercato e costruisci system prompt dinamico
+  let mktCtx = '';
+  try {
+    const assets = await fetchAllMarkets();
+    mktCtx = buildMarketContext(assets);
+    renderTicker(assets);
+  } catch (_) { /* se Binance non risponde, continua senza dati live */ }
+
+  const systemFull = SYSTEM_BASE + mktCtx;
 
   const res = await fetch(ENDPOINT, {
     method: 'POST',
@@ -248,11 +411,12 @@ async function callAI(text) {
     },
     body: JSON.stringify({
       model: MODEL,
-      messages: [{ role: 'system', content: SYSTEM }, ...history],
-      max_tokens: 450,
-      temperature: 0.7,
+      messages: [{ role: 'system', content: systemFull }, ...history],
+      max_tokens: 500,
+      temperature: 0.6,
     }),
   });
+
   if (!res.ok) {
     const errBody = await res.json().catch(() => ({}));
     throw new Error('HTTP ' + res.status + (errBody.error?.message ? ': ' + errBody.error.message : ''));
@@ -294,8 +458,17 @@ document.getElementById('user-input').addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); }
 });
 
+// ── Inizializzazione ─────────────────────────────────────────────────────────
 updateRateBar();
-appendMsg('ai', 'Ciao! Sono Nextrade AI 🤖\n\nChiedimi analisi tecniche su BTC, ETH, SOL o qualsiasi altro asset — supporti, resistenze, trend, indicatori.\n\nHai 5 domande gratuite al giorno. Usa i pulsanti rapidi o scrivi la tua domanda.');
+appendMsg('ai', 'Ciao! Sono Nextrade AI 🤖\n\nSto caricando i dati di mercato live da Binance...\n\nChiedimi analisi su BTC, ETH, SOL o i bot Nextrade — rispondo con prezzi e indicatori aggiornati adesso. Hai 5 domande gratuite al giorno.');
+
+// Carica subito il ticker live
+fetchAllMarkets()
+  .then(assets => renderTicker(assets))
+  .catch(() => {
+    document.getElementById('market-ticker').innerHTML =
+      '<span style="color:#ef4444;font-size:12px;">⚠️ Dati live non disponibili — l\'AI risponderà con dati di training</span>';
+  });
 </script>
 </body>
 </html>
