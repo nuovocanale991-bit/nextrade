@@ -88,6 +88,23 @@ nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-i
 .setup-notice code{background:#0d1526;padding:2px 6px;border-radius:4px;font-size:12px;color:#fbbf24;font-family:monospace}
 footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-align:center;font-size:13px;color:#475569}
 @media(max-width:600px){.nav-links{display:none}.chat-window{height:300px}.market-ticker{gap:10px}}
+/* ── UPGRADE MODAL ── */
+.upgrade-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(5px);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.upgrade-overlay.is-open{opacity:1;visibility:visible}
+.upgrade-dialog{background:#111827;border:1px solid #1e3a5f;border-radius:18px;padding:34px 28px 28px;max-width:370px;width:100%;text-align:center;transform:scale(.9) translateY(10px);transition:transform .28s cubic-bezier(.34,1.56,.64,1);box-shadow:0 30px 90px rgba(0,0,0,.7),0 0 0 1px #1e3a5f40}
+.upgrade-overlay.is-open .upgrade-dialog{transform:scale(1) translateY(0)}
+.upgrade-icon{font-size:38px;margin-bottom:14px;line-height:1}
+.upgrade-title{font-size:19px;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-.3px}
+.upgrade-text{font-size:13px;color:#94a3b8;line-height:1.65;margin-bottom:26px}
+.upgrade-text strong{color:#e2e8f0}
+.upgrade-actions{display:flex;flex-direction:column;gap:10px}
+.upgrade-btn-primary{background:linear-gradient(135deg,#3b82f6 0%,#1d4ed8 100%);color:#fff;border:none;border-radius:10px;padding:14px 20px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.2px;transition:opacity .15s,transform .1s,box-shadow .15s;font-family:inherit;box-shadow:0 4px 16px rgba(59,130,246,.35)}
+.upgrade-btn-primary:hover{opacity:.92;transform:translateY(-2px);box-shadow:0 6px 20px rgba(59,130,246,.45)}
+.upgrade-btn-close{background:transparent;color:#475569;border:1px solid #1e293b;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;transition:color .15s,border-color .15s;font-family:inherit}
+.upgrade-btn-close:hover{color:#94a3b8;border-color:#334155}
+/* dim chat input area visually when limit reached */
+.limit-hit #user-input{cursor:not-allowed}
+.limit-hit .qp-btn{opacity:.45;cursor:not-allowed}
 </style>
 </head>
 <body>
@@ -191,6 +208,19 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
     <p style="margin-top:12px;font-size:11px;">© 2026 Nextrade · Non è consulenza finanziaria</p>
   </div>
 </footer>
+
+<!-- UPGRADE MODAL — mostrata al raggiungimento del limite giornaliero -->
+<div id="upgradeModal" class="upgrade-overlay" role="dialog" aria-modal="true" aria-labelledby="upgradeModalTitle" aria-hidden="true">
+  <div class="upgrade-dialog">
+    <div class="upgrade-icon">🔒</div>
+    <h2 id="upgradeModalTitle" class="upgrade-title">Limite giornaliero raggiunto</h2>
+    <p class="upgrade-text">Hai terminato le <strong>5 domande gratuite</strong> di oggi. Sblocca più analisi e funzionalità avanzate con un piano Nextrade.</p>
+    <div class="upgrade-actions">
+      <button class="upgrade-btn-primary" onclick="redirectToPricing()">Scopri i pacchetti →</button>
+      <button class="upgrade-btn-close" onclick="closeUpgradeModal()">Chiudi</button>
+    </div>
+  </div>
+</div>
 
 <script>
 const API_KEY     = 'gsk_hOl5dXcOv3a5UVdbbpOnWG'+'dyb3FYqSlIIgIaoC4WoSAPfXCUVNKn';
@@ -360,7 +390,8 @@ function updateRateBar() {
     document.getElementById('rate-msg').textContent = '— limite giornaliero raggiunto';
     document.getElementById('send-btn').disabled = true;
     document.getElementById('user-input').disabled = true;
-    document.querySelectorAll('.qp-btn').forEach(b => b.disabled = true);
+    // classe visuale; i click su qp-btn e input sono intercettati dall'event delegation
+    document.querySelector('.chat-wrap').classList.add('limit-hit');
   }
 }
 
@@ -433,7 +464,7 @@ async function handleSend() {
   const text = input.value.trim();
   if (!text) return;
   const u = getUsage();
-  if (u.count >= DAILY_LIMIT) return;
+  if (u.count >= DAILY_LIMIT) { openUpgradeModal(); return; }
   input.value = '';
   document.getElementById('send-btn').disabled = true;
   appendMsg('user', text);
@@ -443,6 +474,8 @@ async function handleSend() {
     hideTyping();
     appendMsg('ai', reply);
     u.count++; saveUsage(u); updateRateBar();
+    // mostra modal con leggero ritardo dopo l'ultima risposta
+    if (u.count >= DAILY_LIMIT) setTimeout(openUpgradeModal, 1400);
   } catch (e) {
     hideTyping();
     appendMsg('ai', '⚠️ Errore: ' + e.message + '\n\nRiprova tra qualche secondo.');
@@ -469,6 +502,59 @@ fetchAllMarkets()
     document.getElementById('market-ticker').innerHTML =
       '<span style="color:#ef4444;font-size:12px;">⚠️ Dati live non disponibili — l\'AI risponderà con dati di training</span>';
   });
+
+// ── UPGRADE MODAL ────────────────────────────────────────────────────────────
+
+function openUpgradeModal() {
+  const modal = document.getElementById('upgradeModal');
+  if (modal.classList.contains('is-open')) return; // evita aperture multiple
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+  // focus sul pulsante principale per accessibilità
+  modal.querySelector('.upgrade-btn-primary').focus();
+}
+
+function closeUpgradeModal() {
+  const modal = document.getElementById('upgradeModal');
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+}
+
+function redirectToPricing() {
+  window.location.href = 'https://nuovocanale991-bit.github.io/nextrade/pricing.html';
+}
+
+// chiudi con ESC
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeUpgradeModal();
+});
+
+// chiudi cliccando sull'overlay fuori dal dialog
+document.getElementById('upgradeModal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeUpgradeModal();
+});
+
+// ── INTERCETTORI LIMITE ───────────────────────────────────────────────────────
+// Blocca click su input/send/qp-btn quando il limite è raggiunto.
+// Usa capture phase per intercettare prima degli handler originali.
+document.querySelector('.chat-wrap').addEventListener('click', e => {
+  if (getUsage().count < DAILY_LIMIT) return;
+  const blocked = e.target.closest('#user-input, #send-btn, .qp-btn, .chat-input-row, .quick-prompts');
+  if (blocked) { e.preventDefault(); e.stopImmediatePropagation(); openUpgradeModal(); }
+}, true);
+
+// ── data-limit-gate: intercettore scalabile per qualsiasi elemento futuro ────
+// Aggiungi data-limit-gate="true" a qualsiasi bottone/card/link per bloccarlo
+// automaticamente quando il limite giornaliero è esaurito.
+document.addEventListener('click', e => {
+  const gated = e.target.closest('[data-limit-gate="true"]');
+  if (!gated) return;
+  if (getUsage().count >= DAILY_LIMIT) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    openUpgradeModal();
+  }
+}, true);
 </script>
 </body>
 </html>
