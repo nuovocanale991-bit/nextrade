@@ -97,7 +97,7 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
       <div class="chat-header">
         <div class="ai-dot"></div>
         <div class="chat-header-text">Nextrade AI · Analisi Tecnica</div>
-        <div style="margin-left:auto;font-size:11px;color:#475569;">claude-haiku</div>
+        <div style="margin-left:auto;font-size:11px;color:#475569;">gemini-1.5-flash</div>
       </div>
       <div class="rate-bar">
         <span>Domande oggi: <strong id="rate-used">0</strong> / <strong id="rate-limit">5</strong></span>
@@ -145,7 +145,7 @@ footer{background:#0d1526;border-top:1px solid #1e293b;padding:24px 20px;text-al
 */
 
 const API_KEY    = 'AIzaSyCxxu5t4OXuHHCMsS3vW-EUWtOYYedXog0';
-const MODEL      = 'gemini-2.0-flash';
+const MODEL      = 'gemini-1.5-flash';
 const DAILY_LIMIT = 5;
 const STORE_KEY  = 'nt_ai_v2';
 
@@ -214,9 +214,13 @@ async function callAI(text) {
       generationConfig: { maxOutputTokens: 450, temperature: 0.7 },
     }),
   });
-  if (!res.ok) throw new Error('HTTP ' + res.status);
+  if (!res.ok) {
+    const errBody = await res.json().catch(() => ({}));
+    throw new Error('HTTP ' + res.status + (errBody.error?.message ? ': ' + errBody.error.message : ''));
+  }
   const data = await res.json();
-  const reply = data.candidates[0].content.parts[0].text;
+  const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+  if (!reply) throw new Error('Risposta vuota dal modello');
   history.push({ role: 'model', parts: [{ text: reply }] });
   return reply;
 }
@@ -239,7 +243,7 @@ async function handleSend() {
     u.count++; saveUsage(u); updateRateBar();
   } catch (e) {
     hideTyping();
-    appendMsg('ai', '⚠️ Errore. Controlla la chiave API o riprova tra qualche secondo.');
+    appendMsg('ai', '⚠️ Errore: ' + e.message + '\n\nRiprova tra qualche secondo o controlla la chiave API.');
   } finally {
     if (getUsage().count < DAILY_LIMIT) document.getElementById('send-btn').disabled = false;
     input.focus();
