@@ -1,2 +1,4 @@
 tunnel_out.log
 tunnel_err.log
+
+.staticrypt.json
