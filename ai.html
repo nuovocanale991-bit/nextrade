@@ -25,7 +25,8 @@ nav{background:#0d1526;border-bottom:1px solid #1e293b;position:sticky;top:0;z-i
 .nav-item>a::after{content:'▾';font-size:10px;opacity:.6;transition:transform .2s}
 .nav-item:hover>a::after{transform:rotate(180deg)}
 .dropdown{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(-6px);background:#0d1526;border:1px solid #1e293b;border-radius:14px;padding:16px;opacity:0;visibility:hidden;transition:opacity .18s,transform .18s;z-index:200;box-shadow:0 20px 60px rgba(0,0,0,.6);pointer-events:none}
-.nav-item:hover .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.nav-item:hover .dropdown,.nav-item.is-open .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.nav-item.is-open>a::after{transform:rotate(180deg)}
 .dd-bots{min-width:480px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .dd-bot-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;border:1px solid transparent;transition:background .15s,border-color .15s;text-decoration:none!important}
 .dd-bot-item:hover{background:#1e293b;border-color:#334155;text-decoration:none!important}
@@ -594,6 +595,15 @@ document.addEventListener('click', e => {
     openUpgradeModal();
   }
 }, true);
+</script>
+<script>
+(function(){
+  document.querySelectorAll('.nav-item').forEach(function(el){
+    var t;
+    el.addEventListener('mouseenter',function(){clearTimeout(t);el.classList.add('is-open');});
+    el.addEventListener('mouseleave',function(){t=setTimeout(function(){el.classList.remove('is-open');},5000);});
+  });
+})();
 </script>
 </body>
 </html>
